@@ -1,0 +1,24 @@
+{
+  "name": "hq-cropper",
+  "version": "1.0.0",
+  "description": "Cropper for High Quality images",
+  "main": "dist/main.min.js",
+  "repository": "git@github.com:isalikov/hq-cropper.git",
+  "author": "Iakov Salikov",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dist": "rollup -c",
+    "dev": "rollup -c -w",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "rollup": "^2.32.1"
+  }
+}
