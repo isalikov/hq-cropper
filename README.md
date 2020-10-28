@@ -97,3 +97,5 @@ const css = {
     resultImageSquare: String,
 }
 ```
+
+You can find default css styles [here](https://github.com/isalikov/hq-cropper/blob/main/lib/css.js#L26)
