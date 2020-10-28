@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Cropper for High Quality images",
   "main": "dist/main.min.js",
-  "repository": "git@github.com:isalikov/hq-cropper.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/isalikov/hq-cropper.git"
+  },
   "author": "Iakov Salikov",
   "license": "MIT",
   "private": false,
@@ -32,5 +35,18 @@
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/isalikov/hq-cropper/issues"
+  },
+  "homepage": "https://github.com/isalikov/hq-cropper#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "lib": "lib"
+  },
+  "keywords": [
+    "cropper",
+    "image"
+  ]
 }
