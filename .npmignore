@@ -1,0 +1,15 @@
+*sublime*
+.DS_Store
+.idea
+
+*.log
+*.snap
+
+coverage
+lib
+node_modules
+docs
+example
+*rc
+*config*
+*.yml

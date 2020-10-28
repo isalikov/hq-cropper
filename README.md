@@ -30,7 +30,7 @@ const config = {
 
     quality = 1.03, // cropped image quality
 
-    css = { }, // css class names to ovveride default style
+    css = { }, // css class names to override default style
 
     labels = {
         cancelButton: 'Cancel', // cancel button text
@@ -56,14 +56,14 @@ document.querySelector('button#change-image-button')
 `config.quality` variable is logarithm base of getting result image width and height.
 
 ###### Example
-> For `config.quality === 1.03` and original cropped caret image `100px`, result image will be `155px`
-> For `config.quality === 1.03` and original cropped caret image `1000px`, result image will be `233px`
+- For `config.quality === 1.03` and original cropped caret image `100px`, result image will be `155px`
+- For `config.quality === 1.03` and original cropped caret image `1000px`, result image will be `233px`
 
 ###### Correlation
 ![correlation](https://github.com/isalikov/hq-cropper/blob/main/docs/correlation.png?raw=true)
 
 ### UI Customizing
-You can ovveride default class names by passing your custom `config.css` object.
+You can override default class names by passing your custom `config.css` object.
 
 ```js
 const css = {
