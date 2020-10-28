@@ -34,11 +34,11 @@ function handleCrop(croppedImage) {
 
 // Instance config [optional]
 const config = {
-    x = 0, // X position of crop caret
-    y = 0, // Y position of crop caret
-
+    x = 0, // initial X position of crop caret
+    y = 0, // initial Y position of crop caret
+    
+    caretSize = 200, // initial caret size (width/height)
     size = 600, // cropped portal size (width/height)
-    caretSize = 200, // caret size (width/height)
 
     quality = 1.03, // result image quality
 
