@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/isalikov/hq-cropper.svg?branch=main)](https://travis-ci.org/isalikov/hq-cropper)
+[![npm version](https://badge.fury.io/js/hq-cropper.svg)](https://badge.fury.io/js/hq-cropper)
 
 
 # hq-cropper
