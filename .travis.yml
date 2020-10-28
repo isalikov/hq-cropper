@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "12.13"
+
+before_script:
+  - npm i -g yarn
+  - yarn
+
+build:
+  - yarn dist
+
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN"
