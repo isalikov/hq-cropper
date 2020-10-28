@@ -20,10 +20,10 @@ Just add `hq-cropper@latest` to your document
 
 
 ### Usage Example
-- Init HqCropper instance with `onChange` callback
+- Init `HqCropper` instance with `onChange` callback
 ```javascript
 
-// As example, croppedImage (base64:jpeg) wil be set as src to img#image-preview
+// As example, croppedImage (base64:jpeg) will be set as src to img#image-preview
 function handleCrop(croppedImage) {
     document.querySelector('img#image-preview').setAttribute('src', croppedImage)
 }
@@ -36,7 +36,7 @@ const config = {
     size = 600, // cropped portal size (width/height)
     caretSize = 200, // caret size (width/height)
 
-    quality = 1.03, // cropped image quality
+    quality = 1.03, // result image quality
 
     css = { }, // css class names to override default style
 
@@ -60,7 +60,7 @@ document.querySelector('button#change-image-button')
 - You can find full example [here](https://github.com/isalikov/hq-cropper/tree/main/example)
 
 
-### Understand image qualty variable
+### Understanding image qualty variable
 `config.quality` variable is logarithm base of getting result image width and height.
 
 ###### Example
