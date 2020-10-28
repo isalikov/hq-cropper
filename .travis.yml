@@ -11,5 +11,5 @@ build:
 
 deploy:
   provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN"
+  email: $NPM_EMAIL
+  api_key: $NPM_TOKEN

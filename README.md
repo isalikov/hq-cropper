@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/isalikov/hq-cropper.svg?branch=main)](https://travis-ci.org/isalikov/hq-cropper)
+
+
 # hq-cropper
 
 Cropper for High Quality images
