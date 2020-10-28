@@ -6,7 +6,7 @@
 
 Lightweight (20kb) cropper tool for High Quality images
 
-![preview](https://github.com/isalikov/hq-cropper/blob/main/docs/example.gif?raw=true)
+![preview](https://github.com/isalikov/hq-cropper/blob/main/images/example.gif?raw=true)
 
 ---
 
@@ -66,7 +66,7 @@ document.querySelector('button#change-image-button')
 - For `config.quality === 1.03` and original cropped caret image `1000px`, result image will be `233px`
 
 ###### Correlation
-![correlation](https://github.com/isalikov/hq-cropper/blob/main/docs/correlation.png?raw=true)
+![correlation](https://github.com/isalikov/hq-cropper/blob/main/images/correlation.png?raw=true)
 
 ### UI Customizing
 You can override default class names by passing your custom `config.css` object.
