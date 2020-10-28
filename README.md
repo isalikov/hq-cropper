@@ -65,7 +65,7 @@ document.querySelector('button#change-image-button')
 
 
 ### Understanding image qualty variable
-`config.quality` variable is logarithm base of getting result image width and height.
+`config.quality` variable is a logarithm base of getting result image width and height.
 
 ###### Example
 - For `config.quality === 1.03` and original cropped caret image `100px`, result image will be `155px`
