@@ -57,7 +57,7 @@ document.querySelector('button#change-image-button')
     .addEventListener('click', hqCropper.open, false)
 ``` 
 
-- You can find full example [here](https://github.com/isalikov/hq-cropper/tree/main/example)
+- You can find full example [here](https://github.com/isalikov/hq-cropper/tree/main/docs)
 
 
 ### Understanding image qualty variable
