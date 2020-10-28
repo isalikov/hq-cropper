@@ -6,7 +6,7 @@ before_script:
   - npm i -g yarn
   - yarn
 
-build:
+script:
   - yarn dist
 
 deploy:
