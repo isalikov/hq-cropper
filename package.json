@@ -1,6 +1,6 @@
 {
   "name": "hq-cropper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cropper for High Quality images",
   "main": "dist/main.min.js",
   "repository": {
@@ -12,7 +12,7 @@
   "private": false,
   "scripts": {
     "dist": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "rollup -c rollup.dev.js -w",
     "lint": "eslint ."
   },
   "husky": {
