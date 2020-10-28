@@ -4,7 +4,8 @@
     "global-require": ["off"],
     "import/no-extraneous-dependencies": ["off"],
     "indent": ["error", 4],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "max-len": ["error", 120]
   },
   "env": {
     "browser": true
