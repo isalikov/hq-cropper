@@ -3,13 +3,18 @@
 
 # hq-cropper
 
-Cropper for High Quality images
+Lightweight (20kb) cropper tool for High Quality images
 
 ![preview](https://github.com/isalikov/hq-cropper/blob/main/docs/example.gif?raw=true)
 
 ---
 
 ### Installation
+Just add `hq-cropper@latest` to your document
+```html
+<script src="https://unpkg.com/hq-cropper@latest/dist/main.min.js"></script>
+```
+
 
 ### Usage Example
 - Init HqCropper instance with `onChange` callback
