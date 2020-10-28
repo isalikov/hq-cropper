@@ -5,8 +5,6 @@
 *.log
 *.snap
 
-_
-errors
 coverage
 dist
 node_modules
