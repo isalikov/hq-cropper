@@ -8,7 +8,7 @@ Lightweight (20kb) cropper tool for High Quality images
 
 > [Demo](https://isalikov.github.io/hq-cropper)
 
-![preview](https://github.com/isalikov/hq-cropper/blob/main/images/example.gif?raw=true)
+![preview](https://github.com/isalikov/hq-cropper/blob/main/images/preview.gif?raw=true)
 
 ---
 
