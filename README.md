@@ -46,7 +46,7 @@ const config = {
 
     labels = {
         cancelButton: 'Cancel', // cancel button text
-        submitButton: 'Submit', // submit button text
+        submitButton: 'Apply', // submit button text
     },
 }
 
