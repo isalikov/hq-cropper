@@ -13,7 +13,7 @@ Lightweight (20kb) cropper tool for High Quality images
 ---
 
 ### Installation
-Just add `hq-cropper@latest` to your document
+Just add `hq-cropper@latest` script to your document
 ```html
 <script src="https://unpkg.com/hq-cropper@latest/dist/main.min.js"></script>
 ```
@@ -49,7 +49,7 @@ const config = {
 const hqCropper = HqCropper(handleCrop, config)
 ```
 
-- Call `hqCropper.open()` to open select image file dialog
+- Call `hqCropper.open()` to open image file dialog
 ```javascript
 
 // As example, click to button#change-image-button will open dialog
@@ -99,3 +99,6 @@ const css = {
 ```
 
 You can find default css styles [here](https://github.com/isalikov/hq-cropper/blob/main/lib/css.js#L26)
+
+#### TODO:
+- Add optianal config props for set result image type (png/jpeg)
