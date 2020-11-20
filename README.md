@@ -71,6 +71,8 @@ import HqCropper from 'hq-cropper'
 
 function MyComponent() {
     const [image, setImage] = useState('')
+
+    /* Important: must be memoized */
     const hqCropper = useMemo(() => HqCropper(setImage), [])
 
     return (
