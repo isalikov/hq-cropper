@@ -63,6 +63,25 @@ document.querySelector('button#change-image-button')
 
 - You can find full example [here](https://github.com/isalikov/hq-cropper/tree/main/docs)
 
+### React usage
+
+```javascript
+import { useMemo } from 'react'
+import HqCropper from 'hq-cropper'
+
+function MyComponent() {
+    const [image, setImage] = useState('')
+    const hqCropper = useMemo(() => HqCropper(setImage), [])
+
+    return (
+        <div>
+            <img src={image} />
+            <button onClick={hqCropper.open}>change</button>
+        </div>
+    )
+}
+```
+
 
 ### Understanding image qualty variable
 `config.quality` variable is a logarithm base of getting result image width and height.
