@@ -1,6 +1,6 @@
 {
   "name": "hq-cropper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Cropper for High Quality images",
   "main": "dist/main.min.js",
   "repository": {
