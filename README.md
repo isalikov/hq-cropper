@@ -39,8 +39,10 @@ const config = {
     
     caretSize = 200, // initial caret size (width/height)
     size = 600, // cropped portal size (width/height)
-
+    
+    compression = 0.8 // result image compression
     quality = 1.03, // result image quality
+    type = 'jpeg' // result image type [String('jpeg'), String('png')]
 
     css = { }, // css class names to override default style
 
@@ -124,6 +126,3 @@ const css = {
 ```
 
 You can find default css styles [here](https://github.com/isalikov/hq-cropper/blob/main/lib/css.js#L26)
-
-#### TODO:
-- Add optianal config props for set result image type (png/jpeg)
