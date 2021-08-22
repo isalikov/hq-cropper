@@ -4,7 +4,7 @@
 
 # [hq-cropper](https://isalikov.github.io/hq-cropper)
 
-Lightweight (20kb) cropper tool for High Quality images
+Lightweight (20kb) high resolution images cropper tool
 
 > [Demo](https://isalikov.github.io/hq-cropper)
 
@@ -13,12 +13,12 @@ Lightweight (20kb) cropper tool for High Quality images
 ---
 
 ### Installation
-Just add `hq-cropper@latest` script to your document
+Add `hq-cropper@latest` script to your document
 ```html
 <script src="https://unpkg.com/hq-cropper@latest/dist/hq-cropper.js"></script>
 ```
 
-Or install as CommonJS module
+or install as CommonJS module
 - `npm install hq-cropper`
 - `import HqCropper from 'hq-cropper'`
 
