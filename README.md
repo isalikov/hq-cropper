@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/isalikov/hq-cropper.svg?branch=main)](https://travis-ci.org/isalikov/hq-cropper)
+[![Build Status](https://travis-ci.org/isalikov/hq-cropper.svg?branch=master)](https://travis-ci.org/isalikov/hq-cropper)
 [![npm version](https://badge.fury.io/js/hq-cropper.svg)](https://badge.fury.io/js/hq-cropper)
 
 
@@ -8,7 +8,7 @@ Lightweight (20kb) high resolution images cropper tool
 
 > [Demo](https://isalikov.github.io/hq-cropper)
 
-![preview](https://github.com/isalikov/hq-cropper/blob/main/images/preview.gif?raw=true)
+![preview](https://github.com/isalikov/hq-cropper/blob/master/images/preview.gif?raw=true)
 
 ---
 
@@ -63,7 +63,7 @@ document.querySelector('button#change-image-button')
     .addEventListener('click', hqCropper.open, false)
 ``` 
 
-- You can find full example [here](https://github.com/isalikov/hq-cropper/tree/main/docs)
+- You can find full example [here](https://github.com/isalikov/hq-cropper/tree/master/docs)
 
 ### React usage
 
@@ -95,7 +95,7 @@ function MyComponent() {
 - For `config.quality === 1.03` and original cropped caret image `1000px`, result image will be `233px`
 
 ###### Correlation
-![correlation](https://github.com/isalikov/hq-cropper/blob/main/images/correlation.png?raw=true)
+![correlation](https://github.com/isalikov/hq-cropper/blob/master/images/correlation.png?raw=true)
 
 ### UI Customizing
 You can override default class names by passing your custom `config.css` object.
@@ -125,4 +125,4 @@ const css = {
 }
 ```
 
-You can find default css styles [here](https://github.com/isalikov/hq-cropper/blob/main/lib/css.js#L26)
+You can find default css styles [here](https://github.com/isalikov/hq-cropper/blob/master/lib/css.js#L26)
