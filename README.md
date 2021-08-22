@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/isalikov/hq-cropper.svg?branch=master)](https://travis-ci.org/isalikov/hq-cropper)
+[![Build Status](https://cloud.drone.io/api/badges/isalikov/hq-cropper/status.svg)](https://cloud.drone.io/isalikov/hq-cropper)
 [![npm version](https://badge.fury.io/js/hq-cropper.svg)](https://badge.fury.io/js/hq-cropper)
 
 

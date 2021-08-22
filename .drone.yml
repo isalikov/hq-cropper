@@ -5,7 +5,7 @@ name: ci
 
 steps:
   - name: install
-    image: iknpx/archnode
+    image: node:14.17.0
     commands:
       - yarn --silent
     when:
@@ -15,9 +15,9 @@ steps:
         - push
 
   - name: lint
-    image: iknpx/archnode
+    image: node:14.17.0
     commands:
-      - yarn lint:check
+      - yarn lint
     when:
       branch:
         - master
@@ -25,7 +25,7 @@ steps:
         - push
 
   - name: build/npm-package
-    image: iknpx/archnode
+    image: node:14.17.0
     commands:
       - yarn dist
     when:
