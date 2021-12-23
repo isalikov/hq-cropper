@@ -1,13 +1,13 @@
-import babel from '@rollup/plugin-babel'
+import typescript from '@rollup/plugin-typescript';
 
 const config = [{
-    input: 'lib/index.js',
+    input: 'src/index.ts',
     output: {
         file: 'dev/hq-cropper.dev.js',
         format: 'iife',
     },
     plugins: [
-        babel({ babelHelpers: 'bundled' }),
+        typescript(),
     ],
 }]
 

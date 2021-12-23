@@ -1,12 +1,25 @@
 {
   "name": "hq-cropper",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "High resolution images cropper tool",
   "main": "dist/main.min.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/isalikov/hq-cropper.git"
   },
+  "bugs": {
+    "url": "https://github.com/isalikov/hq-cropper/issues"
+  },
+  "homepage": "https://github.com/isalikov/hq-cropper#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "lib": "lib"
+  },
+  "keywords": [
+    "cropper",
+    "image"
+  ],
   "author": "Iakov Salikov",
   "license": "MIT",
   "private": false,
@@ -23,30 +36,51 @@
   "lint-staged": {
     "lib/**/*.js": "yarn lint"
   },
+  "eslintConfig": {
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "airbnb",
+      "airbnb-typescript",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "import/prefer-default-export": ["off"],
+      "import/no-import-module-exports": ["off"]
+    }
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 80
+  },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@rollup/plugin-babel": "^5.2.1",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.0",
-    "rollup": "^2.32.1",
-    "rollup-plugin-terser": "^7.0.2"
-  },
-  "dependencies": {},
-  "bugs": {
-    "url": "https://github.com/isalikov/hq-cropper/issues"
-  },
-  "homepage": "https://github.com/isalikov/hq-cropper#readme",
-  "directories": {
-    "doc": "docs",
-    "example": "example",
-    "lib": "lib"
-  },
-  "keywords": [
-    "cropper",
-    "image"
-  ]
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "19.0.2",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.3",
+    "prettier": "^2.5.1",
+    "rollup": "^2.61.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.5.4"
+  }
 }

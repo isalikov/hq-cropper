@@ -1,8 +1,8 @@
-import babel from '@rollup/plugin-babel'
+import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser'
 
 const config = [{
-    input: 'lib/index.js',
+    input: 'src/index.ts',
     output: {
         file: 'dist/hq-cropper.js',
         format: 'iife',
@@ -11,10 +11,10 @@ const config = [{
         ],
     },
     plugins: [
-        babel({ babelHelpers: 'bundled' }),
+        typescript(),
     ],
 }, {
-    input: 'lib/index.js',
+    input: 'src/index.ts',
     output: {
         file: 'dist/main.min.js',
         format: 'cjs',
@@ -23,7 +23,7 @@ const config = [{
         ],
     },
     plugins: [
-        babel({ babelHelpers: 'bundled' }),
+        typescript(),
     ],
 }]
 

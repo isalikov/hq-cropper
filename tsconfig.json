@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "target": "esnext",
+        "strictNullChecks": true,
+        "noEmit": true,
+        "lib": ["es2019", "dom"],
+        "module": "esnext",
+        "allowSyntheticDefaultImports": true,
+        "typeRoots": ["./node_modules/@types"],
+        "baseUrl": "."
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules", "dist", "dev"]
+}
