@@ -28,11 +28,6 @@
     "dev": "rollup -c rollup.dev.js -w",
     "lint": "eslint ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged"
-    }
-  },
   "lint-staged": {
     "lib/**/*.js": "yarn lint"
   },
