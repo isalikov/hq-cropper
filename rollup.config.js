@@ -1,30 +1,25 @@
-import typescript from '@rollup/plugin-typescript';
+import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
-const config = [{
-    input: 'src/index.ts',
-    output: {
-        file: 'dist/hq-cropper.js',
-        format: 'iife',
-        plugins: [
-            terser(),
-        ],
+const config = [
+    {
+        input: 'src/index.ts',
+        output: {
+            file: 'dist/hq-cropper.js',
+            format: 'iife',
+            plugins: [terser()],
+        },
+        plugins: [typescript()],
     },
-    plugins: [
-        typescript(),
-    ],
-}, {
-    input: 'src/index.ts',
-    output: {
-        file: 'dist/main.min.js',
-        format: 'cjs',
-        plugins: [
-            terser(),
-        ],
+    {
+        input: 'src/index.ts',
+        output: {
+            file: 'dist/main.min.js',
+            format: 'cjs',
+            plugins: [terser()],
+        },
+        plugins: [typescript()],
     },
-    plugins: [
-        typescript(),
-    ],
-}]
+]
 
 export default config

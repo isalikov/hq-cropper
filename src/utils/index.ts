@@ -1,1 +1,2 @@
-export { default as getRandomString } from './getRandomString'
+export * from './string'
+export * from './object'

@@ -1,9 +1,9 @@
-import { getRandomString } from '../utils'
-import { State, CreateState, Listener, ListenerAction } from '../types/state'
+import { IState, CreateState, Listener, ListenerAction } from '@src/types'
+import { getRandomString } from '@src/utils'
 
-const createState = (initialState: State): CreateState => {
+const createState = (initialState: IState): CreateState => {
     const listeners = new Map<string, Listener<unknown>[]>()
-    const state = new Proxy<State>(
+    const state = new Proxy<IState>(
         { ...initialState },
         {
             set(target, prop, value) {
@@ -19,9 +19,9 @@ const createState = (initialState: State): CreateState => {
         }
     )
 
-    const getState = () => ({ ...state })
+    const getState = (): IState => ({ ...state })
 
-    const setState = (partialState: Partial<State>) => {
+    const setState = (partialState: Partial<IState>) => {
         Object.keys(partialState).forEach((key) => {
             state[key] = partialState[key]
         })

@@ -11,25 +11,27 @@
     "url": "https://github.com/isalikov/hq-cropper/issues"
   },
   "homepage": "https://github.com/isalikov/hq-cropper#readme",
-  "directories": {
-    "doc": "docs",
-    "example": "example",
-    "lib": "lib"
-  },
   "keywords": [
     "cropper",
     "image"
   ],
-  "author": "Iakov Salikov",
+  "author": "Iakov Salikov <salikovpro@gmail.com>",
   "license": "MIT",
-  "private": false,
   "scripts": {
+    "dev": "webpack serve -c webpack.config.js",
     "dist": "rollup -c",
-    "dev": "rollup -c rollup.dev.js -w",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest ."
   },
-  "lint-staged": {
-    "lib/**/*.js": "yarn lint"
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ],
+      [
+        "@babel/preset-typescript"
+      ]
+    ]
   },
   "eslintConfig": {
     "plugins": [
@@ -44,8 +46,15 @@
       "project": "./tsconfig.json"
     },
     "rules": {
-      "import/prefer-default-export": ["off"],
-      "import/no-import-module-exports": ["off"]
+      "import/prefer-default-export": [
+        "off"
+      ],
+      "import/no-import-module-exports": [
+        "off"
+      ],
+      "no-restricted-syntax": [
+        "off"
+      ]
     }
   },
   "prettier": {
@@ -57,11 +66,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
+    "babel-loader": "^8.2.3",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "19.0.2",
     "eslint-config-airbnb-typescript": "^16.1.0",
@@ -71,11 +83,15 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.3",
+    "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "rollup": "^2.61.1",
     "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
