@@ -9,6 +9,7 @@ export const initialState: IState = {
     frameWidth: 0,
     resultBase64: '',
     sourceBase64: '',
+    fileName: '',
     sourceHeight: 0,
     sourceWidth: 0,
     portalX: 0,

@@ -7,12 +7,14 @@ export enum Action {
 }
 
 export interface IClassNames {
-    root: string[]
+    applyButton: string[]
+    body: string[]
+    header: string[]
+    cancelButton: string[]
     container: string[]
     footer: string[]
-    body: string[]
-    applyButton: string[]
-    cancelButton: string[]
+    root: string[]
+    sourceImage: string[]
 }
 
 export interface IConfig {
@@ -67,6 +69,11 @@ export interface IState {
      * Rendered Frame width
      */
     frameWidth: number
+
+    /**
+     * Open file name
+     */
+    fileName: string
 
     /**
      * Result base64 string

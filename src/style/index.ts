@@ -5,7 +5,9 @@ import getCssBodyStyle from './cssBody'
 import getCssCancelButtonStyle from './cssCancelButton'
 import getCssContainerStyle from './cssContainer'
 import getCssFooterStyle from './cssFooter'
+import getCssHeader from './cssHeader'
 import getCssRootStyle from './cssRoot'
+import getCssSourceImage from './cssSourceImage'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -41,7 +43,12 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
             getClassName('container'),
             ...extractClassNames(css.container),
         ],
+        sourceImage: [
+            getClassName('sourceImage'),
+            ...extractClassNames(css.sourceImage),
+        ],
         body: [getClassName('body'), ...extractClassNames(css.body)],
+        header: [getClassName('header'), ...extractClassNames(css.header)],
         footer: [getClassName('footer'), ...extractClassNames(css.footer)],
         root: [getClassName('root'), ...extractClassNames(css.root)],
     }
@@ -52,7 +59,9 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssCancelButtonStyle(classNames.cancelButton[0])}
         ${getCssContainerStyle(classNames.container[0])}
         ${getCssFooterStyle(classNames.footer[0])}
+        ${getCssHeader(classNames.header[0])}
         ${getCssRootStyle(classNames.root[0])}
+        ${getCssSourceImage(classNames.sourceImage[0])}
     `
 
     const style = document.createElement('style')

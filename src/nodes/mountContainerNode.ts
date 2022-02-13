@@ -3,6 +3,7 @@ import { setClassNames } from '@src/style'
 
 import mountBodyNode from './mountBodyNode'
 import mountFooterNode from './mountFooterNode'
+import mountHeaderNode from './mountHeaderNode'
 
 const mountContainerNode = (
     getState: () => IState,
@@ -15,6 +16,7 @@ const mountContainerNode = (
 
     setClassNames(container, state.css.container)
 
+    container.appendChild(mountHeaderNode(getState))
     container.appendChild(mountBodyNode(getState))
     container.appendChild(mountFooterNode(getState, onClose))
 

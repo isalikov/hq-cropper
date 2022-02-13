@@ -20,9 +20,7 @@ const handleFileInputChange = (
     const file = event.target.files[0]
     const reader = new FileReader()
 
-    const handleClose = (e: Event) => {
-        e.preventDefault()
-
+    const close = () => {
         const state = getState()
 
         const node = document.querySelector<HTMLDivElement>(
@@ -33,6 +31,20 @@ const handleFileInputChange = (
             node.parentNode.removeChild(node)
             setState(initialState)
         }
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            close()
+        }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    const handleClose = (e: Event) => {
+        e.preventDefault()
+        document.removeEventListener('keydown', handleKeyDown)
+        close()
     }
 
     const handleSubmit = (e: Event) => {
@@ -56,6 +68,7 @@ const handleFileInputChange = (
         }
 
         image.src = data.target.result
+
         image.onload = () => {
             mountContainerNode(getState, handleSubmit, handleClose)
 
@@ -68,6 +81,7 @@ const handleFileInputChange = (
                 portalX,
                 portalY,
                 portalSize,
+                fileName: file.name,
                 sourceHeight: image.height,
                 sourceWidth: image.width,
                 sourceBase64: data.target?.result as string,
