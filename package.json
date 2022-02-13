@@ -1,6 +1,6 @@
 {
   "name": "hq-cropper",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "High resolution images cropper tool",
   "main": "dist/main.min.js",
   "repository": {
