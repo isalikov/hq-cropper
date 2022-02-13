@@ -1,10 +1,23 @@
 import { IClassNames } from '@src/types'
-import getCssContainerStyle from './cssContainer'
 
-const getClassName = () =>
-    `hq-cropper__${Math.random().toString(36).substring(2)}_${Math.random()
+import getCssApplyButtonStyle from './cssApplyButton'
+import getCssBodyStyle from './cssBody'
+import getCssCancelButtonStyle from './cssCancelButton'
+import getCssContainerStyle from './cssContainer'
+import getCssFooterStyle from './cssFooter'
+import getCssRootStyle from './cssRoot'
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
+const getClassName = (name: string) => {
+    if (isDevelopment) {
+        return `hq-cropper__${name}`
+    }
+
+    return `${Math.random().toString(36).substring(2)}_${Math.random()
         .toString(36)
         .substring(2)}`
+}
 
 const extractClassNames = (classNames?: string[]): string[] => classNames || []
 
@@ -16,19 +29,36 @@ export const setClassNames = (node: Element, classNames: string[]): void => {
 
 const getClassNames = (css: Partial<IClassNames>): IClassNames => {
     const classNames: IClassNames = {
-        container: [getClassName(), ...extractClassNames(css.container)],
+        applyButton: [
+            getClassName('applyButton'),
+            ...extractClassNames(css.applyButton),
+        ],
+        cancelButton: [
+            getClassName('cancelButton'),
+            ...extractClassNames(css.cancelButton),
+        ],
+        container: [
+            getClassName('container'),
+            ...extractClassNames(css.container),
+        ],
+        body: [getClassName('body'), ...extractClassNames(css.body)],
+        footer: [getClassName('footer'), ...extractClassNames(css.footer)],
+        root: [getClassName('root'), ...extractClassNames(css.root)],
     }
 
     const styleSource = `
+        ${getCssApplyButtonStyle(classNames.applyButton[0])}
+        ${getCssBodyStyle(classNames.body[0])}
+        ${getCssCancelButtonStyle(classNames.cancelButton[0])}
         ${getCssContainerStyle(classNames.container[0])}
+        ${getCssFooterStyle(classNames.footer[0])}
+        ${getCssRootStyle(classNames.root[0])}
     `
 
     const style = document.createElement('style')
     style.innerHTML = styleSource
 
-    const head = document.getElementsByTagName('head')[0]
-    const headStyle = document.getElementsByTagName('style')[0]
-    head.prepend(style)
+    document.getElementsByTagName('head')[0].prepend(style)
 
     return classNames
 }

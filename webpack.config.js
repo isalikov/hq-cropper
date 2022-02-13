@@ -1,6 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { SourceMapDevToolPlugin } = require('webpack')
+
+const {
+    DefinePlugin,
+    HotModuleReplacementPlugin,
+    SourceMapDevToolPlugin,
+} = require('webpack')
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     mode: 'development',
@@ -39,7 +46,6 @@ module.exports = {
     devServer: {
         allowedHosts: ['*'],
         historyApiFallback: true,
-        hot: true,
         host: '0.0.0.0',
         port: 9000,
     },
@@ -48,11 +54,17 @@ module.exports = {
         errorDetails: true,
     },
     plugins: [
+        new DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+            },
+        }),
+        isDevelopment && new HotModuleReplacementPlugin(),
         new SourceMapDevToolPlugin({}),
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './public/index.html',
             inject: 'body',
         }),
-    ],
+    ].filter(Boolean),
 }

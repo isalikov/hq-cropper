@@ -7,39 +7,49 @@ export enum Action {
 }
 
 export interface IClassNames {
+    root: string[]
     container: string[]
+    footer: string[]
+    body: string[]
+    applyButton: string[]
+    cancelButton: string[]
 }
 
 export interface IConfig {
     /**
      * Initial Portal position [X: number, Y: number] | 'center'
      */
-    portalPosition?: InitialPortalPosition
+    portalPosition: InitialPortalPosition
+
+    /**
+     * Initial Portal size
+     */
+    portalSize: number
 
     /**
      * Result image compression
      */
-    compression?: number
+    compression: number
 
     /**
      * Result image Quality (logarithm base of compressed image width and height)
      */
-    quality?: number
+    quality: number
 
     /**
      * Result image type
      */
-    type?: ResultImageType
+    type: ResultImageType
 
     /**
      * Apply Button label
      */
-    applyButtonLabel?: string
+    applyButtonLabel: string
 
     /**
      * Cancel Button label
      */
-    cancelButtonLabel?: string
+    cancelButtonLabel: string
 }
 
 export interface IState {
@@ -61,12 +71,12 @@ export interface IState {
     /**
      * Result base64 string
      */
-    result: string
+    resultBase64: string
 
     /**
      * Source base64 string
      */
-    source: string
+    sourceBase64: string
 
     /**
      * Source image height
@@ -81,15 +91,20 @@ export interface IState {
     /**
      * Portal X position
      */
-    x: number
+    portalX: number
 
     /**
      * Portal Y position
      */
-    y: number
+    portalY: number
 
     /**
-     * Initial config
+     * Portal size
+     */
+    portalSize: number
+
+    /**
+     * Instance config
      */
     config: IConfig
 
@@ -99,7 +114,7 @@ export interface IState {
     css: IClassNames
 }
 
-export type Event<T = EventTarget> = {
+export type FileChangeEvent<T = EventTarget> = {
     target: T
 }
 

@@ -18,7 +18,7 @@
   "author": "Iakov Salikov <salikovpro@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve -c webpack.config.js",
+    "start": "webpack serve -c webpack.config.js",
     "dist": "rollup -c",
     "lint": "eslint .",
     "test": "jest ."

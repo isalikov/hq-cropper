@@ -7,7 +7,7 @@ const HqCropper: HqCropperType = (onSubmit, config, css) => {
     const { getState, setState } = state(config, css)
 
     const fileInput = mountFileInput((event) =>
-        handleFileInputChange(event, getState, setState)
+        handleFileInputChange(event, getState, setState, onSubmit)
     )
 
     return {
