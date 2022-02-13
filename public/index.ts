@@ -1,7 +1,13 @@
 import HqCropper from '@src/index'
 
 const main = (): void => {
-    const hqCropper = HqCropper(console.log)
+    const hqCropper = HqCropper(
+        console.log,
+        {},
+        {
+            container: ['hq'],
+        }
+    )
 
     const button = document.querySelector<HTMLButtonElement>(
         '#change-image-button'

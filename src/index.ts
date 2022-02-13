@@ -3,8 +3,8 @@ import { handleFileInputChange } from '@src/handlers'
 import { mountFileInput } from '@src/nodes'
 import { HqCropperType } from '@src/types'
 
-const HqCropper: HqCropperType = (onSubmit, config = {}) => {
-    const { getState, setState } = state(config)
+const HqCropper: HqCropperType = (onSubmit, config, css) => {
+    const { getState, setState } = state(config, css)
 
     const fileInput = mountFileInput((event) =>
         handleFileInputChange(event, getState, setState)

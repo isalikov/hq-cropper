@@ -1,24 +1,21 @@
-import getClassNames from '@src/css/getClassNames'
-import { IConfig } from '@src/types'
-import { deepMerge } from '@src/utils'
+import { IClassNames, IConfig } from '@src/types'
 
+import getClassNames from '@src/style'
 import createState from './createState'
 
 const initialConfig: IConfig = {
     applyButtonLabel: 'Apply',
     cancelButtonLabel: 'Cancel',
-    classnames: {},
     compression: 0.8,
     portalPosition: 'center',
     quality: 1.03,
     type: 'jpeg',
 }
 
-const state = (config: Partial<IConfig>) =>
+const state = (config: Partial<IConfig> = {}, css: Partial<IClassNames> = {}) =>
     createState({
+        config: { ...initialConfig, ...config },
         action: null,
-        css: getClassNames(config.classnames),
-        config: deepMerge<IConfig>(initialConfig, config),
         frameHeight: 0,
         frameWidth: 0,
         result: '',
@@ -27,6 +24,7 @@ const state = (config: Partial<IConfig>) =>
         sourceWidth: 0,
         x: 0,
         y: 0,
+        css: getClassNames(css),
     })
 
 export default state

@@ -7,7 +7,7 @@ export enum Action {
 }
 
 export interface IClassNames {
-    container: string
+    container: string[]
 }
 
 export interface IConfig {
@@ -40,11 +40,6 @@ export interface IConfig {
      * Cancel Button label
      */
     cancelButtonLabel?: string
-
-    /**
-     * CSS class names overrides
-     */
-    classnames?: Partial<IClassNames>
 }
 
 export interface IState {
@@ -118,7 +113,8 @@ export type HqCropperInstance = {
 
 export type HqCropperType = (
     onSubmit: (img: string) => void,
-    options?: Partial<IConfig>
+    options?: Partial<IConfig>,
+    css?: Partial<IClassNames>
 ) => HqCropperInstance
 
 export type ListenerAction<T extends unknown> = (
