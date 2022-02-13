@@ -9,6 +9,8 @@ const cssBody = (name: string): string => `
         position: relative;
         height: 600px;
         width: 600px;
+        border-top: 1px solid #EEE;
+        border-bottom: 1px solid #EEE;
     }
 `
 export default cssBody
