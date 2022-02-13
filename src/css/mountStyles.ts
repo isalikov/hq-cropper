@@ -4,8 +4,6 @@ import getCssContainerStyle from './cssContainer'
 
 const mountStyles = (): void => {
     const styleSource = `
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
-
         ${getCssContainerStyle(classnames.container)}
     `
 

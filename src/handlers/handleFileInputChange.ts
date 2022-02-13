@@ -27,7 +27,7 @@ const handleFileInputChange = (
         image.onload = () => {
             render(state)
 
-            console.log(image)
+            console.log(state)
         }
     }
 
