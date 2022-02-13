@@ -45,6 +45,8 @@ const config = {
     type = 'jpeg' // result image type [String('jpeg'), String('png')]
 
     css = { }, // css class names to override default style
+    
+    center = false // if true will set crop careet at center (will override X, Y props)
 
     labels = {
         cancelButton: 'Cancel', // cancel button text
