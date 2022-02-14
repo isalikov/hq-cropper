@@ -6,6 +6,7 @@ import mountCancelButtonNode from './mountCancelButtonNode'
 
 const mountFooterNode = (
     getState: () => IState,
+    onSubmit: (event: Event) => void,
     onClose: (event: Event) => void
 ): Element => {
     const state = getState()
@@ -13,7 +14,7 @@ const mountFooterNode = (
     setClassNames(footer, state.css.footer)
 
     footer.appendChild(mountCancelButtonNode(getState, onClose))
-    footer.appendChild(mountApplyButtonNode(getState))
+    footer.appendChild(mountApplyButtonNode(getState, onSubmit))
 
     return footer
 }

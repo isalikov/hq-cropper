@@ -10,6 +10,7 @@ const getCssStyle = (name: string): string => `
         left: 0;
         top: 0;
         z-index: 1000;
+        overflow-y: auto;
     }
 `
 export default getCssStyle

@@ -11,14 +11,13 @@ const mountContainerNode = (
     onClose: (event: Event) => void
 ): Element => {
     const state = getState()
-    const container = document.createElement<'form'>('form')
-    container.addEventListener('submit', onSubmit)
+    const container = document.createElement<'div'>('div')
 
     setClassNames(container, state.css.container)
 
     container.appendChild(mountHeaderNode(getState))
     container.appendChild(mountBodyNode(getState))
-    container.appendChild(mountFooterNode(getState, onClose))
+    container.appendChild(mountFooterNode(getState, onSubmit, onClose))
 
     return container
 }

@@ -1,13 +1,16 @@
 const cssApplyButton = (name: string): string => `
     .${name} {
-        padding: 4px 16px;
+        padding: 7px 16px;
+        font-size: 14px;
         outline: 0;
         border: 0;
         background-color: #2F7FEF;
         color: #FFFFFF;
         border-radius: 20px;
-        height: 30px;
+        user-select: none;
         cursor: pointer;
+        -moz-user-select: none;
+        -webkit-user-select: none;
     }
 
     .${name}:active {
