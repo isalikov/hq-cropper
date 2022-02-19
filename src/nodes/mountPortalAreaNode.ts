@@ -1,6 +1,7 @@
 import { IState } from '@src/types'
 import { setClassNames } from '@src/style'
-import mountPortalNode from '@src/nodes/mountPortalNode'
+
+import mountPortalNode from './mountPortalNode'
 
 const mountPortalAreaNode = (getState: () => IState): Element => {
     const state = getState()

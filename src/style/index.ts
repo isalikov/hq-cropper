@@ -9,6 +9,8 @@ import getCssHeader from './getCssHeader'
 import getCssMoveStyle from './getCssMoveStyle'
 import getCssPortalAreaStyle from './getCssPortalAreaStyle'
 import getCssPortalStyle from './getCssPortalStyle'
+import getCssPreviewImageStyle from './getCssPreviewImageStyle'
+import getCssPreviewStyle from './getCssPreviewStyle'
 import getCssResizeBottomLeftStyle from './getCssResizeBottomLeftStyle'
 import getCssResizeBottomRightStyle from './getCssResizeBottomRightStyle'
 import getCssResizeTopLeftStyle from './getCssResizeTopLeftStyle'
@@ -80,10 +82,15 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
             getClassName('portalArea'),
             ...extractClassNames(css.portalArea),
         ],
+        previewImage: [
+            getClassName('previewImage'),
+            ...extractClassNames(css.previewImage),
+        ],
         body: [getClassName('body'), ...extractClassNames(css.body)],
         header: [getClassName('header'), ...extractClassNames(css.header)],
         footer: [getClassName('footer'), ...extractClassNames(css.footer)],
         portal: [getClassName('portal'), ...extractClassNames(css.portal)],
+        preview: [getClassName('preview'), ...extractClassNames(css.preview)],
         root: [getClassName('root'), ...extractClassNames(css.root)],
     }
 
@@ -97,6 +104,8 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssMoveStyle(classNames.handlerMove[0])}
         ${getCssPortalAreaStyle(classNames.portalArea[0])}
         ${getCssPortalStyle(classNames.portal[0])}
+        ${getCssPreviewImageStyle(classNames.previewImage[0])}
+        ${getCssPreviewStyle(classNames.preview[0])}
         ${getCssResizeBottomLeftStyle(classNames.handlerResizeBottomLeft[0])}
         ${getCssResizeBottomRightStyle(classNames.handlerResizeBottomRight[0])}
         ${getCssResizeTopLeftStyle(classNames.handlerResizeTopLeft[0])}

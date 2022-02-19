@@ -35,6 +35,19 @@ const setMountProps = (value: string, state: IState) => {
         portal.style.left = `${state.portal.left}px`
         portal.style.top = `${state.portal.top}px`
     }
+
+    const previewImage = document.querySelector<HTMLImageElement>(
+        `.${state.css?.previewImage[0]}`
+    )
+
+    if (previewImage) {
+        previewImage.setAttribute('src', value)
+
+        previewImage.style.height = `${state.frame.height}px`
+        previewImage.style.width = `${state.frame.width}px`
+        previewImage.style.marginLeft = `-${state.portal.left}px`
+        previewImage.style.marginTop = `-${state.portal.top}px`
+    }
 }
 
 export default setMountProps
