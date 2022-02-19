@@ -1,7 +1,7 @@
 import { mountContainerNode } from '@src/nodes'
 import { FileChangeEvent, IState } from '@src/types'
 
-import { getFrameSize, getInitialPortal } from '@src/helpers'
+import { getFrameProps, getPortalProps } from '@src/helpers'
 
 import { initialState } from '@src/state'
 
@@ -24,7 +24,7 @@ const handleFileInputChange = (
         const state = getState()
 
         const node = document.querySelector<HTMLDivElement>(
-            `.${state.css.root[0]}`
+            `.${state.css?.root[0]}`
         )
 
         if (node && node.parentNode) {
@@ -72,19 +72,16 @@ const handleFileInputChange = (
         image.onload = () => {
             mountContainerNode(getState, handleSubmit, handleClose)
 
-            const [frameWidth, frameHeight] = getFrameSize(getState)
-            const [portalX, portalY, portalSize] = getInitialPortal(getState)
+            const frame = getFrameProps(getState, image)
+            const portal = getPortalProps(getState, frame)
 
             setState({
-                frameWidth,
-                frameHeight,
-                portalX,
-                portalY,
-                portalSize,
+                frame,
+                portal,
                 fileName: file.name,
+                sourceBase64: data.target?.result as string,
                 sourceHeight: image.height,
                 sourceWidth: image.width,
-                sourceBase64: data.target?.result as string,
             })
         }
     }

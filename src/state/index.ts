@@ -5,17 +5,22 @@ import createState from './createState'
 
 export const initialState: IState = {
     action: null,
-    frameHeight: 0,
-    frameWidth: 0,
     resultBase64: '',
     sourceBase64: '',
     fileName: '',
     sourceHeight: 0,
     sourceWidth: 0,
-    portalX: 0,
-    portalY: 0,
-    portalSize: 0,
-    css: getClassNames({}),
+    frame: {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0,
+    },
+    portal: {
+        left: 0,
+        top: 0,
+        size: 0,
+    },
     config: {
         applyButtonLabel: 'Apply',
         cancelButtonLabel: 'Cancel',

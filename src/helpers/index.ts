@@ -1,2 +1,2 @@
-export { default as getFrameSize } from './getFrameSize'
-export { default as getInitialPortal } from './getInitialPortal'
+export { default as getFrameProps } from './getFrameProps'
+export { default as getPortalProps } from './getPortalProps'

@@ -1,4 +1,4 @@
-const cssSourceImage = (name: string): string => `
+const getCssSourceImage = (name: string): string => `
     .${name} {
         backface-visibility: hidden;
         user-select: none;
@@ -7,6 +7,9 @@ const cssSourceImage = (name: string): string => `
         display: block;
         transform: translateZ(0);
         width: auto;
+        -webkit-user-drag: none;
+        position: absolute;
+        z-index: 1;
     }
 `
-export default cssSourceImage
+export default getCssSourceImage

@@ -1,4 +1,4 @@
-const cssHeader = (name: string): string => `
+const getCssHeader = (name: string): string => `
     .${name} {
         display: flex;
         justify-content: flex-start;
@@ -11,4 +11,4 @@ const cssHeader = (name: string): string => `
         border-top-right-radius: 6px;
     }
 `
-export default cssHeader
+export default getCssHeader

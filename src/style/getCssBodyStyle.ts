@@ -1,4 +1,4 @@
-const cssBody = (name: string): string => `
+const getCssBodyStyle = (name: string): string => `
     .${name} {
         display: flex;
         flex: 1 0 auto;
@@ -7,10 +7,10 @@ const cssBody = (name: string): string => `
         align-items: center;
         justify-content: center;
         position: relative;
-        height: 600px;
         width: 600px;
+        height: 600px;
         border-top: 1px solid #EEE;
         border-bottom: 1px solid #EEE;
     }
 `
-export default cssBody
+export default getCssBodyStyle

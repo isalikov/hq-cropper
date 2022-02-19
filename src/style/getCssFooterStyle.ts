@@ -1,4 +1,4 @@
-const cssFooter = (name: string): string => `
+const getCssFooterStyle = (name: string): string => `
     .${name} {
         display: flex;
         justify-content: flex-end;
@@ -9,4 +9,4 @@ const cssFooter = (name: string): string => `
         padding: 0 20px;
     }
 `
-export default cssFooter
+export default getCssFooterStyle

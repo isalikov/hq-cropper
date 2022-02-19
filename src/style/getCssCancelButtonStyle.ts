@@ -1,14 +1,14 @@
-const cssApplyButton = (name: string): string => `
+const getCssCancelButtonStyle = (name: string): string => `
     .${name} {
         padding: 7px 16px;
         font-size: 14px;
         outline: 0;
         border: 0;
-        background-color: #2F7FEF;
-        color: #FFFFFF;
+        background-color: #E8EFF7;
+        color: #768BA7;
         border-radius: 20px;
-        user-select: none;
         cursor: pointer;
+        user-select: none;
         -moz-user-select: none;
         -webkit-user-select: none;
     }
@@ -17,4 +17,4 @@ const cssApplyButton = (name: string): string => `
         transform: translate(0, 1px);
     }
 `
-export default cssApplyButton
+export default getCssCancelButtonStyle

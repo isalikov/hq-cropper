@@ -1,2 +1,2 @@
-export { default as onFileName } from './onFileName'
-export { default as onSourceBase64 } from './onSourceBase64'
+export { default as setHeaderTitle } from './setHeaderTitle'
+export { default as setMountProps } from './setMountProps'

@@ -10,7 +10,7 @@ const mountRootNode = (
 ): void => {
     const state = getState()
     const root = document.createElement<'div'>('div')
-    setClassNames(root, state.css.root)
+    setClassNames(root, state.css?.root)
 
     root.appendChild(mountContainerNode(getState, onSubmit, onClose))
 

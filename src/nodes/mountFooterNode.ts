@@ -11,7 +11,7 @@ const mountFooterNode = (
 ): Element => {
     const state = getState()
     const footer = document.createElement<'div'>('div')
-    setClassNames(footer, state.css.footer)
+    setClassNames(footer, state.css?.footer)
 
     footer.appendChild(mountCancelButtonNode(getState, onClose))
     footer.appendChild(mountApplyButtonNode(getState, onSubmit))

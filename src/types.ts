@@ -9,17 +9,18 @@ export enum Action {
 export interface IClassNames {
     applyButton: string[]
     body: string[]
-    header: string[]
     cancelButton: string[]
     container: string[]
     footer: string[]
+    header: string[]
+    portalArea: string[]
     root: string[]
     sourceImage: string[]
 }
 
 export interface IConfig {
     /**
-     * Initial Portal position [X: number, Y: number] | 'center'
+     * Initial position of portal center at frame [Left: number, Top: number] | 'center'
      */
     portalPosition: InitialPortalPosition
 
@@ -54,21 +55,24 @@ export interface IConfig {
     cancelButtonLabel: string
 }
 
+export type PortalProps = {
+    left: number
+    top: number
+    size: number
+}
+
+export type FrameProps = {
+    left: number
+    top: number
+    width: number
+    height: number
+}
+
 export interface IState {
     /**
      * Crop portal action type
      */
     action: Action | null
-
-    /**
-     * Rendered Frame height
-     */
-    frameHeight: number
-
-    /**
-     * Rendered Frame width
-     */
-    frameWidth: number
 
     /**
      * Open file name
@@ -96,19 +100,14 @@ export interface IState {
     sourceWidth: number
 
     /**
-     * Portal X position
+     * Rendered Frame prop
      */
-    portalX: number
+    frame: FrameProps
 
     /**
-     * Portal Y position
+     * Crop portal props
      */
-    portalY: number
-
-    /**
-     * Portal size
-     */
-    portalSize: number
+    portal: PortalProps
 
     /**
      * Instance config
@@ -118,13 +117,16 @@ export interface IState {
     /**
      * Css class names
      */
-    css: IClassNames
+    css?: IClassNames
 }
 
 export type FileChangeEvent<T = EventTarget> = {
     target: T
 }
 
+/**
+ * Initial position of portal center [Left, Top] | 'center'
+ */
 export type InitialPortalPosition = [number, number] | 'center'
 
 export type ResultImageType = 'jpeg' | 'png'

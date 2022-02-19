@@ -7,7 +7,7 @@ const mountApplyButtonNode = (
 ): Element => {
     const state = getState()
     const applyButton = document.createElement<'div'>('div')
-    setClassNames(applyButton, state.css.applyButton)
+    setClassNames(applyButton, state.css?.applyButton)
 
     applyButton.setAttribute('role', 'button')
     applyButton.innerText = state.config.applyButtonLabel

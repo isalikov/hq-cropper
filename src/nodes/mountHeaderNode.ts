@@ -5,7 +5,7 @@ const mountHeaderNode = (getState: () => IState): Element => {
     const state = getState()
     const header = document.createElement<'div'>('div')
 
-    setClassNames(header, state.css.header)
+    setClassNames(header, state.css?.header)
 
     return header
 }

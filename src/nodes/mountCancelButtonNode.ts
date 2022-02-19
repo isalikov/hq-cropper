@@ -7,7 +7,7 @@ const mountCancelButtonNode = (
 ): Element => {
     const state = getState()
     const cancelButton = document.createElement<'div'>('div')
-    setClassNames(cancelButton, state.css.cancelButton)
+    setClassNames(cancelButton, state.css?.cancelButton)
 
     cancelButton.setAttribute('role', 'button')
     cancelButton.innerText = state.config.cancelButtonLabel

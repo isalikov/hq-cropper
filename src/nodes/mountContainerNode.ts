@@ -13,7 +13,7 @@ const mountContainerNode = (
     const state = getState()
     const container = document.createElement<'div'>('div')
 
-    setClassNames(container, state.css.container)
+    setClassNames(container, state.css?.container)
 
     container.appendChild(mountHeaderNode(getState))
     container.appendChild(mountBodyNode(getState))

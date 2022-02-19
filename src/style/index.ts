@@ -1,13 +1,14 @@
 import { IClassNames } from '@src/types'
 
-import getCssApplyButtonStyle from './cssApplyButton'
-import getCssBodyStyle from './cssBody'
-import getCssCancelButtonStyle from './cssCancelButton'
-import getCssContainerStyle from './cssContainer'
-import getCssFooterStyle from './cssFooter'
-import getCssHeader from './cssHeader'
-import getCssRootStyle from './cssRoot'
-import getCssSourceImage from './cssSourceImage'
+import getCssApplyButtonStyle from './getCssApplyButtonStyle'
+import getCssBodyStyle from './getCssBodyStyle'
+import getCssCancelButtonStyle from './getCssCancelButtonStyle'
+import getCssContainerStyle from './getCssContainerStyle'
+import getCssFooterStyle from './getCssFooterStyle'
+import getCssHeader from './getCssHeader'
+import getCssPortalAreaStyle from './getCssPortalAreaStyle'
+import getCssRootStyle from './getCssRootStyle'
+import getCssSourceImage from './getCssSourceImage'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -23,9 +24,11 @@ const getClassName = (name: string) => {
 
 const extractClassNames = (classNames?: string[]): string[] => classNames || []
 
-export const setClassNames = (node: Element, classNames: string[]): void => {
-    for (const className of classNames) {
-        node.classList.add(className)
+export const setClassNames = (node: Element, classNames?: string[]): void => {
+    if (classNames) {
+        for (const className of classNames) {
+            node.classList.add(className)
+        }
     }
 }
 
@@ -48,6 +51,10 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
             ...extractClassNames(css.sourceImage),
         ],
         body: [getClassName('body'), ...extractClassNames(css.body)],
+        portalArea: [
+            getClassName('portalArea'),
+            ...extractClassNames(css.portalArea),
+        ],
         header: [getClassName('header'), ...extractClassNames(css.header)],
         footer: [getClassName('footer'), ...extractClassNames(css.footer)],
         root: [getClassName('root'), ...extractClassNames(css.root)],
@@ -60,6 +67,7 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssContainerStyle(classNames.container[0])}
         ${getCssFooterStyle(classNames.footer[0])}
         ${getCssHeader(classNames.header[0])}
+        ${getCssPortalAreaStyle(classNames.portalArea[0])}
         ${getCssRootStyle(classNames.root[0])}
         ${getCssSourceImage(classNames.sourceImage[0])}
     `
