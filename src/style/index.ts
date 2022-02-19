@@ -1,5 +1,6 @@
 import { IClassNames } from '@src/types'
 
+import getCssPortalStyle from '@src/style/getCssPortalStyle'
 import getCssApplyButtonStyle from './getCssApplyButtonStyle'
 import getCssBodyStyle from './getCssBodyStyle'
 import getCssCancelButtonStyle from './getCssCancelButtonStyle'
@@ -50,13 +51,14 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
             getClassName('sourceImage'),
             ...extractClassNames(css.sourceImage),
         ],
-        body: [getClassName('body'), ...extractClassNames(css.body)],
         portalArea: [
             getClassName('portalArea'),
             ...extractClassNames(css.portalArea),
         ],
+        body: [getClassName('body'), ...extractClassNames(css.body)],
         header: [getClassName('header'), ...extractClassNames(css.header)],
         footer: [getClassName('footer'), ...extractClassNames(css.footer)],
+        portal: [getClassName('portal'), ...extractClassNames(css.portal)],
         root: [getClassName('root'), ...extractClassNames(css.root)],
     }
 
@@ -68,6 +70,7 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssFooterStyle(classNames.footer[0])}
         ${getCssHeader(classNames.header[0])}
         ${getCssPortalAreaStyle(classNames.portalArea[0])}
+        ${getCssPortalStyle(classNames.portal[0])}
         ${getCssRootStyle(classNames.root[0])}
         ${getCssSourceImage(classNames.sourceImage[0])}
     `

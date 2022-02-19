@@ -6,14 +6,14 @@ const mountCancelButtonNode = (
     onClose: (event: Event) => void
 ): Element => {
     const state = getState()
-    const cancelButton = document.createElement<'div'>('div')
-    setClassNames(cancelButton, state.css?.cancelButton)
+    const element = document.createElement<'div'>('div')
+    setClassNames(element, state.css?.cancelButton)
 
-    cancelButton.setAttribute('role', 'button')
-    cancelButton.innerText = state.config.cancelButtonLabel
-    cancelButton.addEventListener('click', onClose)
+    element.setAttribute('role', 'button')
+    element.innerText = state.config.cancelButtonLabel
+    element.addEventListener('click', onClose)
 
-    return cancelButton
+    return element
 }
 
 export default mountCancelButtonNode

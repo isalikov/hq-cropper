@@ -12,7 +12,13 @@ export interface IClassNames {
     cancelButton: string[]
     container: string[]
     footer: string[]
+    handlerMove: string[]
+    handlerResizeTopLeft: string[]
+    handlerResizeTopRight: string[]
+    handlerResizeBottomRight: string[]
+    handlerResizeBottomLeft: string[]
     header: string[]
+    portal: string[]
     portalArea: string[]
     root: string[]
     sourceImage: string[]
@@ -136,7 +142,7 @@ export type HqCropperInstance = {
 }
 
 export type HqCropperType = (
-    onSubmit: (img: string) => void,
+    onSubmit: (result: string, state: IState) => void,
     options?: Partial<IConfig>,
     css?: Partial<IClassNames>
 ) => HqCropperInstance

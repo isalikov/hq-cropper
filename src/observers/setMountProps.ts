@@ -24,6 +24,17 @@ const setMountProps = (value: string, state: IState) => {
         portalArea.style.left = `${state.frame.left}px`
         portalArea.style.top = `${state.frame.top}px`
     }
+
+    const portal = document.querySelector<HTMLDivElement>(
+        `.${state.css?.portal[0]}`
+    )
+
+    if (portal) {
+        portal.style.width = `${state.portal.size}px`
+        portal.style.height = `${state.portal.size}px`
+        portal.style.left = `${state.portal.left}px`
+        portal.style.top = `${state.portal.top}px`
+    }
 }
 
 export default setMountProps

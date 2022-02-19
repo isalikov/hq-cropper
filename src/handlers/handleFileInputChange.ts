@@ -1,17 +1,15 @@
-import { mountContainerNode } from '@src/nodes'
+import { mountRootNode } from '@src/nodes'
 import { FileChangeEvent, IState } from '@src/types'
 
 import { getFrameProps, getPortalProps } from '@src/helpers'
 
 import { initialState } from '@src/state'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
-
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
     getState: () => IState,
     setState: (state: Partial<IState>) => void,
-    onSubmit: (img: string) => void
+    onSubmit: (resultBase64: string, state: IState) => void
 ): void => {
     if (!event.target.files || event.target.files.length === 0) {
         throw new Error("HqCropper: Can't read file input")
@@ -50,14 +48,10 @@ const handleFileInputChange = (
     const handleSubmit = (e: Event) => {
         e.preventDefault()
 
-        const { resultBase64 } = getState()
+        const state = getState()
 
-        if (isDevelopment) {
-            console.log(getState())
-        } else {
-            onSubmit(resultBase64)
-            handleClose(e)
-        }
+        onSubmit(state.resultBase64, state)
+        handleClose(e)
     }
 
     reader.onload = (data) => {
@@ -70,7 +64,7 @@ const handleFileInputChange = (
         image.src = data.target.result
 
         image.onload = () => {
-            mountContainerNode(getState, handleSubmit, handleClose)
+            mountRootNode(getState, handleSubmit, handleClose)
 
             const frame = getFrameProps(getState, image)
             const portal = getPortalProps(getState, frame)

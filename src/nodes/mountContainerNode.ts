@@ -11,15 +11,15 @@ const mountContainerNode = (
     onClose: (event: Event) => void
 ): Element => {
     const state = getState()
-    const container = document.createElement<'div'>('div')
+    const element = document.createElement<'div'>('div')
 
-    setClassNames(container, state.css?.container)
+    setClassNames(element, state.css?.container)
 
-    container.appendChild(mountHeaderNode(getState))
-    container.appendChild(mountBodyNode(getState))
-    container.appendChild(mountFooterNode(getState, onSubmit, onClose))
+    element.appendChild(mountHeaderNode(getState))
+    element.appendChild(mountBodyNode(getState))
+    element.appendChild(mountFooterNode(getState, onSubmit, onClose))
 
-    return container
+    return element
 }
 
 export default mountContainerNode

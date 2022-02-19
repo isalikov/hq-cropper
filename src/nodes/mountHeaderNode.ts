@@ -3,11 +3,11 @@ import { setClassNames } from '@src/style'
 
 const mountHeaderNode = (getState: () => IState): Element => {
     const state = getState()
-    const header = document.createElement<'div'>('div')
+    const element = document.createElement<'div'>('div')
 
-    setClassNames(header, state.css?.header)
+    setClassNames(element, state.css?.header)
 
-    return header
+    return element
 }
 
 export default mountHeaderNode

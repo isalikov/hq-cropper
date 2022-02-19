@@ -9,12 +9,12 @@ const mountRootNode = (
     onClose: (event: Event) => void
 ): void => {
     const state = getState()
-    const root = document.createElement<'div'>('div')
-    setClassNames(root, state.css?.root)
+    const element = document.createElement<'div'>('div')
+    setClassNames(element, state.css?.root)
 
-    root.appendChild(mountContainerNode(getState, onSubmit, onClose))
+    element.appendChild(mountContainerNode(getState, onSubmit, onClose))
 
-    document.body.appendChild(root)
+    document.body.appendChild(element)
 }
 
 export default mountRootNode

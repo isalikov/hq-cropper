@@ -6,13 +6,13 @@ import mountSourceImageNode from './mountSourceImageNode'
 
 const mountBodyNode = (getState: () => IState): Element => {
     const state = getState()
-    const body = document.createElement<'div'>('div')
-    setClassNames(body, state.css?.body)
+    const element = document.createElement<'div'>('div')
+    setClassNames(element, state.css?.body)
 
-    body.appendChild(mountSourceImageNode(getState))
-    body.appendChild(mountPortalAreaNode(getState))
+    element.appendChild(mountSourceImageNode(getState))
+    element.appendChild(mountPortalAreaNode(getState))
 
-    return body
+    return element
 }
 
 export default mountBodyNode

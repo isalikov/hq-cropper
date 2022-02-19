@@ -1,16 +1,16 @@
 const mountFileInput = (onChange): HTMLInputElement => {
-    const node = document.createElement<'input'>('input')
+    const element = document.createElement<'input'>('input')
 
-    node.style.display = 'none'
+    element.style.display = 'none'
 
-    node.setAttribute('type', 'file')
-    node.setAttribute('accept', 'image/x-png,image/jpeg')
+    element.setAttribute('type', 'file')
+    element.setAttribute('accept', 'image/x-png,image/jpeg')
 
-    node.addEventListener('change', onChange, false)
+    element.addEventListener('change', onChange, false)
 
-    document.body.appendChild(node)
+    document.body.appendChild(element)
 
-    return node
+    return element
 }
 
 export default mountFileInput
