@@ -1,9 +1,9 @@
 export enum Action {
-    BL, // Resizing portal to bottom left
-    BR, // Resizing portal to bottom right
-    TL, // Resizing portal to top left
-    TR, // Resizing portal to top right
-    MOVE, // Moving portal
+    MOVE = 'MOVE',
+    RESIZE_TL = 'RESIZE_TL',
+    RESIZE_TR = 'RESIZE_TR',
+    RESIZE_BR = 'RESIZE_BR',
+    RESIZE_BL = 'RESIZE_BL',
 }
 
 export interface IClassNames {

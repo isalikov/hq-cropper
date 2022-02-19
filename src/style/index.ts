@@ -1,13 +1,18 @@
 import { IClassNames } from '@src/types'
 
-import getCssPortalStyle from '@src/style/getCssPortalStyle'
 import getCssApplyButtonStyle from './getCssApplyButtonStyle'
 import getCssBodyStyle from './getCssBodyStyle'
 import getCssCancelButtonStyle from './getCssCancelButtonStyle'
 import getCssContainerStyle from './getCssContainerStyle'
 import getCssFooterStyle from './getCssFooterStyle'
 import getCssHeader from './getCssHeader'
+import getCssMoveStyle from './getCssMoveStyle'
 import getCssPortalAreaStyle from './getCssPortalAreaStyle'
+import getCssPortalStyle from './getCssPortalStyle'
+import getCssResizeBottomLeftStyle from './getCssResizeBottomLeftStyle'
+import getCssResizeBottomRightStyle from './getCssResizeBottomRightStyle'
+import getCssResizeTopLeftStyle from './getCssResizeTopLeftStyle'
+import getCssResizeTopRightStyle from './getCssResizeTopRightStyle'
 import getCssRootStyle from './getCssRootStyle'
 import getCssSourceImage from './getCssSourceImage'
 
@@ -47,6 +52,26 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
             getClassName('container'),
             ...extractClassNames(css.container),
         ],
+        handlerMove: [
+            getClassName('handlerMove'),
+            ...extractClassNames(css.handlerMove),
+        ],
+        handlerResizeTopLeft: [
+            getClassName('handlerResizeTopLeft'),
+            ...extractClassNames(css.handlerResizeTopLeft),
+        ],
+        handlerResizeTopRight: [
+            getClassName('handlerResizeTopRight'),
+            ...extractClassNames(css.handlerResizeTopRight),
+        ],
+        handlerResizeBottomLeft: [
+            getClassName('handlerResizeBottomLeft'),
+            ...extractClassNames(css.handlerResizeBottomLeft),
+        ],
+        handlerResizeBottomRight: [
+            getClassName('handlerResizeBottomRight'),
+            ...extractClassNames(css.handlerResizeBottomRight),
+        ],
         sourceImage: [
             getClassName('sourceImage'),
             ...extractClassNames(css.sourceImage),
@@ -69,8 +94,13 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssContainerStyle(classNames.container[0])}
         ${getCssFooterStyle(classNames.footer[0])}
         ${getCssHeader(classNames.header[0])}
+        ${getCssMoveStyle(classNames.handlerMove[0])}
         ${getCssPortalAreaStyle(classNames.portalArea[0])}
         ${getCssPortalStyle(classNames.portal[0])}
+        ${getCssResizeBottomLeftStyle(classNames.handlerResizeBottomLeft[0])}
+        ${getCssResizeBottomRightStyle(classNames.handlerResizeBottomRight[0])}
+        ${getCssResizeTopLeftStyle(classNames.handlerResizeTopLeft[0])}
+        ${getCssResizeTopRightStyle(classNames.handlerResizeTopRight[0])}
         ${getCssRootStyle(classNames.root[0])}
         ${getCssSourceImage(classNames.sourceImage[0])}
     `
