@@ -63,6 +63,13 @@ export interface IConfig {
     cancelButtonLabel: string
 }
 
+export type EmittedPortalProps = {
+    X: number
+    Y: number
+    top: number
+    left: number
+}
+
 export type PortalProps = {
     left: number
     top: number
@@ -88,11 +95,6 @@ export interface IState {
     fileName: string
 
     /**
-     * Result base64 string
-     */
-    resultBase64: string
-
-    /**
      * Source base64 string
      */
     sourceBase64: string
@@ -116,6 +118,11 @@ export interface IState {
      * Crop portal props
      */
     portal: PortalProps
+
+    /**
+     * On mouse down emitted props
+     */
+    emittedPortalProps: EmittedPortalProps
 
     /**
      * Instance config

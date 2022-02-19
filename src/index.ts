@@ -1,8 +1,14 @@
-import useState from '@src/state'
-import { handleFileInputChange } from '@src/handlers'
-import { mountFileInput } from '@src/nodes'
-import { HqCropperType } from '@src/types'
-import { setHeaderTitle, setMountProps } from '@src/observers'
+import useState from './state'
+import { handleFileInputChange } from './handlers'
+import { mountFileInput } from './nodes'
+import { HqCropperType, PortalProps } from './types'
+
+import {
+    setHeaderTitle,
+    setMountProps,
+    setPortalProps,
+    setPreviewProps,
+} from './observers'
 
 const HqCropper: HqCropperType = (onSubmit, config, css) => {
     const { getState, setState, subscribe } = useState(config, css)
@@ -13,6 +19,8 @@ const HqCropper: HqCropperType = (onSubmit, config, css) => {
 
     subscribe<string>('fileName', setHeaderTitle)
     subscribe<string>('sourceBase64', setMountProps)
+    subscribe<PortalProps>('portal', setPortalProps)
+    subscribe<PortalProps>('portal', setPreviewProps)
 
     return {
         open: () => fileInput.click(),

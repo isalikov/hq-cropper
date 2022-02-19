@@ -5,7 +5,6 @@ import createState from './createState'
 
 export const initialState: IState = {
     action: null,
-    resultBase64: '',
     sourceBase64: '',
     fileName: '',
     sourceHeight: 0,
@@ -21,13 +20,19 @@ export const initialState: IState = {
         top: 0,
         size: 0,
     },
+    emittedPortalProps: {
+        X: 0,
+        Y: 0,
+        left: 0,
+        top: 0,
+    },
     config: {
         applyButtonLabel: 'Apply',
         cancelButtonLabel: 'Cancel',
-        compression: 0.8,
+        compression: 1,
         portalPosition: 'center',
         portalSize: 150,
-        quality: 1.03,
+        quality: 1.01,
         type: 'jpeg',
     },
 }

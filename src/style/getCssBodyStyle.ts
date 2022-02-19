@@ -7,10 +7,8 @@ const getCssBodyStyle = (name: string): string => `
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 600px;
-        height: 600px;
-        border-top: 1px solid #EEE;
-        border-bottom: 1px solid #EEE;
+        width: 500px;
+        height: 500px;
     }
 `
 export default getCssBodyStyle

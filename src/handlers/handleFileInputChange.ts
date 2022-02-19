@@ -4,6 +4,8 @@ import { FileChangeEvent, IState } from '@src/types'
 import { getFrameProps, getPortalProps } from '@src/helpers'
 
 import { initialState } from '@src/state'
+import registerMouseEvents from '@src/handlers/registerMouseEvents'
+import handleCropImage from '@src/handlers/handleCropImage'
 
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
@@ -49,8 +51,9 @@ const handleFileInputChange = (
         e.preventDefault()
 
         const state = getState()
+        const result = handleCropImage(getState)
 
-        onSubmit(state.resultBase64, state)
+        onSubmit(result, state)
         handleClose(e)
     }
 
@@ -77,6 +80,8 @@ const handleFileInputChange = (
                 sourceHeight: image.height,
                 sourceWidth: image.width,
             })
+
+            registerMouseEvents(getState, setState)
         }
     }
 

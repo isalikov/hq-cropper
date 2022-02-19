@@ -7,6 +7,7 @@ const getCssFooterStyle = (name: string): string => `
         height: 60px;
         flex: 0 0 auto;
         padding: 0 20px;
+        border-top: 1px solid #EEE;
     }
 `
 export default getCssFooterStyle

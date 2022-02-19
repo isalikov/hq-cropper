@@ -9,6 +9,7 @@ const getCssHeader = (name: string): string => `
         padding: 0 20px;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
+        border-bottom: 1px solid #EEE;
     }
 `
 export default getCssHeader
