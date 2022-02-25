@@ -1,10 +1,15 @@
 {
   "name": "hq-cropper",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Image cropper tool",
   "main": "dist/bundle.cjs.js",
   "module": "index.js",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/types/index.d.ts",
+    "dist/bundle.cjs.js",
+    "dist/bundle.cjs.js.map"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/isalikov/hq-cropper.git"

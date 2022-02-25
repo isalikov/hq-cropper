@@ -8,8 +8,6 @@ Cropper for large images
 
 > [Demo](https://isalikov.github.io/hq-cropper)
 
----
-
 ### Installation
 
 `npm install hq-cropper`
