@@ -1,4 +1,4 @@
-import { PortalProps, IState, FrameProps } from '@src/types'
+import { PortalProps, IState, FrameProps } from '../types'
 
 const getAbsolutePortalPosition = (
     size: number,

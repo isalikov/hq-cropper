@@ -1,27 +1,43 @@
 {
   "compilerOptions": {
+    "rootDir": "./src/",
+    "outDir": "./dist/",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "lib": [
-      "es2019",
-      "dom"
+      "esnext", "dom"
     ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strictNullChecks": true,
+    "module": "es6",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": false,
     "target": "esnext",
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "paths": {
-      "@src/*": [
-        "src/*"
-      ]
-    }
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
+  "include": [
+    "src",
+    "types"
+  ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "docs"
   ]
 }

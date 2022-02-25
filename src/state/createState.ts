@@ -1,5 +1,5 @@
-import { IState, CreateState, Listener, ListenerAction } from '@src/types'
-import { getRandomString } from '@src/utils'
+import { IState, CreateState, Listener, ListenerAction } from '../types'
+import { getRandomString } from '../utils'
 
 const createState = (initialState: IState): CreateState => {
     const listeners = new Map<string, Listener<unknown>[]>()
@@ -23,6 +23,7 @@ const createState = (initialState: IState): CreateState => {
 
     const setState = (partialState: Partial<IState>) => {
         Object.keys(partialState).forEach((key) => {
+            // @ts-ignore
             state[key] = partialState[key]
         })
     }

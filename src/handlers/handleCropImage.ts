@@ -1,4 +1,4 @@
-import { IState } from '@src/types'
+import { IState } from '../types'
 
 const handleCropImage = (getState: () => IState): string => {
     const state = getState()

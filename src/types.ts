@@ -38,6 +38,11 @@ export interface IConfig {
     portalSize: number
 
     /**
+     * Frame padding
+     */
+    framePadding: number
+
+    /**
      * Result image compression
      */
     compression: number
@@ -68,6 +73,7 @@ export type EmittedPortalProps = {
     Y: number
     top: number
     left: number
+    size: number
 }
 
 export type PortalProps = {
@@ -122,7 +128,7 @@ export interface IState {
     /**
      * On mouse down emitted props
      */
-    emittedPortalProps: EmittedPortalProps
+    emitted: EmittedPortalProps
 
     /**
      * Instance config
@@ -137,7 +143,7 @@ export interface IState {
 
 export type FileChangeEvent<T = EventTarget> = {
     target: T
-}
+} & Event
 
 /**
  * Initial position of portal center [Left, Top] | 'center'
@@ -152,17 +158,13 @@ export type HqCropperInstance = {
 
 export type HqCropperType = (
     onSubmit: (result: string, state: IState) => void,
-    options?: Partial<IConfig>,
+    config?: Partial<IConfig>,
     css?: Partial<IClassNames>
 ) => HqCropperInstance
 
-export type ListenerAction<T extends unknown> = (
-    value: T,
-    target: IState,
-    prop: string
-) => void
+export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
 
-export type Listener<T extends unknown> = {
+export type Listener<T> = {
     id: string
     action: ListenerAction<T>
 }
@@ -170,8 +172,5 @@ export type Listener<T extends unknown> = {
 export type CreateState = {
     getState: () => IState
     setState: (state: Partial<IState>) => void
-    subscribe: <T extends unknown>(
-        prop: string,
-        action: ListenerAction<T>
-    ) => string
+    subscribe: <T>(prop: string, action: ListenerAction<T>) => string
 }

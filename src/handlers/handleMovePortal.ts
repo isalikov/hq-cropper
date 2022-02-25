@@ -1,19 +1,19 @@
-import { IState } from '@src/types'
+import { IState } from '../types'
 
 const handleMovePortal = (
     event: MouseEvent,
     getState: () => IState,
     setState: (value: Partial<IState>) => void
 ): void => {
-    const { emittedPortalProps, portal, frame } = getState()
+    const { emitted, portal, frame, config } = getState()
 
-    let left = emittedPortalProps.left - emittedPortalProps.X + event.clientX
-    let top = emittedPortalProps.top - emittedPortalProps.Y + event.clientY
+    let left = emitted.left - emitted.X + event.clientX
+    let top = emitted.top - emitted.Y + event.clientY
 
-    const MinLeftValue = 3
-    const MaxLeftValue = frame.width - 3 - portal.size
-    const MinTopValue = 3
-    const MaxTopValue = frame.height - 3 - portal.size
+    const MinLeftValue = config.framePadding
+    const MaxLeftValue = frame.width - config.framePadding - portal.size
+    const MinTopValue = config.framePadding
+    const MaxTopValue = frame.height - config.framePadding - portal.size
 
     if (left < MinLeftValue) {
         left = MinLeftValue

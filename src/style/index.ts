@@ -1,4 +1,4 @@
-import { IClassNames } from '@src/types'
+import { IClassNames } from '../types'
 
 import getCssApplyButtonStyle from './getCssApplyButtonStyle'
 import getCssBodyStyle from './getCssBodyStyle'
@@ -25,9 +25,9 @@ const getClassName = (name: string) => {
         return `hq-cropper__${name}`
     }
 
-    return `${Math.random().toString(36).substring(2)}_${Math.random()
+    return `hq-cropper__${Math.random()
         .toString(36)
-        .substring(2)}`
+        .substring(2)}_${Math.random().toString(36).substring(2)}`
 }
 
 const extractClassNames = (classNames?: string[]): string[] => classNames || []

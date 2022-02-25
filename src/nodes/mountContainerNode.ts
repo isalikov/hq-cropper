@@ -1,5 +1,5 @@
-import { IState } from '@src/types'
-import { setClassNames } from '@src/style'
+import { setClassNames } from '../style'
+import { IState } from '../types'
 
 import mountBodyNode from './mountBodyNode'
 import mountFooterNode from './mountFooterNode'

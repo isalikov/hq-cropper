@@ -1,11 +1,10 @@
-import { mountRootNode } from '@src/nodes'
-import { FileChangeEvent, IState } from '@src/types'
+import { FileChangeEvent, IState } from '../types'
+import { getFrameProps, getPortalProps } from '../helpers'
+import { initialState } from '../state'
+import { mountRootNode } from '../nodes'
 
-import { getFrameProps, getPortalProps } from '@src/helpers'
-
-import { initialState } from '@src/state'
-import registerMouseEvents from '@src/handlers/registerMouseEvents'
-import handleCropImage from '@src/handlers/handleCropImage'
+import handleCropImage from './handleCropImage'
+import registerMouseEvents from './registerMouseEvents'
 
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,

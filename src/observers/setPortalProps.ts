@@ -1,4 +1,4 @@
-import { IState, PortalProps } from '@src/types'
+import { IState, PortalProps } from '../types'
 
 const setPortalProps = (portal: PortalProps, state: IState) => {
     const portalElement = document.querySelector<HTMLImageElement>(
@@ -8,6 +8,8 @@ const setPortalProps = (portal: PortalProps, state: IState) => {
     if (portalElement) {
         portalElement.style.left = `${portal.left}px`
         portalElement.style.top = `${portal.top}px`
+        portalElement.style.width = `${portal.size}px`
+        portalElement.style.height = `${portal.size}px`
     }
 }
 

@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const {
-    DefinePlugin,
     HotModuleReplacementPlugin,
     SourceMapDevToolPlugin,
 } = require('webpack')
@@ -10,7 +9,7 @@ const {
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    mode: 'development',
+    mode: isDevelopment ? 'development' : 'production',
     resolve: {
         alias: {
             '@src': path.resolve(__dirname, './src'),
@@ -35,12 +34,24 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.css$/i,
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: { injectType: 'styleTag' },
+                    },
+                    'css-loader',
+                ],
+            },
         ],
     },
     output: {
-        chunkFilename: '[id].chunk.js',
-        filename: '[name].bundle.js',
-        path: path.join(__dirname, 'dist'),
+        chunkFilename: isDevelopment
+            ? '[id].chunk.js'
+            : '[id].[chunkhash].chunk.js',
+        filename: isDevelopment ? '[name].bundle.js' : '[contenthash:24].js',
+        path: path.join(__dirname, 'docs'),
         publicPath: '/',
     },
     devServer: {
@@ -54,11 +65,6 @@ module.exports = {
         errorDetails: true,
     },
     plugins: [
-        new DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-            },
-        }),
         isDevelopment && new HotModuleReplacementPlugin(),
         new SourceMapDevToolPlugin({}),
         new HtmlWebpackPlugin({

@@ -64,6 +64,7 @@ body {
     flex-direction: column;
     border: 1px solid #EEEEEE;
     border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(77, 96, 124, 0.2);
 }
 
 .container_body {
@@ -108,4 +109,9 @@ body {
     width: 200px;
     height: 200px;
     border: 2px solid #EEEEEE;
+}
+
+.cropBody {
+    width: 700px;
+    height: 700px;
 }

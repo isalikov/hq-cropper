@@ -1,4 +1,8 @@
-const mountFileInput = (onChange): HTMLInputElement => {
+import { FileChangeEvent } from '../types'
+
+const mountFileInput = (
+    onChange: (event: FileChangeEvent<HTMLInputElement>) => void
+): HTMLInputElement => {
     const element = document.createElement<'input'>('input')
 
     element.style.display = 'none'

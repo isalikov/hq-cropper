@@ -1,6 +1,7 @@
-import { Action, EmittedPortalProps, IState } from '@src/types'
-import handleMovePortal from '@src/handlers/handleMovePortal'
-import handleResizePortal from '@src/handlers/handleResizePortal'
+import { Action, EmittedPortalProps, IState } from '../types'
+
+import handleMovePortal from './handleMovePortal'
+import handleResizePortal from './handleResizePortal'
 
 const registerMouseEvents = (
     getState: () => IState,
@@ -19,29 +20,31 @@ const registerMouseEvents = (
         `.${state.css?.root[0]}`
     )
 
-    const handleMouseDown = (event) => {
+    const handleMouseDown = (event: MouseEvent) => {
         event.preventDefault()
 
         const { portal } = getState()
 
-        const action = event.target.getAttribute('data-action')
-            ? event.target.getAttribute('data-action')
-            : event.target.parentNode.getAttribute('data-action')
+        if (event.target) {
+            const node = event.target as HTMLElement
+            const action = node.getAttribute('data-action') as Action
 
-        const emittedPortalProps: EmittedPortalProps = {
-            X: event.pageX,
-            Y: event.pageY,
-            left: portal.left,
-            top: portal.top,
+            const emittedPortalProps: EmittedPortalProps = {
+                X: event.pageX,
+                Y: event.pageY,
+                left: portal.left,
+                top: portal.top,
+                size: portal.size,
+            }
+
+            setState({
+                action,
+                emitted: emittedPortalProps,
+            })
         }
-
-        setState({
-            action,
-            emittedPortalProps,
-        })
     }
 
-    const handleMouseUp = (event) => {
+    const handleMouseUp = (event: MouseEvent) => {
         event.preventDefault()
 
         setState({
@@ -49,7 +52,7 @@ const registerMouseEvents = (
         })
     }
 
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent) => {
         const { action } = getState()
 
         if (!action) {

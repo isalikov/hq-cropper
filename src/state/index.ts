@@ -1,6 +1,6 @@
-import { IClassNames, IConfig, IState } from '@src/types'
+import getClassNames from '../style'
+import { IClassNames, IConfig, IState } from '../types'
 
-import getClassNames from '@src/style'
 import createState from './createState'
 
 export const initialState: IState = {
@@ -20,16 +20,18 @@ export const initialState: IState = {
         top: 0,
         size: 0,
     },
-    emittedPortalProps: {
+    emitted: {
         X: 0,
         Y: 0,
         left: 0,
         top: 0,
+        size: 0,
     },
     config: {
         applyButtonLabel: 'Apply',
         cancelButtonLabel: 'Cancel',
         compression: 1,
+        framePadding: 3,
         portalPosition: 'center',
         portalSize: 150,
         quality: 1.01,
