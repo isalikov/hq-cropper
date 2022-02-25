@@ -5,7 +5,7 @@ name: ci
 
 steps:
   - name: install
-    image: node:14.17.0
+    image: node:16.13.2
     commands:
       - yarn --silent
     when:
@@ -15,7 +15,7 @@ steps:
         - push
 
   - name: lint
-    image: node:14.17.0
+    image: node:16.13.2
     commands:
       - yarn lint
     when:
@@ -24,10 +24,20 @@ steps:
       event:
         - push
 
-  - name: build/npm-package
-    image: node:14.17.0
+  - name: typecheck
+    image: node:16.13.2
     commands:
-      - yarn dist
+      - yarn tsc --project ./tsconfig.json
+    when:
+      branch:
+        - master
+      event:
+        - push
+
+  - name: build/npm-package
+    image: node:16.13.2
+    commands:
+      - yarn build:dist
     when:
       branch:
         - master

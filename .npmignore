@@ -4,13 +4,8 @@
 
 *.log
 *.snap
-
-coverage
-lib
-node_modules
-docs
-example
-*rc
-*config*
 *.yml
-dev
+
+src
+docs
+node_modules
