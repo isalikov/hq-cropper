@@ -26,7 +26,6 @@
     "allowJs": false,
     "noUnusedLocals": true,
     "moduleResolution": "node",
-    "jsx": "react",
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true

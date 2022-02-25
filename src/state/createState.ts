@@ -22,16 +22,14 @@ const createState = (initialState: IState): CreateState => {
     const getState = (): IState => ({ ...state })
 
     const setState = (partialState: Partial<IState>) => {
-        Object.keys(partialState).forEach((key) => {
+        Object.keys(partialState).forEach((key: keyof IState) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             state[key] = partialState[key]
         })
     }
 
-    const subscribe = <T extends unknown>(
-        prop: string,
-        action: ListenerAction<T>
-    ): string => {
+    const subscribe = <T>(prop: string, action: ListenerAction<T>): string => {
         const id = getRandomString()
         const propListeners = listeners.get(prop) || []
 
