@@ -2,9 +2,9 @@
 [![npm version](https://badge.fury.io/js/hq-cropper.svg)](https://badge.fury.io/js/hq-cropper)
 
 
-# [hq-cropper](https://isalikov.github.io/hq-cropper)
+# hq-cropper
 
-Lightweight (20kb) high resolution images cropper tool
+Cropper for large images
 
 > [Demo](https://isalikov.github.io/hq-cropper)
 
