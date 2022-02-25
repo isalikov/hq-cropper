@@ -70,9 +70,11 @@ module.exports = {
         isDevelopment && new HotModuleReplacementPlugin(),
         new SourceMapDevToolPlugin({}),
         new HtmlWebpackPlugin({
+            favicon: './public/favicon.ico',
             filename: './index.html',
             template: './public/index.html',
             inject: 'body',
+            publicPath: './',
         }),
     ].filter(Boolean),
 }
