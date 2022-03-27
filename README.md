@@ -5,7 +5,7 @@
 
 # hq-cropper
 
-#### [Become a sponsor](https://opencollective.com/hq-cropper)
+#### [Become a sponsor](https://opencollective.com/hq-cropper) and help Ukrainians in Lithuania 🇺🇦
 
 Cropper for large images
 
