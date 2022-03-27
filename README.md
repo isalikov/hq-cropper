@@ -5,6 +5,8 @@
 
 # hq-cropper
 
+#### [Become a sponsor](https://opencollective.com/hq-cropper)
+
 Cropper for large images
 
 > [Demo](https://isalikov.github.io/hq-cropper)
