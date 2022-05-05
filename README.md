@@ -5,7 +5,7 @@
 
 # hq-cropper
 
-#### [Become a sponsor](https://opencollective.com/hq-cropper) and help Ukranians in Lithuania 🇺🇦 of make [Red Cross LT Donation](https://donation.redcross.lt)
+#### [Become a sponsor](https://opencollective.com/hq-cropper)
 
 Cropper for large images
 
