@@ -40,7 +40,7 @@ function MyComponent() {
     const [image, setImage] = useState('')
 
     /* Important: must be memoized */
-    const hqCropper = useMemo(() => HqCropper(setImage), [])
+    const { current: hqCropper } = useRef(HqCropper(setImage))
 
     return (
         <div>
