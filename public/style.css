@@ -22,6 +22,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+img {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+}
 body {
     line-height: 1;
 }

@@ -156,12 +156,6 @@ export type HqCropperInstance = {
     open: () => void
 }
 
-export type HqCropperType = (
-    onSubmit: (result: string, state: IState) => void,
-    config?: Partial<IConfig>,
-    css?: Partial<IClassNames>
-) => HqCropperInstance
-
 export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
 
 export type Listener<T> = {

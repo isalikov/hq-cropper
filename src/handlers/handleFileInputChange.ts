@@ -10,7 +10,7 @@ const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
     getState: () => IState,
     setState: (state: Partial<IState>) => void,
-    onSubmit: (resultBase64: string, state: IState) => void
+    onSubmit: (result: string, blob: Blob | null, state: IState) => void
 ): void => {
     if (!event.target.files || event.target.files.length === 0) {
         throw new Error("HqCropper: Can't read file input")
@@ -50,10 +50,11 @@ const handleFileInputChange = (
         e.preventDefault()
 
         const state = getState()
-        const result = handleCropImage(getState)
 
-        onSubmit(result, state)
-        handleClose(e)
+        handleCropImage(getState).then(([base64, blob]) => {
+            onSubmit(base64, blob, state)
+            handleClose(e)
+        })
     }
 
     reader.onload = (data) => {

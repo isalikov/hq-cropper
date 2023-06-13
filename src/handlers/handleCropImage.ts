@@ -1,6 +1,8 @@
 import { IState } from '../types'
 
-const handleCropImage = (getState: () => IState): string => {
+const handleCropImage = (
+    getState: () => IState
+): Promise<[string, Blob | null]> => {
     const state = getState()
     const canvas = document.createElement('canvas')
 
@@ -20,26 +22,35 @@ const handleCropImage = (getState: () => IState): string => {
         `.${state.css?.sourceImage[0]}`
     )
 
-    if (sourceImage && canvas) {
-        canvas
-            ?.getContext('2d')
-            ?.drawImage(
-                sourceImage,
-                sx,
-                sy,
-                dxSize,
-                dxSize,
-                0,
-                0,
-                baseSize,
-                baseSize
-            )
+    canvas
+        ?.getContext('2d')
+        ?.drawImage(
+            sourceImage,
+            sx,
+            sy,
+            dxSize,
+            dxSize,
+            0,
+            0,
+            baseSize,
+            baseSize
+        )
 
-        canvas.remove()
-        return canvas.toDataURL(state.config.type, state.config.compression)
-    }
+    canvas.remove()
 
-    return ''
+    const base64 = Promise.resolve(
+        canvas.toDataURL(state.config.type, state.config.compression)
+    )
+
+    const blob = new Promise<Blob | null>((resolve) => {
+        canvas.toBlob(
+            (value) => resolve(value),
+            state.config.type,
+            state.config.compression
+        )
+    })
+
+    return Promise.all([base64, blob])
 }
 
 export default handleCropImage

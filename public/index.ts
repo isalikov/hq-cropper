@@ -4,12 +4,12 @@ import { HqCropper } from '../src'
 
 const main = (): void => {
     const hqCropper = HqCropper(
-        (result) => {
+        (base64) => {
             const imgElement =
                 document.querySelector<HTMLImageElement>('#result-image')
 
             if (imgElement) {
-                imgElement.setAttribute('src', result)
+                imgElement.setAttribute('src', base64)
             }
         },
         {
