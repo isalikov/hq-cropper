@@ -1,6 +1,6 @@
 {
   "name": "hq-cropper",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Image cropper tool",
   "main": "dist/bundle.cjs.js",
   "module": "index.js",

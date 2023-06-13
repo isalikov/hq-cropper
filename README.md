@@ -13,18 +13,15 @@ Cropper for large images
 `npm install hq-cropper`
 
 ### Usage Example
-```javascript
-
+```typescript
 import { HqCropper } from 'hq-cropper'
 
-// As example, croppedImage (base64:jpeg) will be set as src to img#image-preview
-function handleCrop(croppedImage) {
+function handleCrop(base64: string, blob: Blob | null) {
     document.querySelector('img#image-preview').setAttribute('src', croppedImage)
 }
 
 const hqCropper = HqCropper(handleCrop)
 
-// As example, click to button#change-image-button will open dialog
 document.querySelector('button#change-image-button')
     .addEventListener('click', hqCropper.open, false)
 ```
