@@ -17,13 +17,14 @@ Cropper for large images
 import { HqCropper } from 'hq-cropper'
 
 function handleCrop(base64: string, blob: Blob | null) {
-    document.querySelector('img#image-preview').setAttribute('src', croppedImage)
+    document.querySelector('img#image-preview').setAttribute('src', base64)
 }
 
 const hqCropper = HqCropper(handleCrop)
 
 document.querySelector('button#change-image-button')
     .addEventListener('click', hqCropper.open, false)
+
 ```
 
 ### React usage
