@@ -7,7 +7,7 @@ import handleResizePortal from './handleResizePortal'
 const registerMouseEvents = (
     getState: () => IState,
     setState: (value: Partial<IState>) => void
-) => {
+): (() => void) => {
     const state = getState()
     const portalElement = document.querySelector<HTMLDivElement>(
         `.${state.css?.portal[0]}`
@@ -81,6 +81,18 @@ const registerMouseEvents = (
 
     if (portalAreaElement) {
         portalAreaElement.addEventListener('mousemove', handleMouseMove)
+    }
+
+    return () => {
+        if (rootElement) {
+            rootElement.removeEventListener('mouseup', handleMouseUp)
+        }
+        if (portalElement) {
+            portalElement.removeEventListener('mousedown', handleMouseDown)
+        }
+        if (portalAreaElement) {
+            portalAreaElement.removeEventListener('mousemove', handleMouseMove)
+        }
     }
 }
 

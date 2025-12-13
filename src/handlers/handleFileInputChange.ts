@@ -32,6 +32,14 @@ const handleFileInputChange = (
     const file = event.target.files[0]
     const reader = new FileReader()
 
+    let cleanupMouseEvents: (() => void) | null = null
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            handleClose(e)
+        }
+    }
+
     const close = () => {
         const state = getState()
 
@@ -41,14 +49,12 @@ const handleFileInputChange = (
 
         if (node && node.parentNode) {
             node.parentNode.removeChild(node)
+            document.removeEventListener('keydown', handleKeyDown)
+            if (cleanupMouseEvents) {
+                cleanupMouseEvents()
+            }
             unsubscribeAll()
             setState(initialState)
-        }
-    }
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            close()
         }
     }
 
@@ -56,7 +62,6 @@ const handleFileInputChange = (
 
     const handleClose = (e: Event) => {
         e.preventDefault()
-        document.removeEventListener('keydown', handleKeyDown)
         close()
     }
 
@@ -100,7 +105,7 @@ const handleFileInputChange = (
                 sourceWidth: image.width,
             })
 
-            registerMouseEvents(getState, setState)
+            cleanupMouseEvents = registerMouseEvents(getState, setState)
         }
     }
 
