@@ -1,9 +1,8 @@
 import type { IState, PortalProps } from '../types'
+import { getElement } from './domCache'
 
 const setPortalProps = (portal: PortalProps, state: IState) => {
-    const portalElement = document.querySelector<HTMLDivElement>(
-        `.${state.css?.portal[0]}`
-    )
+    const portalElement = getElement('portal', state.css)
 
     if (portalElement) {
         portalElement.style.left = `${portal.left}px`

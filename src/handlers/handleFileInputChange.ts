@@ -9,6 +9,8 @@ import { getFrameProps, getPortalProps } from '../helpers'
 import { initialState } from '../state'
 import { mountRootNode } from '../nodes'
 import {
+    clearCache,
+    initCache,
     setHeaderTitle,
     setMountProps,
     setPortalProps,
@@ -89,6 +91,7 @@ const handleFileInputChange = (
             if (cleanupMouseEvents) {
                 cleanupMouseEvents()
             }
+            clearCache()
             unsubscribeAll()
             setState(initialState)
         }
@@ -128,6 +131,7 @@ const handleFileInputChange = (
 
         image.onload = () => {
             mountRootNode(getState, handleSubmit, handleClose)
+            initCache()
 
             subscribe<string>('fileName', setHeaderTitle)
             subscribe<string>('sourceBase64', setMountProps)
