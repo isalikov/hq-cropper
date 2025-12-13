@@ -167,4 +167,6 @@ export interface CreateState {
     getState: () => IState
     setState: (state: Partial<IState>) => void
     subscribe: <T>(prop: string, action: ListenerAction<T>) => string
+    unsubscribe: (id: string) => void
+    unsubscribeAll: () => void
 }

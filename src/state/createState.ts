@@ -45,7 +45,21 @@ const createState = (initialState: IState): CreateState => {
         return id
     }
 
-    return { getState, setState, subscribe }
+    const unsubscribe = (id: string): void => {
+        for (const [prop, propListeners] of listeners.entries()) {
+            const filtered = propListeners.filter((l) => l.id !== id)
+            if (filtered.length !== propListeners.length) {
+                listeners.set(prop, filtered)
+                return
+            }
+        }
+    }
+
+    const unsubscribeAll = (): void => {
+        listeners.clear()
+    }
+
+    return { getState, setState, subscribe, unsubscribe, unsubscribeAll }
 }
 
 export default createState

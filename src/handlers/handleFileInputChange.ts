@@ -1,7 +1,18 @@
-import type { FileChangeEvent, IState } from '../types'
+import type {
+    FileChangeEvent,
+    IState,
+    ListenerAction,
+    PortalProps,
+} from '../types'
 import { getFrameProps, getPortalProps } from '../helpers'
 import { initialState } from '../state'
 import { mountRootNode } from '../nodes'
+import {
+    setHeaderTitle,
+    setMountProps,
+    setPortalProps,
+    setPreviewProps,
+} from '../observers'
 
 import handleCropImage from './handleCropImage'
 import registerMouseEvents from './registerMouseEvents'
@@ -10,7 +21,9 @@ const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
     getState: () => IState,
     setState: (state: Partial<IState>) => void,
-    onSubmit: (result: string, blob: Blob | null, state: IState) => void
+    onSubmit: (result: string, blob: Blob | null, state: IState) => void,
+    subscribe: <T>(prop: string, action: ListenerAction<T>) => string,
+    unsubscribeAll: () => void
 ): void => {
     if (!event.target.files || event.target.files.length === 0) {
         throw new Error("HqCropper: Can't read file input")
@@ -28,6 +41,7 @@ const handleFileInputChange = (
 
         if (node && node.parentNode) {
             node.parentNode.removeChild(node)
+            unsubscribeAll()
             setState(initialState)
         }
     }
@@ -68,6 +82,11 @@ const handleFileInputChange = (
 
         image.onload = () => {
             mountRootNode(getState, handleSubmit, handleClose)
+
+            subscribe<string>('fileName', setHeaderTitle)
+            subscribe<string>('sourceBase64', setMountProps)
+            subscribe<PortalProps>('portal', setPortalProps)
+            subscribe<PortalProps>('portal', setPreviewProps)
 
             const frame = getFrameProps(getState, image)
             const portal = getPortalProps(getState, frame)
