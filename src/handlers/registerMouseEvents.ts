@@ -21,6 +21,9 @@ const registerMouseEvents = (
         `.${state.css?.root[0]}`
     )
 
+    let animationFrameId: number | null = null
+    let pendingEvent: MouseEvent | null = null
+
     const handleMouseDown = (event: MouseEvent) => {
         event.preventDefault()
 
@@ -48,16 +51,30 @@ const registerMouseEvents = (
     const handleMouseUp = (event: MouseEvent) => {
         event.preventDefault()
 
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId)
+            animationFrameId = null
+        }
+        pendingEvent = null
+
         setState({
             action: null,
         })
     }
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const processMouseMove = () => {
+        animationFrameId = null
+
+        if (!pendingEvent) {
+            return
+        }
+
+        const event = pendingEvent
+        pendingEvent = null
+
         const { action } = getState()
 
         if (!action) {
-            event.preventDefault()
             return
         }
 
@@ -68,6 +85,21 @@ const registerMouseEvents = (
 
             default:
                 handleResizePortal(event, getState, setState)
+        }
+    }
+
+    const handleMouseMove = (event: MouseEvent) => {
+        const { action } = getState()
+
+        if (!action) {
+            event.preventDefault()
+            return
+        }
+
+        pendingEvent = event
+
+        if (animationFrameId === null) {
+            animationFrameId = requestAnimationFrame(processMouseMove)
         }
     }
 
@@ -84,6 +116,9 @@ const registerMouseEvents = (
     }
 
     return () => {
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId)
+        }
         if (rootElement) {
             rootElement.removeEventListener('mouseup', handleMouseUp)
         }
