@@ -38,21 +38,21 @@ const handleCropImage = (
             )
     }
 
-    canvas.remove()
-
-    const base64 = Promise.resolve(
-        canvas.toDataURL(state.config.type, state.config.compression)
+    const base64 = canvas.toDataURL(
+        `image/${state.config.type}`,
+        state.config.compression
     )
 
-    const blob = new Promise<Blob | null>((resolve) => {
+    return new Promise<[string, Blob | null]>((resolve) => {
         canvas.toBlob(
-            (value) => resolve(value),
-            state.config.type,
+            (blob) => {
+                canvas.remove()
+                resolve([base64, blob])
+            },
+            `image/${state.config.type}`,
             state.config.compression
         )
     })
-
-    return Promise.all([base64, blob])
 }
 
 export default handleCropImage
