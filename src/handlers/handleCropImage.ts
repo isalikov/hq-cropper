@@ -1,19 +1,29 @@
 import type { IState } from '../types'
 
+const MIN_QUALITY = 1.001
+const MIN_SIZE = 1
+
 const handleCropImage = (
     getState: () => IState
 ): Promise<[string, Blob | null]> => {
     const state = getState()
     const canvas = document.createElement('canvas')
 
-    const scaleX = state.sourceWidth / state.frame.width
-    const scaleY = state.sourceHeight / state.frame.height
+    const frameWidth = state.frame.width || MIN_SIZE
+    const frameHeight = state.frame.height || MIN_SIZE
+
+    const scaleX = state.sourceWidth / frameWidth
+    const scaleY = state.sourceHeight / frameHeight
 
     const sx = state.portal.left * scaleX
     const sy = state.portal.top * scaleY
 
-    const dxSize = state.portal.size * Math.min(scaleX, scaleY)
-    const baseSize = Math.log(dxSize) / Math.log(state.config.quality)
+    const dxSize = Math.max(
+        state.portal.size * Math.min(scaleX, scaleY),
+        MIN_SIZE
+    )
+    const quality = Math.max(state.config.quality, MIN_QUALITY)
+    const baseSize = Math.max(Math.log(dxSize) / Math.log(quality), MIN_SIZE)
 
     canvas.width = baseSize
     canvas.height = baseSize
