@@ -26,7 +26,8 @@ const getPortalProps = (
 ): PortalProps => {
     const { config } = getState()
 
-    const maxFrameSize = Math.min(frame.width, frame.height) - 3
+    const maxFrameSize =
+        Math.min(frame.width, frame.height) - config.framePadding * 2
     const size =
         config.portalSize > maxFrameSize ? maxFrameSize : config.portalSize
 

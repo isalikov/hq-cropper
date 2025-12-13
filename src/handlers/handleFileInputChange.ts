@@ -18,14 +18,16 @@ import {
 import handleCropImage from './handleCropImage'
 import registerMouseEvents from './registerMouseEvents'
 
+const BYTES_IN_MB = 1024 * 1024
+
 const validateFile = (file: File, config: IState['config']): string | null => {
     if (!config.allowedTypes.includes(file.type)) {
         return `Invalid file type "${file.type}". Allowed types: ${config.allowedTypes.join(', ')}`
     }
 
     if (config.maxFileSize > 0 && file.size > config.maxFileSize) {
-        const maxSizeMB = (config.maxFileSize / (1024 * 1024)).toFixed(2)
-        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2)
+        const maxSizeMB = (config.maxFileSize / BYTES_IN_MB).toFixed(2)
+        const fileSizeMB = (file.size / BYTES_IN_MB).toFixed(2)
         return `File size (${fileSizeMB}MB) exceeds maximum allowed size (${maxSizeMB}MB)`
     }
 
