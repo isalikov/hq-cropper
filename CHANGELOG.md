@@ -37,6 +37,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Observers now use DOM element caching for better performance during mousemove events ([2df87ee](https://github.com/isalikov/hq-cropper/commit/2df87ee))
 - Mousemove events now throttled via `requestAnimationFrame` for smoother performance ([6ed7e7a](https://github.com/isalikov/hq-cropper/commit/6ed7e7a))
 - Portal and preview props observers merged into single observer for better performance ([bfb5d5b](https://github.com/isalikov/hq-cropper/commit/bfb5d5b))
+- Add comprehensive Storybook stories showcasing all config options
+- Migrate from yarn to pnpm
+- Update GitHub Actions workflows to use pnpm and Node.js 22
+- Add GitHub Pages deployment for Storybook documentation
+- Change npm publish trigger from push to release event
 
 ## [3.1.0] - Previous release
 
