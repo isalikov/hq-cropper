@@ -10,6 +10,13 @@ const setPortalProps = (portal: PortalProps, state: IState) => {
         portalElement.style.width = `${portal.size}px`
         portalElement.style.height = `${portal.size}px`
     }
+
+    const previewImage = getElement('previewImage', state.css)
+
+    if (previewImage) {
+        previewImage.style.marginLeft = `-${portal.left}px`
+        previewImage.style.marginTop = `-${portal.top}px`
+    }
 }
 
 export default setPortalProps

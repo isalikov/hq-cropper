@@ -14,7 +14,6 @@ import {
     setHeaderTitle,
     setMountProps,
     setPortalProps,
-    setPreviewProps,
 } from '../observers'
 
 import handleCropImage from './handleCropImage'
@@ -136,7 +135,6 @@ const handleFileInputChange = (
             subscribe<string>('fileName', setHeaderTitle)
             subscribe<string>('sourceBase64', setMountProps)
             subscribe<PortalProps>('portal', setPortalProps)
-            subscribe<PortalProps>('portal', setPreviewProps)
 
             const frame = getFrameProps(getState, image)
             const portal = getPortalProps(getState, frame)
