@@ -1,4 +1,5 @@
 import type {
+    ErrorHandler,
     FileChangeEvent,
     IState,
     ListenerAction,
@@ -17,19 +18,52 @@ import {
 import handleCropImage from './handleCropImage'
 import registerMouseEvents from './registerMouseEvents'
 
+const validateFile = (file: File, config: IState['config']): string | null => {
+    if (!config.allowedTypes.includes(file.type)) {
+        return `Invalid file type "${file.type}". Allowed types: ${config.allowedTypes.join(', ')}`
+    }
+
+    if (config.maxFileSize > 0 && file.size > config.maxFileSize) {
+        const maxSizeMB = (config.maxFileSize / (1024 * 1024)).toFixed(2)
+        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2)
+        return `File size (${fileSizeMB}MB) exceeds maximum allowed size (${maxSizeMB}MB)`
+    }
+
+    return null
+}
+
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
     getState: () => IState,
     setState: (state: Partial<IState>) => void,
     onSubmit: (result: string, blob: Blob | null, state: IState) => void,
     subscribe: <T>(prop: string, action: ListenerAction<T>) => string,
-    unsubscribeAll: () => void
+    unsubscribeAll: () => void,
+    onError?: ErrorHandler
 ): void => {
+    const handleError = (message: string): void => {
+        if (onError) {
+            onError(message)
+        } else {
+            console.error(`HqCropper: ${message}`)
+        }
+    }
+
     if (!event.target.files || event.target.files.length === 0) {
-        throw new Error("HqCropper: Can't read file input")
+        handleError("Can't read file input")
+        return
     }
 
     const file = event.target.files[0]
+    const { config } = getState()
+
+    const validationError = validateFile(file, config)
+    if (validationError) {
+        handleError(validationError)
+        event.target.value = ''
+        return
+    }
+
     const reader = new FileReader()
 
     let cleanupMouseEvents: (() => void) | null = null
@@ -80,10 +114,15 @@ const handleFileInputChange = (
         const image = new Image()
 
         if (!data.target || typeof data.target.result !== 'string') {
-            throw new Error("HqCropper: Can't load result image")
+            handleError("Can't load result image")
+            return
         }
 
         image.src = data.target.result
+
+        image.onerror = () => {
+            handleError('Failed to load image')
+        }
 
         image.onload = () => {
             mountRootNode(getState, handleSubmit, handleClose)
@@ -107,6 +146,10 @@ const handleFileInputChange = (
 
             cleanupMouseEvents = registerMouseEvents(getState, setState)
         }
+    }
+
+    reader.onerror = () => {
+        handleError('Failed to read file')
     }
 
     reader.readAsDataURL(file)

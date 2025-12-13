@@ -71,6 +71,16 @@ export interface IConfig {
      * Cancel Button label
      */
     cancelButtonLabel: string
+
+    /**
+     * Maximum file size in bytes (0 = no limit)
+     */
+    maxFileSize: number
+
+    /**
+     * Allowed MIME types for input files
+     */
+    allowedTypes: string[]
 }
 
 export interface EmittedPortalProps {
@@ -160,6 +170,11 @@ export type ResultImageType = 'jpeg' | 'png'
 export interface HqCropperInstance {
     open: () => void
 }
+
+/**
+ * Error handler callback
+ */
+export type ErrorHandler = (message: string) => void
 
 export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
 

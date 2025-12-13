@@ -2,6 +2,7 @@ import useState from './state'
 import { handleFileInputChange } from './handlers'
 import { mountFileInput } from './nodes'
 import type {
+    ErrorHandler,
     FileChangeEvent,
     HqCropperInstance,
     IClassNames,
@@ -12,7 +13,8 @@ import type {
 export const HqCropper = (
     onSubmit: (base64: string, blob: Blob | null, state: IState) => void,
     config?: Partial<IConfig>,
-    css?: Partial<IClassNames>
+    css?: Partial<IClassNames>,
+    onError?: ErrorHandler
 ): HqCropperInstance => {
     const { getState, setState, subscribe, unsubscribeAll } = useState(
         config,
@@ -27,7 +29,8 @@ export const HqCropper = (
                 setState,
                 onSubmit,
                 subscribe,
-                unsubscribeAll
+                unsubscribeAll,
+                onError
             )
     )
 
