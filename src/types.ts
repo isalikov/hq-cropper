@@ -38,6 +38,11 @@ export interface IConfig {
     portalSize: number
 
     /**
+     * Minimum portal size (prevents portal from becoming too small to interact with)
+     */
+    minPortalSize: number
+
+    /**
      * Frame padding
      */
     framePadding: number

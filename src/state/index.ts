@@ -32,6 +32,7 @@ export const initialState: IState = {
         cancelButtonLabel: 'Cancel',
         compression: 1,
         framePadding: 3,
+        minPortalSize: 50,
         portalPosition: 'center',
         portalSize: 150,
         quality: 1.01,
