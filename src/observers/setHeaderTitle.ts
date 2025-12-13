@@ -1,4 +1,4 @@
-import { IState } from '../types'
+import type { IState } from '../types'
 
 const setHeaderTitle = (value: string, state: IState) => {
     const header = document.querySelector<HTMLImageElement>(

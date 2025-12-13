@@ -1,4 +1,4 @@
-import { IState } from '../types'
+import type { IState } from '../types'
 
 const setMountProps = (value: string, state: IState) => {
     const sourceImage = document.querySelector<HTMLImageElement>(

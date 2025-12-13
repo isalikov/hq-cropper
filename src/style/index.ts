@@ -1,4 +1,4 @@
-import { IClassNames } from '../types'
+import type { IClassNames } from '../types'
 
 import getCssApplyButtonStyle from './getCssApplyButtonStyle'
 import getCssBodyStyle from './getCssBodyStyle'
@@ -18,7 +18,7 @@ import getCssResizeTopRightStyle from './getCssResizeTopRightStyle'
 import getCssRootStyle from './getCssRootStyle'
 import getCssSourceImage from './getCssSourceImage'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = import.meta.env.DEV
 
 const getClassName = (name: string) => {
     if (isDevelopment) {

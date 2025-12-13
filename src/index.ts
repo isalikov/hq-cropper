@@ -1,7 +1,7 @@
 import useState from './state'
 import { handleFileInputChange } from './handlers'
 import { mountFileInput } from './nodes'
-import {
+import type {
     FileChangeEvent,
     HqCropperInstance,
     IClassNames,

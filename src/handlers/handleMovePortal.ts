@@ -1,4 +1,4 @@
-import { IState } from '../types'
+import type { IState } from '../types'
 
 const handleMovePortal = (
     event: MouseEvent,

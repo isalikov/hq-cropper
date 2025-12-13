@@ -1,5 +1,5 @@
 import getClassNames from '../style'
-import { IClassNames, IConfig, IState } from '../types'
+import type { IClassNames, IConfig, IState } from '../types'
 
 import createState from './createState'
 

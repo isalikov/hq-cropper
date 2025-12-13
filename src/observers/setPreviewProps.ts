@@ -1,4 +1,4 @@
-import { IState, PortalProps } from '../types'
+import type { IState, PortalProps } from '../types'
 
 const setPreviewProps = (_portal: PortalProps, state: IState) => {
     const previewImage = document.querySelector<HTMLImageElement>(

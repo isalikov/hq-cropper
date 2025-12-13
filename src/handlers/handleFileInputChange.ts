@@ -1,4 +1,4 @@
-import { FileChangeEvent, IState } from '../types'
+import type { FileChangeEvent, IState } from '../types'
 import { getFrameProps, getPortalProps } from '../helpers'
 import { initialState } from '../state'
 import { mountRootNode } from '../nodes'
@@ -88,7 +88,7 @@ const handleFileInputChange = (
     reader.readAsDataURL(file)
 
     /* clear value for handle cb next time */
-    // eslint-disable-next-line no-param-reassign
+
     event.target.value = ''
 }
 

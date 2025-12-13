@@ -1,42 +1,28 @@
 {
-  "compilerOptions": {
-    "rootDir": "./src/",
-    "outDir": "./dist/",
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "lib": [
-      "esnext", "dom"
-    ],
-    "module": "es6",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "pretty": true,
-    "sourceMap": true,
-    "strict": false,
-    "target": "esnext",
-    "allowJs": false,
-    "noUnusedLocals": true,
-    "moduleResolution": "node",
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "src",
-    "types"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "docs"
-  ]
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "lib": ["ESNext", "DOM"],
+        "types": ["vite/client", "node"],
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
+        "isolatedModules": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }

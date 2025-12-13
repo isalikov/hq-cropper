@@ -1,4 +1,4 @@
-import { FrameProps, IState } from '../types'
+import type { FrameProps, IState } from '../types'
 
 const getFrameProps = (
     getState: () => IState,

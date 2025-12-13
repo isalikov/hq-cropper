@@ -1,4 +1,5 @@
-import { Action, EmittedPortalProps, IState } from '../types'
+import type { EmittedPortalProps, IState } from '../types'
+import { Action } from '../types'
 
 import handleMovePortal from './handleMovePortal'
 import handleResizePortal from './handleResizePortal'

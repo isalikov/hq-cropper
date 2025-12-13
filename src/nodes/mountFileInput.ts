@@ -1,4 +1,4 @@
-import { FileChangeEvent } from '../types'
+import type { FileChangeEvent } from '../types'
 
 const mountFileInput = (
     onChange: (event: FileChangeEvent<HTMLInputElement>) => void
@@ -10,7 +10,7 @@ const mountFileInput = (
     element.setAttribute('type', 'file')
     element.setAttribute('accept', 'image/x-png,image/jpeg')
 
-    element.addEventListener('change', onChange, false)
+    element.addEventListener('change', onChange as EventListener, false)
 
     document.body.appendChild(element)
 

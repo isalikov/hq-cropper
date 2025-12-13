@@ -10,3 +10,5 @@ coverage
 dev
 dist
 node_modules
+
+REFACTORING_LOG.md

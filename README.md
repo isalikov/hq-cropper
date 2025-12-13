@@ -1,7 +1,6 @@
 [![npm version](https://badge.fury.io/js/hq-cropper.svg)](https://badge.fury.io/js/hq-cropper)
 [![Downloads](http://img.shields.io/npm/dm/hq-cropper.svg?style=flat)](https://npmjs.org/package/hq-cropper)
 
-
 # hq-cropper
 
 Cropper for large images
@@ -13,6 +12,7 @@ Cropper for large images
 `npm install hq-cropper`
 
 ### Usage Example
+
 ```typescript
 import { HqCropper } from 'hq-cropper'
 
@@ -22,9 +22,9 @@ function handleCrop(base64: string, blob: Blob | null) {
 
 const hqCropper = HqCropper(handleCrop)
 
-document.querySelector('button#change-image-button')
+document
+    .querySelector('button#change-image-button')
     .addEventListener('click', hqCropper.open, false)
-
 ```
 
 ### React usage
@@ -48,7 +48,7 @@ function MyComponent() {
 }
 ```
 
- ### Configuration
+### Configuration
 
 `HqCropper` can be initialized with [`config`](https://github.com/isalikov/hq-cropper/blob/master/src/types.ts#L29) and [`css`](https://github.com/isalikov/hq-cropper/blob/master/src/types.ts#L9) objects.
 

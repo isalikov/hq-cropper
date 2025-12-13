@@ -1,4 +1,4 @@
-import { IState } from '../types'
+import type { IState } from '../types'
 
 const handleCropImage = (
     getState: () => IState
@@ -22,19 +22,21 @@ const handleCropImage = (
         `.${state.css?.sourceImage[0]}`
     )
 
-    canvas
-        ?.getContext('2d')
-        ?.drawImage(
-            sourceImage,
-            sx,
-            sy,
-            dxSize,
-            dxSize,
-            0,
-            0,
-            baseSize,
-            baseSize
-        )
+    if (sourceImage) {
+        canvas
+            .getContext('2d')
+            ?.drawImage(
+                sourceImage,
+                sx,
+                sy,
+                dxSize,
+                dxSize,
+                0,
+                0,
+                baseSize,
+                baseSize
+            )
+    }
 
     canvas.remove()
 
