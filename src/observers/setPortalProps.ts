@@ -1,7 +1,7 @@
 import type { IState, PortalProps } from '../types'
 
 const setPortalProps = (portal: PortalProps, state: IState) => {
-    const portalElement = document.querySelector<HTMLImageElement>(
+    const portalElement = document.querySelector<HTMLDivElement>(
         `.${state.css?.portal[0]}`
     )
 

@@ -1,7 +1,7 @@
 import type { IState } from '../types'
 
 const setHeaderTitle = (value: string, state: IState) => {
-    const header = document.querySelector<HTMLImageElement>(
+    const header = document.querySelector<HTMLDivElement>(
         `.${state.css?.header[0]}`
     )
 
