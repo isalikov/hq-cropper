@@ -38,6 +38,11 @@ export interface IConfig {
     portalSize: number
 
     /**
+     * Minimum portal size (prevents portal from becoming too small to interact with)
+     */
+    minPortalSize: number
+
+    /**
      * Frame padding
      */
     framePadding: number
@@ -66,9 +71,19 @@ export interface IConfig {
      * Cancel Button label
      */
     cancelButtonLabel: string
+
+    /**
+     * Maximum file size in bytes (0 = no limit)
+     */
+    maxFileSize: number
+
+    /**
+     * Allowed MIME types for input files
+     */
+    allowedTypes: string[]
 }
 
-export type EmittedPortalProps = {
+export interface EmittedPortalProps {
     X: number
     Y: number
     top: number
@@ -76,13 +91,13 @@ export type EmittedPortalProps = {
     size: number
 }
 
-export type PortalProps = {
+export interface PortalProps {
     left: number
     top: number
     size: number
 }
 
-export type FrameProps = {
+export interface FrameProps {
     left: number
     top: number
     width: number
@@ -152,19 +167,26 @@ export type InitialPortalPosition = [number, number] | 'center'
 
 export type ResultImageType = 'jpeg' | 'png'
 
-export type HqCropperInstance = {
+export interface HqCropperInstance {
     open: () => void
 }
 
+/**
+ * Error handler callback
+ */
+export type ErrorHandler = (message: string) => void
+
 export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
 
-export type Listener<T> = {
+export interface Listener<T> {
     id: string
     action: ListenerAction<T>
 }
 
-export type CreateState = {
+export interface CreateState {
     getState: () => IState
     setState: (state: Partial<IState>) => void
     subscribe: <T>(prop: string, action: ListenerAction<T>) => string
+    unsubscribe: (id: string) => void
+    unsubscribeAll: () => void
 }

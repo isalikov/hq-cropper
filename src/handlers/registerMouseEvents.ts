@@ -1,4 +1,5 @@
-import { Action, EmittedPortalProps, IState } from '../types'
+import type { EmittedPortalProps, IState } from '../types'
+import { Action } from '../types'
 
 import handleMovePortal from './handleMovePortal'
 import handleResizePortal from './handleResizePortal'
@@ -6,7 +7,7 @@ import handleResizePortal from './handleResizePortal'
 const registerMouseEvents = (
     getState: () => IState,
     setState: (value: Partial<IState>) => void
-) => {
+): (() => void) => {
     const state = getState()
     const portalElement = document.querySelector<HTMLDivElement>(
         `.${state.css?.portal[0]}`
@@ -19,6 +20,9 @@ const registerMouseEvents = (
     const rootElement = document.querySelector<HTMLDivElement>(
         `.${state.css?.root[0]}`
     )
+
+    let animationFrameId: number | null = null
+    let pendingEvent: MouseEvent | null = null
 
     const handleMouseDown = (event: MouseEvent) => {
         event.preventDefault()
@@ -47,16 +51,30 @@ const registerMouseEvents = (
     const handleMouseUp = (event: MouseEvent) => {
         event.preventDefault()
 
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId)
+            animationFrameId = null
+        }
+        pendingEvent = null
+
         setState({
             action: null,
         })
     }
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const processMouseMove = () => {
+        animationFrameId = null
+
+        if (!pendingEvent) {
+            return
+        }
+
+        const event = pendingEvent
+        pendingEvent = null
+
         const { action } = getState()
 
         if (!action) {
-            event.preventDefault()
             return
         }
 
@@ -70,6 +88,21 @@ const registerMouseEvents = (
         }
     }
 
+    const handleMouseMove = (event: MouseEvent) => {
+        const { action } = getState()
+
+        if (!action) {
+            event.preventDefault()
+            return
+        }
+
+        pendingEvent = event
+
+        if (animationFrameId === null) {
+            animationFrameId = requestAnimationFrame(processMouseMove)
+        }
+    }
+
     if (rootElement) {
         rootElement.addEventListener('mouseup', handleMouseUp)
     }
@@ -80,6 +113,21 @@ const registerMouseEvents = (
 
     if (portalAreaElement) {
         portalAreaElement.addEventListener('mousemove', handleMouseMove)
+    }
+
+    return () => {
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId)
+        }
+        if (rootElement) {
+            rootElement.removeEventListener('mouseup', handleMouseUp)
+        }
+        if (portalElement) {
+            portalElement.removeEventListener('mousedown', handleMouseDown)
+        }
+        if (portalAreaElement) {
+            portalAreaElement.removeEventListener('mousemove', handleMouseMove)
+        }
     }
 }
 

@@ -1,4 +1,5 @@
-import { Action, IState } from '../types'
+import type { IState } from '../types'
+import { Action } from '../types'
 
 const handleResizePortal = (
     event: MouseEvent,
@@ -13,6 +14,10 @@ const handleResizePortal = (
     switch (action) {
         case Action.RESIZE_BR: {
             let size = emitted.size + Math.max(shiftX, shiftY)
+
+            if (size < config.minPortalSize) {
+                size = config.minPortalSize
+            }
 
             if (emitted.top + size > frame.height - config.framePadding) {
                 size = frame.height - emitted.top - config.framePadding
@@ -41,6 +46,11 @@ const handleResizePortal = (
                     ? emitted.top - shiftX
                     : emitted.top + shiftY
 
+            if (size < config.minPortalSize) {
+                top = emitted.top + emitted.size - config.minPortalSize
+                size = config.minPortalSize
+            }
+
             if (emitted.left + size > frame.width - config.framePadding) {
                 size = frame.width - emitted.left - config.framePadding
                 top = emitted.top - frame.width + emitted.left + emitted.size
@@ -61,31 +71,31 @@ const handleResizePortal = (
         }
 
         case Action.RESIZE_TL: {
-            let size =
-                shiftX - shiftY < 0
-                    ? emitted.size - shiftX
-                    : emitted.size - shiftY
+            const minShift = Math.min(shiftX, shiftY)
 
-            let left =
-                shiftX - shiftY < 0
-                    ? emitted.left + shiftX
-                    : emitted.left + shiftY
+            let size = emitted.size - minShift
+            let left = emitted.left + minShift
+            let top = emitted.top + minShift
 
-            let top =
-                shiftX - shiftY < 0
-                    ? emitted.top + shiftX
-                    : emitted.top + shiftY
+            if (size < config.minPortalSize) {
+                const diff = emitted.size - config.minPortalSize
+                size = config.minPortalSize
+                left = emitted.left + diff
+                top = emitted.top + diff
+            }
 
             if (top < config.framePadding) {
-                left = emitted.left - emitted.top
-                size = emitted.top + emitted.size
+                const overflow = config.framePadding - top
                 top = config.framePadding
+                left = left + overflow
+                size = size - overflow
             }
 
             if (left < config.framePadding) {
+                const overflow = config.framePadding - left
                 left = config.framePadding
-                size = emitted.left + emitted.size - config.framePadding
-                top = emitted.top - emitted.left
+                top = top + overflow
+                size = size - overflow
             }
 
             return setState({
@@ -108,6 +118,11 @@ const handleResizePortal = (
                 shiftX + shiftY > 0
                     ? emitted.left - shiftY
                     : emitted.left + shiftX
+
+            if (size < config.minPortalSize) {
+                left = emitted.left + emitted.size - config.minPortalSize
+                size = config.minPortalSize
+            }
 
             if (size + emitted.top > frame.height - config.framePadding) {
                 left = emitted.left - frame.height + emitted.top + emitted.size

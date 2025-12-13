@@ -1,9 +1,8 @@
-import { IState } from '../types'
+import type { IState } from '../types'
+import { getElement } from './domCache'
 
 const setMountProps = (value: string, state: IState) => {
-    const sourceImage = document.querySelector<HTMLImageElement>(
-        `.${state.css?.sourceImage[0]}`
-    )
+    const sourceImage = getElement('sourceImage', state.css)
 
     if (sourceImage) {
         sourceImage.setAttribute('src', value)
@@ -14,9 +13,7 @@ const setMountProps = (value: string, state: IState) => {
         sourceImage.style.top = `${state.frame.top}px`
     }
 
-    const portalArea = document.querySelector<HTMLDivElement>(
-        `.${state.css?.portalArea[0]}`
-    )
+    const portalArea = getElement('portalArea', state.css)
 
     if (portalArea) {
         portalArea.style.height = `${state.frame.height}px`
@@ -25,9 +22,7 @@ const setMountProps = (value: string, state: IState) => {
         portalArea.style.top = `${state.frame.top}px`
     }
 
-    const portal = document.querySelector<HTMLDivElement>(
-        `.${state.css?.portal[0]}`
-    )
+    const portal = getElement('portal', state.css)
 
     if (portal) {
         portal.style.width = `${state.portal.size}px`
@@ -36,9 +31,7 @@ const setMountProps = (value: string, state: IState) => {
         portal.style.top = `${state.portal.top}px`
     }
 
-    const previewImage = document.querySelector<HTMLImageElement>(
-        `.${state.css?.previewImage[0]}`
-    )
+    const previewImage = getElement('previewImage', state.css)
 
     if (previewImage) {
         previewImage.setAttribute('src', value)

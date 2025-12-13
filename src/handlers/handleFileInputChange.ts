@@ -1,23 +1,81 @@
-import { FileChangeEvent, IState } from '../types'
+import type {
+    ErrorHandler,
+    FileChangeEvent,
+    IState,
+    ListenerAction,
+    PortalProps,
+} from '../types'
 import { getFrameProps, getPortalProps } from '../helpers'
 import { initialState } from '../state'
 import { mountRootNode } from '../nodes'
+import {
+    clearCache,
+    initCache,
+    setHeaderTitle,
+    setMountProps,
+    setPortalProps,
+} from '../observers'
 
 import handleCropImage from './handleCropImage'
 import registerMouseEvents from './registerMouseEvents'
+
+const BYTES_IN_MB = 1024 * 1024
+
+const validateFile = (file: File, config: IState['config']): string | null => {
+    if (!config.allowedTypes.includes(file.type)) {
+        return `Invalid file type "${file.type}". Allowed types: ${config.allowedTypes.join(', ')}`
+    }
+
+    if (config.maxFileSize > 0 && file.size > config.maxFileSize) {
+        const maxSizeMB = (config.maxFileSize / BYTES_IN_MB).toFixed(2)
+        const fileSizeMB = (file.size / BYTES_IN_MB).toFixed(2)
+        return `File size (${fileSizeMB}MB) exceeds maximum allowed size (${maxSizeMB}MB)`
+    }
+
+    return null
+}
 
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
     getState: () => IState,
     setState: (state: Partial<IState>) => void,
-    onSubmit: (result: string, blob: Blob | null, state: IState) => void
+    onSubmit: (result: string, blob: Blob | null, state: IState) => void,
+    subscribe: <T>(prop: string, action: ListenerAction<T>) => string,
+    unsubscribeAll: () => void,
+    onError?: ErrorHandler
 ): void => {
+    const handleError = (message: string): void => {
+        if (onError) {
+            onError(message)
+        } else {
+            console.error(`HqCropper: ${message}`)
+        }
+    }
+
     if (!event.target.files || event.target.files.length === 0) {
-        throw new Error("HqCropper: Can't read file input")
+        handleError("Can't read file input")
+        return
     }
 
     const file = event.target.files[0]
+    const { config } = getState()
+
+    const validationError = validateFile(file, config)
+    if (validationError) {
+        handleError(validationError)
+        event.target.value = ''
+        return
+    }
+
     const reader = new FileReader()
+
+    let cleanupMouseEvents: (() => void) | null = null
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            handleClose(e)
+        }
+    }
 
     const close = () => {
         const state = getState()
@@ -28,13 +86,13 @@ const handleFileInputChange = (
 
         if (node && node.parentNode) {
             node.parentNode.removeChild(node)
+            document.removeEventListener('keydown', handleKeyDown)
+            if (cleanupMouseEvents) {
+                cleanupMouseEvents()
+            }
+            clearCache()
+            unsubscribeAll()
             setState(initialState)
-        }
-    }
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            close()
         }
     }
 
@@ -42,7 +100,6 @@ const handleFileInputChange = (
 
     const handleClose = (e: Event) => {
         e.preventDefault()
-        document.removeEventListener('keydown', handleKeyDown)
         close()
     }
 
@@ -61,13 +118,23 @@ const handleFileInputChange = (
         const image = new Image()
 
         if (!data.target || typeof data.target.result !== 'string') {
-            throw new Error("HqCropper: Can't load result image")
+            handleError("Can't load result image")
+            return
         }
 
         image.src = data.target.result
 
+        image.onerror = () => {
+            handleError('Failed to load image')
+        }
+
         image.onload = () => {
             mountRootNode(getState, handleSubmit, handleClose)
+            initCache()
+
+            subscribe<string>('fileName', setHeaderTitle)
+            subscribe<string>('sourceBase64', setMountProps)
+            subscribe<PortalProps>('portal', setPortalProps)
 
             const frame = getFrameProps(getState, image)
             const portal = getPortalProps(getState, frame)
@@ -81,14 +148,18 @@ const handleFileInputChange = (
                 sourceWidth: image.width,
             })
 
-            registerMouseEvents(getState, setState)
+            cleanupMouseEvents = registerMouseEvents(getState, setState)
         }
+    }
+
+    reader.onerror = () => {
+        handleError('Failed to read file')
     }
 
     reader.readAsDataURL(file)
 
     /* clear value for handle cb next time */
-    // eslint-disable-next-line no-param-reassign
+
     event.target.value = ''
 }
 

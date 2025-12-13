@@ -1,5 +1,6 @@
 import { setClassNames } from '../style'
-import { Action, IState } from '../types'
+import type { IState } from '../types'
+import { Action } from '../types'
 
 const mountHandlerMoveNode = (getState: () => IState): Element => {
     const state = getState()

@@ -1,4 +1,4 @@
-import { IState, CreateState, Listener, ListenerAction } from '../types'
+import type { IState, CreateState, Listener, ListenerAction } from '../types'
 import { getRandomString } from '../utils'
 
 const createState = (initialState: IState): CreateState => {
@@ -22,11 +22,12 @@ const createState = (initialState: IState): CreateState => {
     const getState = (): IState => ({ ...state })
 
     const setState = (partialState: Partial<IState>) => {
-        Object.keys(partialState).forEach((key: keyof IState) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            state[key] = partialState[key]
-        })
+        for (const key of Object.keys(partialState) as (keyof IState)[]) {
+            const value = partialState[key]
+            if (value !== undefined) {
+                ;(state as Record<keyof IState, unknown>)[key] = value
+            }
+        }
     }
 
     const subscribe = <T>(prop: string, action: ListenerAction<T>): string => {
@@ -36,7 +37,7 @@ const createState = (initialState: IState): CreateState => {
         listeners.set(prop, [
             ...propListeners,
             {
-                action,
+                action: action as ListenerAction<unknown>,
                 id,
             },
         ])
@@ -44,7 +45,21 @@ const createState = (initialState: IState): CreateState => {
         return id
     }
 
-    return { getState, setState, subscribe }
+    const unsubscribe = (id: string): void => {
+        for (const [prop, propListeners] of listeners.entries()) {
+            const filtered = propListeners.filter((l) => l.id !== id)
+            if (filtered.length !== propListeners.length) {
+                listeners.set(prop, filtered)
+                return
+            }
+        }
+    }
+
+    const unsubscribeAll = (): void => {
+        listeners.clear()
+    }
+
+    return { getState, setState, subscribe, unsubscribe, unsubscribeAll }
 }
 
 export default createState

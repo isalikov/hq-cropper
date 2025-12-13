@@ -1,4 +1,5 @@
-import { Action, IState } from '../types'
+import type { IState } from '../types'
+import { Action } from '../types'
 import { setClassNames } from '../style'
 
 const mountHandlerResizeBottomRight = (getState: () => IState): Element => {
