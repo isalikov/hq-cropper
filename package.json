@@ -1,6 +1,6 @@
 {
     "name": "hq-cropper",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "description": "Image cropper tool",
     "type": "module",
     "packageManager": "pnpm@10.24.0",
@@ -33,7 +33,7 @@
     "author": "Iakov Salikov <salikovpro@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "dev": "storybook dev -p 6006",
+        "start": "storybook dev -p 6006",
         "build": "vite build",
         "build:storybook": "storybook build",
         "typecheck": "tsc --noEmit",

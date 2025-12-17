@@ -13,6 +13,16 @@ const getCssResizeBottomLeftStyle = (name: string): string => `
         position: absolute;
         width: 5px;
         height: 5px;
+        touch-action: none;
+    }
+
+    @media (max-width: 540px), (pointer: coarse) {
+        .${name} {
+            width: 24px;
+            height: 24px;
+            left: -12px;
+            bottom: -12px;
+        }
     }
 `
 export default getCssResizeBottomLeftStyle

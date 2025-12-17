@@ -178,6 +178,16 @@ export type ErrorHandler = (message: string) => void
 
 export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
 
+/**
+ * Unified pointer coordinates for mouse and touch events
+ */
+export interface PointerCoordinates {
+    clientX: number
+    clientY: number
+    pageX: number
+    pageY: number
+}
+
 export interface Listener<T> {
     id: string
     action: ListenerAction<T>

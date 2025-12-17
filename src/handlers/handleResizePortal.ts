@@ -1,15 +1,15 @@
-import type { IState } from '../types'
+import type { IState, PointerCoordinates } from '../types'
 import { Action } from '../types'
 
 const handleResizePortal = (
-    event: MouseEvent,
+    coords: PointerCoordinates,
     getState: () => IState,
     setState: (value: Partial<IState>) => void
 ): void => {
     const { action, emitted, portal, frame, config } = getState()
 
-    const shiftX = event.pageX - emitted.X
-    const shiftY = event.pageY - emitted.Y
+    const shiftX = coords.pageX - emitted.X
+    const shiftY = coords.pageY - emitted.Y
 
     switch (action) {
         case Action.RESIZE_BR: {

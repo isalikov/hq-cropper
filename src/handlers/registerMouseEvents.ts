@@ -1,8 +1,40 @@
-import type { EmittedPortalProps, IState } from '../types'
+import type { EmittedPortalProps, IState, PointerCoordinates } from '../types'
 import { Action } from '../types'
 
 import handleMovePortal from './handleMovePortal'
 import handleResizePortal from './handleResizePortal'
+
+const getPointerCoordinates = (
+    event: MouseEvent | TouchEvent
+): PointerCoordinates => {
+    if ('touches' in event && event.touches.length > 0) {
+        const touch = event.touches[0]
+        return {
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+            pageX: touch.pageX,
+            pageY: touch.pageY,
+        }
+    }
+
+    if ('changedTouches' in event && event.changedTouches.length > 0) {
+        const touch = event.changedTouches[0]
+        return {
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+            pageX: touch.pageX,
+            pageY: touch.pageY,
+        }
+    }
+
+    const mouseEvent = event as MouseEvent
+    return {
+        clientX: mouseEvent.clientX,
+        clientY: mouseEvent.clientY,
+        pageX: mouseEvent.pageX,
+        pageY: mouseEvent.pageY,
+    }
+}
 
 const registerMouseEvents = (
     getState: () => IState,
@@ -22,20 +54,21 @@ const registerMouseEvents = (
     )
 
     let animationFrameId: number | null = null
-    let pendingEvent: MouseEvent | null = null
+    let pendingCoords: PointerCoordinates | null = null
 
-    const handleMouseDown = (event: MouseEvent) => {
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
         event.preventDefault()
 
         const { portal } = getState()
+        const coords = getPointerCoordinates(event)
 
         if (event.target) {
             const node = event.target as HTMLElement
             const action = node.getAttribute('data-action') as Action
 
             const emittedPortalProps: EmittedPortalProps = {
-                X: event.pageX,
-                Y: event.pageY,
+                X: coords.pageX,
+                Y: coords.pageY,
                 left: portal.left,
                 top: portal.top,
                 size: portal.size,
@@ -48,29 +81,31 @@ const registerMouseEvents = (
         }
     }
 
-    const handleMouseUp = (event: MouseEvent) => {
-        event.preventDefault()
+    const handlePointerUp = () => {
+        const { action } = getState()
 
         if (animationFrameId !== null) {
             cancelAnimationFrame(animationFrameId)
             animationFrameId = null
         }
-        pendingEvent = null
+        pendingCoords = null
 
-        setState({
-            action: null,
-        })
+        if (action) {
+            setState({
+                action: null,
+            })
+        }
     }
 
-    const processMouseMove = () => {
+    const processPointerMove = () => {
         animationFrameId = null
 
-        if (!pendingEvent) {
+        if (!pendingCoords) {
             return
         }
 
-        const event = pendingEvent
-        pendingEvent = null
+        const coords = pendingCoords
+        pendingCoords = null
 
         const { action } = getState()
 
@@ -80,39 +115,47 @@ const registerMouseEvents = (
 
         switch (action) {
             case Action.MOVE:
-                handleMovePortal(event, getState, setState)
+                handleMovePortal(coords, getState, setState)
                 break
 
             default:
-                handleResizePortal(event, getState, setState)
+                handleResizePortal(coords, getState, setState)
         }
     }
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const handlePointerMove = (event: MouseEvent | TouchEvent) => {
         const { action } = getState()
 
         if (!action) {
-            event.preventDefault()
             return
         }
 
-        pendingEvent = event
+        event.preventDefault()
+        pendingCoords = getPointerCoordinates(event)
 
         if (animationFrameId === null) {
-            animationFrameId = requestAnimationFrame(processMouseMove)
+            animationFrameId = requestAnimationFrame(processPointerMove)
         }
     }
 
     if (rootElement) {
-        rootElement.addEventListener('mouseup', handleMouseUp)
+        rootElement.addEventListener('mouseup', handlePointerUp)
+        rootElement.addEventListener('touchend', handlePointerUp)
+        rootElement.addEventListener('touchcancel', handlePointerUp)
     }
 
     if (portalElement) {
-        portalElement.addEventListener('mousedown', handleMouseDown)
+        portalElement.addEventListener('mousedown', handlePointerDown)
+        portalElement.addEventListener('touchstart', handlePointerDown, {
+            passive: false,
+        })
     }
 
     if (portalAreaElement) {
-        portalAreaElement.addEventListener('mousemove', handleMouseMove)
+        portalAreaElement.addEventListener('mousemove', handlePointerMove)
+        portalAreaElement.addEventListener('touchmove', handlePointerMove, {
+            passive: false,
+        })
     }
 
     return () => {
@@ -120,13 +163,23 @@ const registerMouseEvents = (
             cancelAnimationFrame(animationFrameId)
         }
         if (rootElement) {
-            rootElement.removeEventListener('mouseup', handleMouseUp)
+            rootElement.removeEventListener('mouseup', handlePointerUp)
+            rootElement.removeEventListener('touchend', handlePointerUp)
+            rootElement.removeEventListener('touchcancel', handlePointerUp)
         }
         if (portalElement) {
-            portalElement.removeEventListener('mousedown', handleMouseDown)
+            portalElement.removeEventListener('mousedown', handlePointerDown)
+            portalElement.removeEventListener('touchstart', handlePointerDown)
         }
         if (portalAreaElement) {
-            portalAreaElement.removeEventListener('mousemove', handleMouseMove)
+            portalAreaElement.removeEventListener(
+                'mousemove',
+                handlePointerMove
+            )
+            portalAreaElement.removeEventListener(
+                'touchmove',
+                handlePointerMove
+            )
         }
     }
 }

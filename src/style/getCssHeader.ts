@@ -10,6 +10,15 @@ const getCssHeader = (name: string): string => `
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         border-bottom: 1px solid #EEE;
+        overflow: hidden;
+    }
+
+    @media (max-width: 540px) {
+        .${name} {
+            height: 48px;
+            padding: 0 12px;
+            font-size: 14px;
+        }
     }
 `
 export default getCssHeader
