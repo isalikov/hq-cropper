@@ -14,6 +14,7 @@ const getCssMoveStyle = (name: string): string => `
         bottom: 0;
         right: 0;
         position: absolute;
+        touch-action: none;
     }
 `
 export default getCssMoveStyle

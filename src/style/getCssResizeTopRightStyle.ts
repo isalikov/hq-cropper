@@ -13,6 +13,16 @@ const getCssResizeTopRightStyle = (name: string): string => `
         position: absolute;
         width: 5px;
         height: 5px;
+        touch-action: none;
+    }
+
+    @media (max-width: 540px), (pointer: coarse) {
+        .${name} {
+            width: 24px;
+            height: 24px;
+            right: -12px;
+            top: -12px;
+        }
     }
 `
 export default getCssResizeTopRightStyle

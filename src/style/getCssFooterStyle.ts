@@ -9,5 +9,13 @@ const getCssFooterStyle = (name: string): string => `
         padding: 0 20px;
         border-top: 1px solid #EEE;
     }
+
+    @media (max-width: 540px) {
+        .${name} {
+            height: 56px;
+            padding: 0 12px;
+            gap: 8px;
+        }
+    }
 `
 export default getCssFooterStyle
