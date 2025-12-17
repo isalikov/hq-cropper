@@ -48,14 +48,14 @@ export interface IConfig {
     framePadding: number
 
     /**
-     * Result image compression
+     * Result image compression (0-1 for JPEG)
      */
     compression: number
 
     /**
-     * Result image Quality (logarithm base of compressed image width and height)
+     * Output image size in pixels (0 = use original selection size)
      */
-    quality: number
+    outputSize: number
 
     /**
      * Result image type

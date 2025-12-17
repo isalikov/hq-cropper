@@ -1,6 +1,5 @@
 import type { IState } from '../types'
 
-const MIN_QUALITY = 1.001
 const MIN_SIZE = 1
 
 const handleCropImage = (
@@ -18,15 +17,15 @@ const handleCropImage = (
     const sx = state.portal.left * scaleX
     const sy = state.portal.top * scaleY
 
-    const dxSize = Math.max(
+    const sourceSize = Math.max(
         state.portal.size * Math.min(scaleX, scaleY),
         MIN_SIZE
     )
-    const quality = Math.max(state.config.quality, MIN_QUALITY)
-    const baseSize = Math.max(Math.log(dxSize) / Math.log(quality), MIN_SIZE)
+    const outputSize =
+        state.config.outputSize > 0 ? state.config.outputSize : sourceSize
 
-    canvas.width = baseSize
-    canvas.height = baseSize
+    canvas.width = outputSize
+    canvas.height = outputSize
 
     const sourceImage = document.querySelector<HTMLImageElement>(
         `.${state.css?.sourceImage[0]}`
@@ -39,12 +38,12 @@ const handleCropImage = (
                 sourceImage,
                 sx,
                 sy,
-                dxSize,
-                dxSize,
+                sourceSize,
+                sourceSize,
                 0,
                 0,
-                baseSize,
-                baseSize
+                outputSize,
+                outputSize
             )
     }
 

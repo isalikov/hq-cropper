@@ -1,6 +1,6 @@
 {
     "name": "hq-cropper",
-    "version": "3.3.0",
+    "version": "4.0.0",
     "description": "Image cropper tool",
     "type": "module",
     "packageManager": "pnpm@10.24.0",

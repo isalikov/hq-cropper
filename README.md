@@ -90,7 +90,7 @@ interface HqCropperInstance {
 | `minPortalSize`     | `number`                       | `50`                                                     | Minimum portal size (prevents too small crops)     |
 | `portalPosition`    | `[number, number] \| 'center'` | `'center'`                                               | Initial portal position                            |
 | `framePadding`      | `number`                       | `3`                                                      | Padding around the image frame                     |
-| `quality`           | `number`                       | `1.01`                                                   | Output quality multiplier (higher = larger output) |
+| `outputSize`        | `number`                       | `0`                                                      | Output size in pixels (0 = use original selection) |
 | `compression`       | `number`                       | `1`                                                      | JPEG compression (0-1, where 1 is best quality)    |
 | `type`              | `'jpeg' \| 'png'`              | `'jpeg'`                                                 | Output image format                                |
 | `maxFileSize`       | `number`                       | `0`                                                      | Max input file size in bytes (0 = no limit)        |
@@ -100,12 +100,12 @@ interface HqCropperInstance {
 
 ### Configuration Examples
 
-#### High Quality PNG Output
+#### Fixed Output Size (512x512 PNG)
 
 ```typescript
 const cropper = HqCropper(onSubmit, {
     type: 'png',
-    quality: 2,
+    outputSize: 512,
     compression: 1,
 })
 ```
@@ -115,7 +115,7 @@ const cropper = HqCropper(onSubmit, {
 ```typescript
 const cropper = HqCropper(onSubmit, {
     type: 'jpeg',
-    quality: 1.5,
+    outputSize: 256,
     compression: 0.7,
 })
 ```
