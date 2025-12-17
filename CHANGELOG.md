@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Bundle size reduced by 7.2%** (25.46 KB → 23.62 KB)
+- **Rename TypeScript types for clarity**:
+    - `IConfig` → `ConfigurationOptions`
+    - `IClassNames` → `ClassNames`
+    - `IState` → `ApplicationState`
 - Replace random CSS class names with deterministic hash (stable sourcemaps, debuggable in production)
 - Consolidate 4 resize handler CSS files into single parameterized function
 - Simplify DOM cache implementation using Map (72 → 47 lines)

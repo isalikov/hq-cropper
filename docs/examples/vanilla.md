@@ -89,7 +89,11 @@ document.getElementById('upload-btn').addEventListener('click', () => {
 ## Avatar Component (Class-based)
 
 ```typescript
-import { HqCropper, type HqCropperInstance, type IConfig } from 'hq-cropper'
+import {
+    HqCropper,
+    type HqCropperInstance,
+    type ConfigurationOptions,
+} from 'hq-cropper'
 
 class AvatarUploader {
     private cropper: HqCropperInstance
@@ -99,7 +103,7 @@ class AvatarUploader {
     constructor(
         buttonSelector: string,
         previewSelector: string,
-        config?: Partial<IConfig>
+        config?: Partial<ConfigurationOptions>
     ) {
         this.previewEl = document.querySelector(previewSelector)!
 

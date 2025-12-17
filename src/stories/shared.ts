@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/html'
 import { HqCropper } from '../index'
-import type { IState, ResultImageType } from '../types'
+import type { ApplicationState, ResultImageType } from '../types'
 
 export interface StoryArgs {
     description: string
@@ -44,7 +44,7 @@ export const createCropperStory = (args: StoryArgs): HTMLElement => {
     container.appendChild(resultContainer)
 
     const cropper = HqCropper(
-        (base64: string, blob: Blob | null, state: IState) => {
+        (base64: string, blob: Blob | null, state: ApplicationState) => {
             resultContainer.innerHTML = ''
 
             const img = document.createElement('img')

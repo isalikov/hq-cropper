@@ -1,8 +1,8 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 import { Action } from '../types'
 
-const mountHandlerMoveNode = (getState: () => IState): Element => {
+const mountHandlerMoveNode = (getState: () => ApplicationState): Element => {
     const state = getState()
     const element = document.createElement<'span'>('span')
     setClassNames(element, state.css?.handlerMove)

@@ -1,9 +1,9 @@
-import type { IState, PointerCoordinates } from '../types'
+import type { ApplicationState, PointerCoordinates } from '../types'
 
 const handleMovePortal = (
     coords: PointerCoordinates,
-    getState: () => IState,
-    setState: (value: Partial<IState>) => void
+    getState: () => ApplicationState,
+    setState: (value: Partial<ApplicationState>) => void
 ): void => {
     const { emitted, portal, frame, config } = getState()
 

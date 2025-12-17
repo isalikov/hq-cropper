@@ -1,10 +1,15 @@
-import type { IState, CreateState, Listener, ListenerAction } from '../types'
+import type {
+    ApplicationState,
+    CreateState,
+    Listener,
+    ListenerAction,
+} from '../types'
 
 let listenerId = 0
 
-const createState = (initialState: IState): CreateState => {
+const createState = (initialState: ApplicationState): CreateState => {
     const listeners = new Map<string, Listener<unknown>[]>()
-    const state = new Proxy<IState>(
+    const state = new Proxy<ApplicationState>(
         { ...initialState },
         {
             set(target, prop, value) {
@@ -20,13 +25,15 @@ const createState = (initialState: IState): CreateState => {
         }
     )
 
-    const getState = (): IState => ({ ...state })
+    const getState = (): ApplicationState => ({ ...state })
 
-    const setState = (partialState: Partial<IState>) => {
-        for (const key of Object.keys(partialState) as (keyof IState)[]) {
+    const setState = (partialState: Partial<ApplicationState>) => {
+        for (const key of Object.keys(
+            partialState
+        ) as (keyof ApplicationState)[]) {
             const value = partialState[key]
             if (value !== undefined) {
-                ;(state as Record<keyof IState, unknown>)[key] = value
+                ;(state as Record<keyof ApplicationState, unknown>)[key] = value
             }
         }
     }

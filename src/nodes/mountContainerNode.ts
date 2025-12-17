@@ -1,12 +1,12 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
 import mountBodyNode from './mountBodyNode'
 import mountFooterNode from './mountFooterNode'
 import mountHeaderNode from './mountHeaderNode'
 
 const mountContainerNode = (
-    getState: () => IState,
+    getState: () => ApplicationState,
     onSubmit: (event: Event) => void,
     onClose: (event: Event) => void
 ): Element => {

@@ -1,4 +1,4 @@
-export enum Action {
+export const enum Action {
     MOVE = 'MOVE',
     RESIZE_TL = 'RESIZE_TL',
     RESIZE_TR = 'RESIZE_TR',
@@ -6,7 +6,7 @@ export enum Action {
     RESIZE_BL = 'RESIZE_BL',
 }
 
-export interface IClassNames {
+export interface ClassNames {
     applyButton: string[]
     body: string[]
     cancelButton: string[]
@@ -26,7 +26,7 @@ export interface IClassNames {
     sourceImage: string[]
 }
 
-export interface IConfig {
+export interface ConfigurationOptions {
     /**
      * Initial position of portal center at frame [Left: number, Top: number] | 'center'
      */
@@ -104,7 +104,7 @@ export interface FrameProps {
     height: number
 }
 
-export interface IState {
+export interface ApplicationState {
     /**
      * Crop portal action type
      */
@@ -148,12 +148,12 @@ export interface IState {
     /**
      * Instance config
      */
-    config: IConfig
+    config: ConfigurationOptions
 
     /**
      * Css class names
      */
-    css?: IClassNames
+    css?: ClassNames
 }
 
 export type FileChangeEvent<T = EventTarget> = {
@@ -176,7 +176,11 @@ export interface HqCropperInstance {
  */
 export type ErrorHandler = (message: string) => void
 
-export type ListenerAction<T> = (value: T, target: IState, prop: string) => void
+export type ListenerAction<T> = (
+    value: T,
+    target: ApplicationState,
+    prop: string
+) => void
 
 /**
  * Unified pointer coordinates for mouse and touch events
@@ -194,8 +198,8 @@ export interface Listener<T> {
 }
 
 export interface CreateState {
-    getState: () => IState
-    setState: (state: Partial<IState>) => void
+    getState: () => ApplicationState
+    setState: (state: Partial<ApplicationState>) => void
     subscribe: <T>(prop: string, action: ListenerAction<T>) => string
     unsubscribe: (id: string) => void
     unsubscribeAll: () => void

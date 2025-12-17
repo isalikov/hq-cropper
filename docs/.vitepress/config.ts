@@ -89,6 +89,8 @@ export default defineConfig({
                         { text: 'Basic Usage', link: '/examples/basic' },
                         { text: 'React', link: '/examples/react' },
                         { text: 'Vue', link: '/examples/vue' },
+                        { text: 'Angular', link: '/examples/angular' },
+                        { text: 'Svelte', link: '/examples/svelte' },
                         { text: 'Vanilla JS', link: '/examples/vanilla' },
                     ],
                 },

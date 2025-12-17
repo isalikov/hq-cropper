@@ -1,8 +1,8 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
 const mountApplyButtonNode = (
-    getState: () => IState,
+    getState: () => ApplicationState,
     onSubmit: (event: Event) => void
 ): Element => {
     const state = getState()

@@ -1,4 +1,8 @@
-import type { EmittedPortalProps, IState, PointerCoordinates } from '../types'
+import type {
+    EmittedPortalProps,
+    ApplicationState,
+    PointerCoordinates,
+} from '../types'
 import { Action } from '../types'
 
 import handleMovePortal from './handleMovePortal'
@@ -37,8 +41,8 @@ const getPointerCoordinates = (
 }
 
 const registerMouseEvents = (
-    getState: () => IState,
-    setState: (value: Partial<IState>) => void
+    getState: () => ApplicationState,
+    setState: (value: Partial<ApplicationState>) => void
 ): (() => void) => {
     const state = getState()
     const portalElement = document.querySelector<HTMLDivElement>(

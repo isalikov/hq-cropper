@@ -1,7 +1,7 @@
 import type {
     ErrorHandler,
     FileChangeEvent,
-    IState,
+    ApplicationState,
     ListenerAction,
     PortalProps,
 } from '../types'
@@ -21,7 +21,10 @@ import registerMouseEvents from './registerMouseEvents'
 
 const BYTES_IN_MB = 1024 * 1024
 
-const validateFile = (file: File, config: IState['config']): string | null => {
+const validateFile = (
+    file: File,
+    config: ApplicationState['config']
+): string | null => {
     if (!config.allowedTypes.includes(file.type)) {
         return `Invalid file type "${file.type}". Allowed types: ${config.allowedTypes.join(', ')}`
     }
@@ -37,9 +40,13 @@ const validateFile = (file: File, config: IState['config']): string | null => {
 
 const handleFileInputChange = (
     event: FileChangeEvent<HTMLInputElement>,
-    getState: () => IState,
-    setState: (state: Partial<IState>) => void,
-    onSubmit: (result: string, blob: Blob | null, state: IState) => void,
+    getState: () => ApplicationState,
+    setState: (state: Partial<ApplicationState>) => void,
+    onSubmit: (
+        result: string,
+        blob: Blob | null,
+        state: ApplicationState
+    ) => void,
     subscribe: <T>(prop: string, action: ListenerAction<T>) => string,
     unsubscribeAll: () => void,
     onError?: ErrorHandler

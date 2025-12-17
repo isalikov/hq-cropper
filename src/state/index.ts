@@ -1,9 +1,13 @@
 import getClassNames from '../style'
-import type { IClassNames, IConfig, IState } from '../types'
+import type {
+    ClassNames,
+    ConfigurationOptions,
+    ApplicationState,
+} from '../types'
 
 import createState from './createState'
 
-export const initialState: IState = {
+export const initialState: ApplicationState = {
     action: null,
     sourceBase64: '',
     fileName: '',
@@ -42,7 +46,10 @@ export const initialState: IState = {
     },
 }
 
-const state = (config: Partial<IConfig> = {}, css: Partial<IClassNames> = {}) =>
+const state = (
+    config: Partial<ConfigurationOptions> = {},
+    css: Partial<ClassNames> = {}
+) =>
     createState({
         ...initialState,
         config: { ...initialState.config, ...config },

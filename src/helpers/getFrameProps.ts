@@ -1,7 +1,7 @@
-import type { FrameProps, IState } from '../types'
+import type { FrameProps, ApplicationState } from '../types'
 
 const getFrameProps = (
-    getState: () => IState,
+    getState: () => ApplicationState,
     image: HTMLImageElement
 ): FrameProps => {
     const state = getState()

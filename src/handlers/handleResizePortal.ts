@@ -1,10 +1,10 @@
-import type { IState, PointerCoordinates } from '../types'
+import type { ApplicationState, PointerCoordinates } from '../types'
 import { Action } from '../types'
 
 const handleResizePortal = (
     coords: PointerCoordinates,
-    getState: () => IState,
-    setState: (value: Partial<IState>) => void
+    getState: () => ApplicationState,
+    setState: (value: Partial<ApplicationState>) => void
 ): void => {
     const { action, emitted, portal, frame, config } = getState()
 

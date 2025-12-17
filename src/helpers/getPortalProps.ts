@@ -1,4 +1,4 @@
-import type { PortalProps, IState, FrameProps } from '../types'
+import type { PortalProps, ApplicationState, FrameProps } from '../types'
 
 const getAbsolutePortalPosition = (
     size: number,
@@ -21,7 +21,7 @@ const getAbsolutePortalPosition = (
 }
 
 const getPortalProps = (
-    getState: () => IState,
+    getState: () => ApplicationState,
     frame: FrameProps
 ): PortalProps => {
     const { config } = getState()

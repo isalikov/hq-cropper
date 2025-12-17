@@ -1,7 +1,7 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
-const mountHeaderNode = (getState: () => IState): Element => {
+const mountHeaderNode = (getState: () => ApplicationState): Element => {
     const state = getState()
     const element = document.createElement<'div'>('div')
 

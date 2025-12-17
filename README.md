@@ -69,12 +69,12 @@ const cropper = HqCropper(
 
 #### Parameters
 
-| Parameter  | Type                                                          | Description                               |
-| ---------- | ------------------------------------------------------------- | ----------------------------------------- |
-| `onSubmit` | `(base64: string, blob: Blob \| null, state: IState) => void` | Called when user applies the crop         |
-| `config`   | `Partial<IConfig>`                                            | Configuration options                     |
-| `css`      | `Partial<IClassNames>`                                        | Custom CSS class names                    |
-| `onError`  | `(message: string) => void`                                   | Called on validation or processing errors |
+| Parameter  | Type                                                                    | Description                               |
+| ---------- | ----------------------------------------------------------------------- | ----------------------------------------- |
+| `onSubmit` | `(base64: string, blob: Blob \| null, state: ApplicationState) => void` | Called when user applies the crop         |
+| `config`   | `Partial<ConfigurationOptions>`                                         | Configuration options                     |
+| `css`      | `Partial<ClassNames>`                                                   | Custom CSS class names                    |
+| `onError`  | `(message: string) => void`                                             | Called on validation or processing errors |
 
 #### Returns
 
@@ -270,9 +270,9 @@ Full TypeScript support with exported types:
 ```typescript
 import type {
     HqCropperInstance,
-    IConfig,
-    IClassNames,
-    IState,
+    ConfigurationOptions,
+    ClassNames,
+    ApplicationState,
     ErrorHandler,
 } from 'hq-cropper'
 ```

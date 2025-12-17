@@ -1,7 +1,7 @@
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 import { getElement } from './domCache'
 
-const setMountProps = (value: string, state: IState) => {
+const setMountProps = (value: string, state: ApplicationState) => {
     const sourceImage = getElement('sourceImage', state.css)
 
     if (sourceImage) {

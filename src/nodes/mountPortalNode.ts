@@ -1,5 +1,5 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
 import mountHandlerMoveNode from './mountHandlerMoveNode'
 import mountHandlerResizeBottomLeft from './mountHandlerResizeBottomLeft'
@@ -8,7 +8,7 @@ import mountHandlerResizeTopLeft from './mountHandlerResizeTopLeft'
 import mountHandlerResizeTopRight from './mountHandlerResizeTopRight'
 import mountPreviewNode from './mountPreviewNode'
 
-const mountPortalNode = (getState: () => IState): Element => {
+const mountPortalNode = (getState: () => ApplicationState): Element => {
     const state = getState()
     const element = document.createElement<'div'>('div')
     setClassNames(element, state.css?.portal)

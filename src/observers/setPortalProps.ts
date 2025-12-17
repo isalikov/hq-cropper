@@ -1,7 +1,7 @@
-import type { IState, PortalProps } from '../types'
+import type { ApplicationState, PortalProps } from '../types'
 import { getElement } from './domCache'
 
-const setPortalProps = (portal: PortalProps, state: IState) => {
+const setPortalProps = (portal: PortalProps, state: ApplicationState) => {
     const portalElement = getElement('portal', state.css)
 
     if (portalElement) {

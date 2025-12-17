@@ -1,7 +1,7 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
-const mountSourceImageNode = (getState: () => IState): Element => {
+const mountSourceImageNode = (getState: () => ApplicationState): Element => {
     const state = getState()
     const element = document.createElement<'img'>('img')
     setClassNames(element, state.css?.sourceImage)

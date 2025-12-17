@@ -1,9 +1,9 @@
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
 const MIN_SIZE = 1
 
 const handleCropImage = (
-    getState: () => IState
+    getState: () => ApplicationState
 ): Promise<[string, Blob | null]> => {
     const state = getState()
     const canvas = document.createElement('canvas')

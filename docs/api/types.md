@@ -5,9 +5,9 @@ All types are exported from the main package:
 ```typescript
 import type {
     HqCropperInstance,
-    IConfig,
-    IClassNames,
-    IState,
+    ConfigurationOptions,
+    ClassNames,
+    ApplicationState,
     ErrorHandler,
 } from 'hq-cropper'
 ```
@@ -22,12 +22,12 @@ interface HqCropperInstance {
 }
 ```
 
-## IConfig
+## ConfigurationOptions
 
 Configuration options.
 
 ```typescript
-interface IConfig {
+interface ConfigurationOptions {
     /** Initial size of crop portal in pixels */
     portalSize: number
 
@@ -63,12 +63,12 @@ interface IConfig {
 }
 ```
 
-## IClassNames
+## ClassNames
 
 CSS class names for customization.
 
 ```typescript
-interface IClassNames {
+interface ClassNames {
     root: string[]
     container: string[]
     header: string[]
@@ -89,12 +89,12 @@ interface IClassNames {
 }
 ```
 
-## IState
+## ApplicationState
 
 Internal state object passed to callbacks.
 
 ```typescript
-interface IState {
+interface ApplicationState {
     /** Original filename */
     fileName: string
 
@@ -108,10 +108,10 @@ interface IState {
     sourceHeight: number
 
     /** Configuration */
-    config: IConfig
+    config: ConfigurationOptions
 
     /** CSS class names */
-    css?: IClassNames
+    css?: ClassNames
 
     /** Portal position and size */
     portal: PortalProps
@@ -136,21 +136,33 @@ type ErrorHandler = (message: string) => void
 Submit callback type (not exported, shown for reference).
 
 ```typescript
-type SubmitHandler = (base64: string, blob: Blob | null, state: IState) => void
+type SubmitHandler = (
+    base64: string,
+    blob: Blob | null,
+    state: ApplicationState
+) => void
 ```
 
 ## Usage Example
 
 ```typescript
-import { HqCropper, type IConfig, type IState } from 'hq-cropper'
+import {
+    HqCropper,
+    type ConfigurationOptions,
+    type ApplicationState,
+} from 'hq-cropper'
 
-const config: Partial<IConfig> = {
+const config: Partial<ConfigurationOptions> = {
     outputSize: 256,
     type: 'jpeg',
     compression: 0.8,
 }
 
-const handleSubmit = (base64: string, blob: Blob | null, state: IState) => {
+const handleSubmit = (
+    base64: string,
+    blob: Blob | null,
+    state: ApplicationState
+) => {
     console.log(`Cropped ${state.fileName}`)
     console.log(`Original size: ${state.sourceWidth}x${state.sourceHeight}`)
 }

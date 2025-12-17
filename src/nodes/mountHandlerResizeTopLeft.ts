@@ -1,8 +1,10 @@
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 import { Action } from '../types'
 import { setClassNames } from '../style'
 
-const mountHandlerResizeTopLeft = (getState: () => IState): Element => {
+const mountHandlerResizeTopLeft = (
+    getState: () => ApplicationState
+): Element => {
     const state = getState()
     const element = document.createElement<'span'>('span')
     setClassNames(element, state.css?.handlerResizeTopLeft)

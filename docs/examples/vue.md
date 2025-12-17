@@ -32,7 +32,11 @@ const openCropper = () => cropper.open()
 ```vue
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { HqCropper, type HqCropperInstance, type IState } from 'hq-cropper'
+import {
+    HqCropper,
+    type HqCropperInstance,
+    type ApplicationState,
+} from 'hq-cropper'
 
 const image = ref('')
 const fileName = ref('')
@@ -42,7 +46,7 @@ let cropper: HqCropperInstance
 
 onMounted(() => {
     cropper = HqCropper(
-        (base64, blob, state: IState) => {
+        (base64, blob, state: ApplicationState) => {
             image.value = base64
             fileName.value = state.fileName
             error.value = null
@@ -86,25 +90,25 @@ import { ref, onMounted, type Ref } from 'vue'
 import {
     HqCropper,
     type HqCropperInstance,
-    type IConfig,
-    type IState,
+    type ConfigurationOptions,
+    type ApplicationState,
 } from 'hq-cropper'
 
 interface UseCropperReturn {
     image: Ref<string | null>
     blob: Ref<Blob | null>
-    state: Ref<IState | null>
+    state: Ref<ApplicationState | null>
     open: () => void
     clear: () => void
 }
 
 export function useCropper(
-    config?: Partial<IConfig>,
+    config?: Partial<ConfigurationOptions>,
     onError?: (error: string) => void
 ): UseCropperReturn {
     const image = ref<string | null>(null)
     const blob = ref<Blob | null>(null)
-    const state = ref<IState | null>(null)
+    const state = ref<ApplicationState | null>(null)
 
     let cropper: HqCropperInstance
 

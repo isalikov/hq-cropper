@@ -1,9 +1,9 @@
 import { setClassNames } from '../style'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 
 import mountPortalNode from './mountPortalNode'
 
-const mountPortalAreaNode = (getState: () => IState): Element => {
+const mountPortalAreaNode = (getState: () => ApplicationState): Element => {
     const state = getState()
     const element = document.createElement<'div'>('div')
     setClassNames(element, state.css?.portalArea)

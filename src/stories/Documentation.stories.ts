@@ -92,12 +92,12 @@ document.querySelector('#crop-button').addEventListener('click', () => {
                 </tr>
                 <tr>
                     <td><code class="doc-code">config</code></td>
-                    <td><code class="doc-code">Partial&lt;IConfig&gt;</code></td>
+                    <td><code class="doc-code">Partial&lt;ConfigurationOptions&gt;</code></td>
                     <td>Configuration options</td>
                 </tr>
                 <tr>
                     <td><code class="doc-code">css</code></td>
-                    <td><code class="doc-code">Partial&lt;IClassNames&gt;</code></td>
+                    <td><code class="doc-code">Partial&lt;ClassNames&gt;</code></td>
                     <td>Custom CSS class names</td>
                 </tr>
                 <tr>
@@ -205,9 +205,9 @@ document.querySelector('#crop-button').addEventListener('click', () => {
         <pre class="doc-pre">import {
     HqCropper,
     type HqCropperInstance,
-    type IConfig,
-    type IClassNames,
-    type IState,
+    type ConfigurationOptions,
+    type ClassNames,
+    type ApplicationState,
     type ErrorHandler,
 } from 'hq-cropper'</pre>
 

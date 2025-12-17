@@ -26,6 +26,10 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - **Bundle size reduced by 7.2%** (25.46 KB → 23.62 KB)
+- **Rename TypeScript types for clarity**:
+    - `IConfig` → `ConfigurationOptions`
+    - `IClassNames` → `ClassNames`
+    - `IState` → `ApplicationState`
 - Replace random CSS class names with deterministic hash (stable sourcemaps, debuggable in production)
 - Consolidate 4 resize handler CSS files into single parameterized function
 - Simplify DOM cache implementation using Map

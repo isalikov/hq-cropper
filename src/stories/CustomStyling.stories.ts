@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import { HqCropper } from '../index'
-import type { IState } from '../types'
+import type { ApplicationState } from '../types'
 import { defaultArgs, defaultArgTypes, type StoryArgs } from './shared'
 
 const meta: Meta<StoryArgs> = {
@@ -134,7 +134,7 @@ export const GradientTheme: Story = {
         container.appendChild(resultContainer)
 
         const cropper = HqCropper(
-            (base64: string, blob: Blob | null, state: IState) => {
+            (base64: string, blob: Blob | null, state: ApplicationState) => {
                 resultContainer.innerHTML = ''
 
                 const img = document.createElement('img')
@@ -262,7 +262,7 @@ export const DarkTheme: Story = {
         container.appendChild(resultContainer)
 
         const cropper = HqCropper(
-            (base64: string, blob: Blob | null, state: IState) => {
+            (base64: string, blob: Blob | null, state: ApplicationState) => {
                 resultContainer.innerHTML = ''
 
                 const img = document.createElement('img')
@@ -391,7 +391,7 @@ export const MinimalLight: Story = {
         container.appendChild(resultContainer)
 
         const cropper = HqCropper(
-            (base64: string, blob: Blob | null, state: IState) => {
+            (base64: string, blob: Blob | null, state: ApplicationState) => {
                 resultContainer.innerHTML = ''
 
                 const img = document.createElement('img')

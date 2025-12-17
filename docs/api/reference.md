@@ -7,8 +7,8 @@ Creates a new cropper instance.
 ```typescript
 function HqCropper(
     onSubmit: SubmitHandler,
-    config?: Partial<IConfig>,
-    css?: Partial<IClassNames>,
+    config?: Partial<ConfigurationOptions>,
+    css?: Partial<ClassNames>,
     onError?: ErrorHandler
 ): HqCropperInstance
 ```
@@ -17,7 +17,7 @@ function HqCropper(
 
 #### onSubmit
 
-**Type:** `(base64: string, blob: Blob | null, state: IState) => void`
+**Type:** `(base64: string, blob: Blob | null, state: ApplicationState) => void`
 
 Called when user applies the crop. Receives:
 
@@ -39,7 +39,7 @@ const cropper = HqCropper((base64, blob, state) => {
 
 #### config
 
-**Type:** `Partial<IConfig>`
+**Type:** `Partial<ConfigurationOptions>`
 
 Optional configuration object. See [Configuration](/guide/configuration) for all options.
 
@@ -52,7 +52,7 @@ const cropper = HqCropper(onSubmit, {
 
 #### css
 
-**Type:** `Partial<IClassNames>`
+**Type:** `Partial<ClassNames>`
 
 Optional CSS class overrides. See [Custom Styling](/guide/styling) for details.
 
@@ -103,12 +103,12 @@ button.addEventListener('click', () => {
 })
 ```
 
-## IConfig
+## ConfigurationOptions
 
 Configuration options interface.
 
 ```typescript
-interface IConfig {
+interface ConfigurationOptions {
     portalSize: number
     minPortalSize: number
     portalPosition: [number, number] | 'center'
@@ -141,12 +141,12 @@ interface IConfig {
 }
 ```
 
-## IState
+## ApplicationState
 
 State object passed to `onSubmit` callback.
 
 ```typescript
-interface IState {
+interface ApplicationState {
     fileName: string
     sourceBase64: string
     sourceWidth: number

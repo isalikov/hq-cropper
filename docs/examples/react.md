@@ -26,7 +26,7 @@ function AvatarUpload() {
 
 ```tsx
 import { useRef, useState } from 'react'
-import { HqCropper, type IState } from 'hq-cropper'
+import { HqCropper, type ApplicationState } from 'hq-cropper'
 
 function ProfilePicture() {
     const [image, setImage] = useState<string>('')
@@ -35,7 +35,7 @@ function ProfilePicture() {
 
     const cropperRef = useRef(
         HqCropper(
-            (base64, blob, state: IState) => {
+            (base64, blob, state: ApplicationState) => {
                 setImage(base64)
                 setFileName(state.fileName)
                 setError(null)
@@ -76,17 +76,21 @@ function ProfilePicture() {
 
 ```tsx
 import { useRef, useState, useCallback } from 'react'
-import { HqCropper, type IConfig, type IState } from 'hq-cropper'
+import {
+    HqCropper,
+    type ConfigurationOptions,
+    type ApplicationState,
+} from 'hq-cropper'
 
 interface UseCropperOptions {
-    config?: Partial<IConfig>
+    config?: Partial<ConfigurationOptions>
     onError?: (error: string) => void
 }
 
 function useCropper(options: UseCropperOptions = {}) {
     const [image, setImage] = useState<string | null>(null)
     const [blob, setBlob] = useState<Blob | null>(null)
-    const [state, setState] = useState<IState | null>(null)
+    const [state, setState] = useState<ApplicationState | null>(null)
 
     const cropperRef = useRef(
         HqCropper(

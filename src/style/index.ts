@@ -1,4 +1,4 @@
-import type { IClassNames } from '../types'
+import type { ClassNames } from '../types'
 
 import getCssApplyButtonStyle from './getCssApplyButtonStyle'
 import getCssBodyStyle from './getCssBodyStyle'
@@ -42,8 +42,8 @@ export const setClassNames = (node: Element, classNames?: string[]): void => {
     }
 }
 
-const getClassNames = (css: Partial<IClassNames>): IClassNames => {
-    const classNames: IClassNames = {
+const getClassNames = (css: Partial<ClassNames>): ClassNames => {
+    const classNames: ClassNames = {
         applyButton: [
             getClassName('applyButton'),
             ...extractClassNames(css.applyButton),

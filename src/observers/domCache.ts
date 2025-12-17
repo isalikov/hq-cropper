@@ -1,4 +1,4 @@
-import type { IClassNames } from '../types'
+import type { ClassNames } from '../types'
 
 type CacheKey =
     | 'header'
@@ -17,7 +17,7 @@ interface ElementTypeMap {
 
 const cache = new Map<CacheKey, HTMLElement | null>()
 
-const selectorMap: Record<CacheKey, keyof IClassNames> = {
+const selectorMap: Record<CacheKey, keyof ClassNames> = {
     header: 'header',
     sourceImage: 'sourceImage',
     portalArea: 'portalArea',
@@ -27,7 +27,7 @@ const selectorMap: Record<CacheKey, keyof IClassNames> = {
 
 export const getElement = <K extends CacheKey>(
     key: K,
-    css: IClassNames | undefined
+    css: ClassNames | undefined
 ): ElementTypeMap[K] | null => {
     if (cache.has(key)) {
         return cache.get(key) as ElementTypeMap[K] | null

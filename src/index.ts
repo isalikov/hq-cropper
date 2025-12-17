@@ -5,15 +5,19 @@ import type {
     ErrorHandler,
     FileChangeEvent,
     HqCropperInstance,
-    IClassNames,
-    IConfig,
-    IState,
+    ClassNames,
+    ConfigurationOptions,
+    ApplicationState,
 } from './types'
 
 export const HqCropper = (
-    onSubmit: (base64: string, blob: Blob | null, state: IState) => void,
-    config?: Partial<IConfig>,
-    css?: Partial<IClassNames>,
+    onSubmit: (
+        base64: string,
+        blob: Blob | null,
+        state: ApplicationState
+    ) => void,
+    config?: Partial<ConfigurationOptions>,
+    css?: Partial<ClassNames>,
     onError?: ErrorHandler
 ): HqCropperInstance => {
     const { getState, setState, subscribe, unsubscribeAll } = useState(
