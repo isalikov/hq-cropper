@@ -11,23 +11,25 @@ import getCssPortalAreaStyle from './getCssPortalAreaStyle'
 import getCssPortalStyle from './getCssPortalStyle'
 import getCssPreviewImageStyle from './getCssPreviewImageStyle'
 import getCssPreviewStyle from './getCssPreviewStyle'
-import getCssResizeBottomLeftStyle from './getCssResizeBottomLeftStyle'
-import getCssResizeBottomRightStyle from './getCssResizeBottomRightStyle'
-import getCssResizeTopLeftStyle from './getCssResizeTopLeftStyle'
-import getCssResizeTopRightStyle from './getCssResizeTopRightStyle'
+import getCssResizeHandlerStyle from './getCssResizeHandlerStyle'
 import getCssRootStyle from './getCssRootStyle'
 import getCssSourceImage from './getCssSourceImage'
 
 const isDevelopment = import.meta.env.DEV
 
-const getClassName = (name: string) => {
+const hashString = (str: string): string => {
+    let hash = 5381
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) ^ str.charCodeAt(i)
+    }
+    return Math.abs(hash).toString(36)
+}
+
+const getClassName = (name: string): string => {
     if (isDevelopment) {
         return `hq-cropper__${name}`
     }
-
-    return `hq-cropper__${Math.random()
-        .toString(36)
-        .substring(2)}_${Math.random().toString(36).substring(2)}`
+    return `hq-cropper__${hashString(name)}`
 }
 
 const extractClassNames = (classNames?: string[]): string[] => classNames || []
@@ -106,10 +108,10 @@ const getClassNames = (css: Partial<IClassNames>): IClassNames => {
         ${getCssPortalStyle(classNames.portal[0])}
         ${getCssPreviewImageStyle(classNames.previewImage[0])}
         ${getCssPreviewStyle(classNames.preview[0])}
-        ${getCssResizeBottomLeftStyle(classNames.handlerResizeBottomLeft[0])}
-        ${getCssResizeBottomRightStyle(classNames.handlerResizeBottomRight[0])}
-        ${getCssResizeTopLeftStyle(classNames.handlerResizeTopLeft[0])}
-        ${getCssResizeTopRightStyle(classNames.handlerResizeTopRight[0])}
+        ${getCssResizeHandlerStyle(classNames.handlerResizeBottomLeft[0], 'bl')}
+        ${getCssResizeHandlerStyle(classNames.handlerResizeBottomRight[0], 'br')}
+        ${getCssResizeHandlerStyle(classNames.handlerResizeTopLeft[0], 'tl')}
+        ${getCssResizeHandlerStyle(classNames.handlerResizeTopRight[0], 'tr')}
         ${getCssRootStyle(classNames.root[0])}
         ${getCssSourceImage(classNames.sourceImage[0])}
     `

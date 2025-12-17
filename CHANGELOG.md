@@ -20,11 +20,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add responsive layout for small screens (<540px)
 - Add `touch-action: none` to prevent scroll during portal interactions
 - Increase resize handles touch target size (24px on mobile devices)
+- Add comprehensive Storybook documentation with API reference
+- Add custom styling examples (GradientTheme, DarkTheme, MinimalLight)
+- Add font inheritance documentation
 
 ### Fixed
 
 - Fix viewport height issues on mobile with `100dvh` and `position: fixed`
 - Fix button clicks being blocked by `preventDefault` on `touchend`
+- Fix race condition: Escape key listener now added after image loads
+- Fix `canvas.toBlob()` error handling with proper reject on failure
+
+### Changed
+
+- **Bundle size reduced by 7.2%** (25.46 KB → 23.62 KB)
+- Replace random CSS class names with deterministic hash (stable sourcemaps, debuggable in production)
+- Consolidate 4 resize handler CSS files into single parameterized function
+- Simplify DOM cache implementation using Map (72 → 47 lines)
+- Replace `getRandomString()` with simple counter for listener IDs
+- Use modern `node.remove()` instead of deprecated `removeChild()`
+- Improve TypeScript types for DOM cache with mapped element types
+
+### Removed
+
+- Remove `src/utils.ts` (unused after refactoring)
+- Remove 4 separate `getCssResize*Style.ts` files (consolidated)
 
 ## [3.2.0] - 2024-12-13
 

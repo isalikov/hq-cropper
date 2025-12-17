@@ -12,3 +12,5 @@ dist
 node_modules
 
 /storybook-static
+/docs/.vitepress/cache
+/docs/.vitepress/dist

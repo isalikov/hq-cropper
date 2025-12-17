@@ -52,15 +52,28 @@ const handleCropImage = (
         state.config.compression
     )
 
-    return new Promise<[string, Blob | null]>((resolve) => {
-        canvas.toBlob(
-            (blob) => {
-                canvas.remove()
-                resolve([base64, blob])
-            },
-            `image/${state.config.type}`,
-            state.config.compression
-        )
+    return new Promise<[string, Blob | null]>((resolve, reject) => {
+        try {
+            canvas.toBlob(
+                (blob) => {
+                    canvas.remove()
+                    if (!blob) {
+                        reject(
+                            new Error(
+                                `Failed to create blob for type: image/${state.config.type}`
+                            )
+                        )
+                        return
+                    }
+                    resolve([base64, blob])
+                },
+                `image/${state.config.type}`,
+                state.config.compression
+            )
+        } catch (error) {
+            canvas.remove()
+            reject(error)
+        }
     })
 }
 

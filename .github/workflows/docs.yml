@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages
+name: Deploy Docs to GitHub Pages
 
 on:
     push:
@@ -35,8 +35,14 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Build VitePress
+              run: pnpm docs:build
+
             - name: Build Storybook
               run: pnpm build:storybook
+
+            - name: Copy Storybook to docs
+              run: cp -r storybook-static docs/.vitepress/dist/storybook
 
             - name: Setup Pages
               uses: actions/configure-pages@v5
@@ -44,7 +50,7 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: ./storybook-static
+                  path: docs/.vitepress/dist
 
     deploy:
         environment:

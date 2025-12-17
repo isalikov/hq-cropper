@@ -1,5 +1,6 @@
 import type { IState, CreateState, Listener, ListenerAction } from '../types'
-import { getRandomString } from '../utils'
+
+let listenerId = 0
 
 const createState = (initialState: IState): CreateState => {
     const listeners = new Map<string, Listener<unknown>[]>()
@@ -31,7 +32,7 @@ const createState = (initialState: IState): CreateState => {
     }
 
     const subscribe = <T>(prop: string, action: ListenerAction<T>): string => {
-        const id = getRandomString()
+        const id = String(++listenerId)
         const propListeners = listeners.get(prop) || []
 
         listeners.set(prop, [

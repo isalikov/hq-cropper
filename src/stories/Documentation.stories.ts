@@ -289,12 +289,22 @@ const cropper = HqCropper(onSubmit, {}, {
     container: ['my-cropper-container']
 })</pre>
 
+        <h2 class="doc-h2">Mobile Support</h2>
+        <p class="doc-p">HQ-Cropper has full mobile support:</p>
+        <ul class="doc-list">
+            <li>Touch events (<code class="doc-code">touchstart</code>, <code class="doc-code">touchmove</code>, <code class="doc-code">touchend</code>)</li>
+            <li>Responsive layout for screens under 540px</li>
+            <li>Larger touch targets (24px) for resize handles on mobile</li>
+            <li>Proper viewport handling with <code class="doc-code">100dvh</code></li>
+            <li><code class="doc-code">touch-action: none</code> to prevent scroll during interactions</li>
+        </ul>
+
         <h2 class="doc-h2">Browser Support</h2>
         <ul class="doc-list">
             <li>ES2020+ browsers</li>
             <li>Canvas API</li>
             <li>FileReader API</li>
-            <li>Touch events (mobile support)</li>
+            <li>Touch events (mobile)</li>
         </ul>
     `
 
