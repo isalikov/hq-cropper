@@ -1,0 +1,5 @@
+/* Global font for Storybook and HQ-Cropper */
+body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+}

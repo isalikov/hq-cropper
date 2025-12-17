@@ -71,12 +71,6 @@ const handleFileInputChange = (
 
     let cleanupMouseEvents: (() => void) | null = null
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            handleClose(e)
-        }
-    }
-
     const close = () => {
         const state = getState()
 
@@ -84,19 +78,21 @@ const handleFileInputChange = (
             `.${state.css?.root[0]}`
         )
 
-        if (node && node.parentNode) {
-            node.parentNode.removeChild(node)
+        if (node) {
+            node.remove()
             document.removeEventListener('keydown', handleKeyDown)
-            if (cleanupMouseEvents) {
-                cleanupMouseEvents()
-            }
+            cleanupMouseEvents?.()
             clearCache()
             unsubscribeAll()
             setState(initialState)
         }
     }
 
-    document.addEventListener('keydown', handleKeyDown)
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && getState().sourceBase64) {
+            handleClose(e)
+        }
+    }
 
     const handleClose = (e: Event) => {
         e.preventDefault()
@@ -108,10 +104,18 @@ const handleFileInputChange = (
 
         const state = getState()
 
-        handleCropImage(getState).then(([base64, blob]) => {
-            onSubmit(base64, blob, state)
-            handleClose(e)
-        })
+        handleCropImage(getState)
+            .then(([base64, blob]) => {
+                onSubmit(base64, blob, state)
+                handleClose(e)
+            })
+            .catch((error) => {
+                handleError(
+                    error instanceof Error
+                        ? error.message
+                        : 'Failed to crop image'
+                )
+            })
     }
 
     reader.onload = (data) => {
@@ -149,6 +153,7 @@ const handleFileInputChange = (
             })
 
             cleanupMouseEvents = registerMouseEvents(getState, setState)
+            document.addEventListener('keydown', handleKeyDown)
         }
     }
 

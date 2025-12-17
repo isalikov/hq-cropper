@@ -6,17 +6,19 @@
 
 A lightweight, zero-dependency image cropper for high-quality square crops. Perfect for profile pictures, avatars, and thumbnails.
 
-**[Live Demo & Documentation](https://isalikov.github.io/hq-cropper)**
+**[Documentation](https://hqcropper.dev)** | **[Live Demo](https://hqcropper.dev/storybook/)**
 
 ## Features
 
 - Zero dependencies — pure TypeScript
+- Mobile-friendly with full touch support
 - High-quality output with configurable compression
 - Square crop with resizable portal
 - Drag and resize from all corners
 - File validation (type and size)
 - Error handling with callbacks
 - Fully customizable styling
+- Inherits fonts from your application
 - Works with any framework (React, Vue, Angular, vanilla JS)
 
 ## Installation
@@ -90,7 +92,7 @@ interface HqCropperInstance {
 | `minPortalSize`     | `number`                       | `50`                                                     | Minimum portal size (prevents too small crops)     |
 | `portalPosition`    | `[number, number] \| 'center'` | `'center'`                                               | Initial portal position                            |
 | `framePadding`      | `number`                       | `3`                                                      | Padding around the image frame                     |
-| `quality`           | `number`                       | `1.01`                                                   | Output quality multiplier (higher = larger output) |
+| `outputSize`        | `number`                       | `0`                                                      | Output size in pixels (0 = use original selection) |
 | `compression`       | `number`                       | `1`                                                      | JPEG compression (0-1, where 1 is best quality)    |
 | `type`              | `'jpeg' \| 'png'`              | `'jpeg'`                                                 | Output image format                                |
 | `maxFileSize`       | `number`                       | `0`                                                      | Max input file size in bytes (0 = no limit)        |
@@ -100,12 +102,12 @@ interface HqCropperInstance {
 
 ### Configuration Examples
 
-#### High Quality PNG Output
+#### Fixed Output Size (512x512 PNG)
 
 ```typescript
 const cropper = HqCropper(onSubmit, {
     type: 'png',
-    quality: 2,
+    outputSize: 512,
     compression: 1,
 })
 ```
@@ -115,7 +117,7 @@ const cropper = HqCropper(onSubmit, {
 ```typescript
 const cropper = HqCropper(onSubmit, {
     type: 'jpeg',
-    quality: 1.5,
+    outputSize: 256,
     compression: 0.7,
 })
 ```
@@ -275,6 +277,42 @@ import type {
 } from 'hq-cropper'
 ```
 
+## Fonts
+
+HQ-Cropper does not define any `font-family`. The cropper inherits the font from your application's CSS, ensuring seamless integration with your design system.
+
+```css
+/* Your app's CSS */
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+}
+
+/* The cropper will automatically inherit this font */
+```
+
+To override fonts specifically for the cropper:
+
+```typescript
+const cropper = HqCropper(
+    onSubmit,
+    {},
+    {
+        container: ['my-cropper-container'],
+    }
+)
+```
+
+```css
+.my-cropper-container {
+    font-family: 'Custom Font', sans-serif;
+}
+```
+
 ## Browser Support
 
 Works in all modern browsers that support:
@@ -282,6 +320,7 @@ Works in all modern browsers that support:
 - ES2020+
 - Canvas API
 - FileReader API
+- Touch events (mobile)
 
 ## License
 

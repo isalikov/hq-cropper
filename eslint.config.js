@@ -4,7 +4,13 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default tseslint.config(
     {
-        ignores: ['dist', 'storybook-static', 'node_modules'],
+        ignores: [
+            'dist',
+            'storybook-static',
+            'node_modules',
+            'docs/.vitepress/cache',
+            'docs/.vitepress/dist',
+        ],
     },
     eslint.configs.recommended,
     tseslint.configs.strict,

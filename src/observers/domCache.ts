@@ -1,72 +1,54 @@
 import type { IClassNames } from '../types'
 
-interface DOMCache {
-    header: HTMLDivElement | null
-    sourceImage: HTMLImageElement | null
-    portalArea: HTMLDivElement | null
-    portal: HTMLDivElement | null
-    previewImage: HTMLImageElement | null
+type CacheKey =
+    | 'header'
+    | 'sourceImage'
+    | 'portalArea'
+    | 'portal'
+    | 'previewImage'
+
+interface ElementTypeMap {
+    header: HTMLDivElement
+    sourceImage: HTMLImageElement
+    portalArea: HTMLDivElement
+    portal: HTMLDivElement
+    previewImage: HTMLImageElement
 }
 
-let cache: DOMCache | null = null
+const cache = new Map<CacheKey, HTMLElement | null>()
 
-export const getElement = <K extends keyof DOMCache>(
+const selectorMap: Record<CacheKey, keyof IClassNames> = {
+    header: 'header',
+    sourceImage: 'sourceImage',
+    portalArea: 'portalArea',
+    portal: 'portal',
+    previewImage: 'previewImage',
+}
+
+export const getElement = <K extends CacheKey>(
     key: K,
     css: IClassNames | undefined
-): DOMCache[K] => {
-    if (!cache) {
-        return null
-    }
-
-    if (cache[key]) {
-        return cache[key]
+): ElementTypeMap[K] | null => {
+    if (cache.has(key)) {
+        return cache.get(key) as ElementTypeMap[K] | null
     }
 
     if (!css) {
         return null
     }
 
-    switch (key) {
-        case 'header':
-            cache.header = document.querySelector<HTMLDivElement>(
-                `.${css.header[0]}`
-            )
-            return cache.header as DOMCache[K]
-        case 'sourceImage':
-            cache.sourceImage = document.querySelector<HTMLImageElement>(
-                `.${css.sourceImage[0]}`
-            )
-            return cache.sourceImage as DOMCache[K]
-        case 'portalArea':
-            cache.portalArea = document.querySelector<HTMLDivElement>(
-                `.${css.portalArea[0]}`
-            )
-            return cache.portalArea as DOMCache[K]
-        case 'portal':
-            cache.portal = document.querySelector<HTMLDivElement>(
-                `.${css.portal[0]}`
-            )
-            return cache.portal as DOMCache[K]
-        case 'previewImage':
-            cache.previewImage = document.querySelector<HTMLImageElement>(
-                `.${css.previewImage[0]}`
-            )
-            return cache.previewImage as DOMCache[K]
-        default:
-            return null
-    }
+    const classNames = css[selectorMap[key]]
+    const element = document.querySelector<ElementTypeMap[K]>(
+        `.${classNames[0]}`
+    )
+    cache.set(key, element)
+    return element
 }
 
 export const initCache = (): void => {
-    cache = {
-        header: null,
-        sourceImage: null,
-        portalArea: null,
-        portal: null,
-        previewImage: null,
-    }
+    cache.clear()
 }
 
 export const clearCache = (): void => {
-    cache = null
+    cache.clear()
 }

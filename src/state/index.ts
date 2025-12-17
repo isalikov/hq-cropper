@@ -35,7 +35,7 @@ export const initialState: IState = {
         minPortalSize: 50,
         portalPosition: 'center',
         portalSize: 150,
-        quality: 1.01,
+        outputSize: 0,
         type: 'jpeg',
         maxFileSize: 0,
         allowedTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
