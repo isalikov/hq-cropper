@@ -13,18 +13,13 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Add mobile device support with touch events (`touchstart`, `touchmove`, `touchend`)
-- Add responsive layout for small screens (<540px)
-- Add `touch-action: none` to prevent scroll during portal interactions
-- Increase resize handles touch target size (24px on mobile devices)
 - Add comprehensive Storybook documentation with API reference
 - Add custom styling examples (GradientTheme, DarkTheme, MinimalLight)
 - Add font inheritance documentation
+- Add VitePress documentation site at [hqcropper.dev](https://hqcropper.dev)
 
 ### Fixed
 
-- Fix viewport height issues on mobile with `100dvh` and `position: fixed`
-- Fix button clicks being blocked by `preventDefault` on `touchend`
 - Fix race condition: Escape key listener now added after image loads
 - Fix `canvas.toBlob()` error handling with proper reject on failure
 
@@ -42,6 +37,20 @@ All notable changes to this project will be documented in this file.
 
 - Remove `src/utils.ts` (unused after refactoring)
 - Remove 4 separate `getCssResize*Style.ts` files (consolidated)
+
+## [3.3.0] - 2024-12-17
+
+### Added
+
+- Add mobile device support with touch events (`touchstart`, `touchmove`, `touchend`)
+- Add responsive layout for small screens (<540px)
+- Add `touch-action: none` to prevent scroll during portal interactions
+- Increase resize handles touch target size (24px on mobile devices)
+
+### Fixed
+
+- Fix viewport height issues on mobile with `100dvh` and `position: fixed`
+- Fix button clicks being blocked by `preventDefault` on `touchend`
 
 ## [3.2.0] - 2024-12-13
 
