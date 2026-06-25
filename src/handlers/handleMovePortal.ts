@@ -7,8 +7,12 @@ const handleMovePortal = (
 ): void => {
     const { emitted, portal, frame, config } = getState()
 
-    let left = emitted.left - emitted.X + coords.clientX
-    let top = emitted.top - emitted.Y + coords.clientY
+    // `emitted.X`/`emitted.Y` are captured from pageX/pageY on pointer-down, so
+    // the live delta must use pageX/pageY too — mixing in clientX/clientY shifts
+    // the portal by the scroll offset (it snaps to the frame edge on the axis
+    // that's scrolled). Matches handleResizePortal, which is page-based already.
+    let left = emitted.left - emitted.X + coords.pageX
+    let top = emitted.top - emitted.Y + coords.pageY
 
     const MinLeftValue = config.framePadding
     const MaxLeftValue = frame.width - config.framePadding - portal.size

@@ -91,7 +91,10 @@ const handleFileInputChange = (
             cleanupMouseEvents?.()
             clearCache()
             unsubscribeAll()
-            setState(initialState)
+            // Reset transient state but keep the caller's config & css — otherwise
+            // reopening the cropper falls back to defaults (e.g. button labels
+            // revert to "Apply"/"Cancel", outputSize/compression are lost).
+            setState({ ...initialState, config: state.config, css: state.css })
         }
     }
 
