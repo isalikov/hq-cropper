@@ -15,9 +15,9 @@ const handleMovePortal = (
     let top = emitted.top - emitted.Y + coords.pageY
 
     const MinLeftValue = config.framePadding
-    const MaxLeftValue = frame.width - config.framePadding - portal.size
+    const MaxLeftValue = frame.width - config.framePadding - portal.width
     const MinTopValue = config.framePadding
-    const MaxTopValue = frame.height - config.framePadding - portal.size
+    const MaxTopValue = frame.height - config.framePadding - portal.height
 
     if (left < MinLeftValue) {
         left = MinLeftValue

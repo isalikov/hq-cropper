@@ -25,8 +25,8 @@ const setMountProps = (value: string, state: ApplicationState) => {
     const portal = getElement('portal', state.css)
 
     if (portal) {
-        portal.style.width = `${state.portal.size}px`
-        portal.style.height = `${state.portal.size}px`
+        portal.style.width = `${state.portal.width}px`
+        portal.style.height = `${state.portal.height}px`
         portal.style.left = `${state.portal.left}px`
         portal.style.top = `${state.portal.top}px`
     }

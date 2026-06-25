@@ -12,19 +12,20 @@ const cropper = HqCropper(onSubmit, {
 
 ## All Options
 
-| Option              | Type                           | Default               | Description                                    |
-| ------------------- | ------------------------------ | --------------------- | ---------------------------------------------- |
-| `portalSize`        | `number`                       | `150`                 | Initial size of crop portal in pixels          |
-| `minPortalSize`     | `number`                       | `50`                  | Minimum portal size (prevents too small crops) |
-| `portalPosition`    | `[number, number] \| 'center'` | `'center'`            | Initial portal position                        |
-| `framePadding`      | `number`                       | `3`                   | Padding around the image frame                 |
-| `outputSize`        | `number`                       | `0`                   | Output size in pixels (0 = original selection) |
-| `compression`       | `number`                       | `1`                   | JPEG compression (0-1, where 1 is best)        |
-| `type`              | `'jpeg' \| 'png'`              | `'jpeg'`              | Output image format                            |
-| `maxFileSize`       | `number`                       | `0`                   | Max input file size in bytes (0 = no limit)    |
-| `allowedTypes`      | `string[]`                     | `['image/jpeg', ...]` | Allowed MIME types                             |
-| `applyButtonLabel`  | `string`                       | `'Apply'`             | Apply button text                              |
-| `cancelButtonLabel` | `string`                       | `'Cancel'`            | Cancel button text                             |
+| Option              | Type                           | Default               | Description                                                             |
+| ------------------- | ------------------------------ | --------------------- | ----------------------------------------------------------------------- |
+| `portalSize`        | `number`                       | `150`                 | Initial size of crop portal in pixels                                   |
+| `minPortalSize`     | `number`                       | `50`                  | Minimum portal size (prevents too small crops)                          |
+| `lockAspectRatio`   | `boolean`                      | `true`                | Lock the portal to a square (1:1). Set `false` for free rectangle crops |
+| `portalPosition`    | `[number, number] \| 'center'` | `'center'`            | Initial portal position                                                 |
+| `framePadding`      | `number`                       | `3`                   | Padding around the image frame                                          |
+| `outputSize`        | `number`                       | `0`                   | Output size in pixels (0 = original selection)                          |
+| `compression`       | `number`                       | `1`                   | JPEG compression (0-1, where 1 is best)                                 |
+| `type`              | `'jpeg' \| 'png'`              | `'jpeg'`              | Output image format                                                     |
+| `maxFileSize`       | `number`                       | `0`                   | Max input file size in bytes (0 = no limit)                             |
+| `allowedTypes`      | `string[]`                     | `['image/jpeg', ...]` | Allowed MIME types                                                      |
+| `applyButtonLabel`  | `string`                       | `'Apply'`             | Apply button text                                                       |
+| `cancelButtonLabel` | `string`                       | `'Cancel'`            | Cancel button text                                                      |
 
 ## Output Size
 

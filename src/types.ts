@@ -43,6 +43,13 @@ export interface ConfigurationOptions {
     minPortalSize: number
 
     /**
+     * Lock the portal to a square (1:1) aspect ratio.
+     * When `true` (default) resizing keeps width === height.
+     * When `false` width and height can be resized independently (free rectangle).
+     */
+    lockAspectRatio: boolean
+
+    /**
      * Frame padding
      */
     framePadding: number
@@ -88,13 +95,15 @@ export interface EmittedPortalProps {
     Y: number
     top: number
     left: number
-    size: number
+    width: number
+    height: number
 }
 
 export interface PortalProps {
     left: number
     top: number
-    size: number
+    width: number
+    height: number
 }
 
 export interface FrameProps {

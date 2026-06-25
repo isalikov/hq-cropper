@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/html'
+import type { Preview } from '@storybook/html-vite'
 import './preview.css'
 
 const preview: Preview = {

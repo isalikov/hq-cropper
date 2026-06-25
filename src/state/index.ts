@@ -22,14 +22,16 @@ export const initialState: ApplicationState = {
     portal: {
         left: 0,
         top: 0,
-        size: 0,
+        width: 0,
+        height: 0,
     },
     emitted: {
         X: 0,
         Y: 0,
         left: 0,
         top: 0,
-        size: 0,
+        width: 0,
+        height: 0,
     },
     config: {
         applyButtonLabel: 'Apply',
@@ -37,6 +39,7 @@ export const initialState: ApplicationState = {
         compression: 1,
         framePadding: 3,
         minPortalSize: 50,
+        lockAspectRatio: true,
         portalPosition: 'center',
         portalSize: 150,
         outputSize: 0,

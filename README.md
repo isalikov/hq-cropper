@@ -13,7 +13,7 @@ A lightweight, zero-dependency image cropper for high-quality square crops. Perf
 - Zero dependencies — pure TypeScript
 - Mobile-friendly with full touch support
 - High-quality output with configurable compression
-- Square crop with resizable portal
+- Square (1:1) or free rectangle crop with resizable portal
 - Drag and resize from all corners
 - File validation (type and size)
 - Error handling with callbacks
@@ -86,19 +86,20 @@ interface HqCropperInstance {
 
 ## Configuration
 
-| Option              | Type                           | Default                                                  | Description                                        |
-| ------------------- | ------------------------------ | -------------------------------------------------------- | -------------------------------------------------- |
-| `portalSize`        | `number`                       | `150`                                                    | Initial size of crop portal in pixels              |
-| `minPortalSize`     | `number`                       | `50`                                                     | Minimum portal size (prevents too small crops)     |
-| `portalPosition`    | `[number, number] \| 'center'` | `'center'`                                               | Initial portal position                            |
-| `framePadding`      | `number`                       | `3`                                                      | Padding around the image frame                     |
-| `outputSize`        | `number`                       | `0`                                                      | Output size in pixels (0 = use original selection) |
-| `compression`       | `number`                       | `1`                                                      | JPEG compression (0-1, where 1 is best quality)    |
-| `type`              | `'jpeg' \| 'png'`              | `'jpeg'`                                                 | Output image format                                |
-| `maxFileSize`       | `number`                       | `0`                                                      | Max input file size in bytes (0 = no limit)        |
-| `allowedTypes`      | `string[]`                     | `['image/jpeg', 'image/png', 'image/gif', 'image/webp']` | Allowed MIME types                                 |
-| `applyButtonLabel`  | `string`                       | `'Apply'`                                                | Apply button text                                  |
-| `cancelButtonLabel` | `string`                       | `'Cancel'`                                               | Cancel button text                                 |
+| Option              | Type                           | Default                                                  | Description                                                             |
+| ------------------- | ------------------------------ | -------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `portalSize`        | `number`                       | `150`                                                    | Initial size of crop portal in pixels                                   |
+| `minPortalSize`     | `number`                       | `50`                                                     | Minimum portal size (prevents too small crops)                          |
+| `lockAspectRatio`   | `boolean`                      | `true`                                                   | Lock the portal to a square (1:1). Set `false` for free rectangle crops |
+| `portalPosition`    | `[number, number] \| 'center'` | `'center'`                                               | Initial portal position                                                 |
+| `framePadding`      | `number`                       | `3`                                                      | Padding around the image frame                                          |
+| `outputSize`        | `number`                       | `0`                                                      | Output size in pixels (0 = use original selection)                      |
+| `compression`       | `number`                       | `1`                                                      | JPEG compression (0-1, where 1 is best quality)                         |
+| `type`              | `'jpeg' \| 'png'`              | `'jpeg'`                                                 | Output image format                                                     |
+| `maxFileSize`       | `number`                       | `0`                                                      | Max input file size in bytes (0 = no limit)                             |
+| `allowedTypes`      | `string[]`                     | `['image/jpeg', 'image/png', 'image/gif', 'image/webp']` | Allowed MIME types                                                      |
+| `applyButtonLabel`  | `string`                       | `'Apply'`                                                | Apply button text                                                       |
+| `cancelButtonLabel` | `string`                       | `'Cancel'`                                               | Cancel button text                                                      |
 
 ### Configuration Examples
 

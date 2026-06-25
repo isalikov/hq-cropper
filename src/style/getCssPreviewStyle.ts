@@ -7,7 +7,6 @@ const getCssPreviewStyle = (name: string): string => `
       right: 0;
       bottom: 0;
       overflow: hidden;
-      border-radius: 50%;
     }
 `
 export default getCssPreviewStyle

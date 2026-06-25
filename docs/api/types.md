@@ -34,6 +34,9 @@ interface ConfigurationOptions {
     /** Minimum portal size */
     minPortalSize: number
 
+    /** Lock the portal to a square (1:1) aspect ratio. `false` = free rectangle */
+    lockAspectRatio: boolean
+
     /** Initial portal position */
     portalPosition: [number, number] | 'center'
 

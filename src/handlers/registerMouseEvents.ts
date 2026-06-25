@@ -75,7 +75,8 @@ const registerMouseEvents = (
                 Y: coords.pageY,
                 left: portal.left,
                 top: portal.top,
-                size: portal.size,
+                width: portal.width,
+                height: portal.height,
             }
 
             setState({

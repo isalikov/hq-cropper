@@ -44,13 +44,15 @@ const getPortalProps = (
         return {
             left,
             top,
-            size,
+            width: size,
+            height: size,
         }
     }
 
     if (config.portalPosition === 'center') {
         return {
-            size,
+            width: size,
+            height: size,
             left: (frame.width - size) / 2,
             top: (frame.height - size) / 2,
         }
@@ -59,7 +61,8 @@ const getPortalProps = (
     return {
         left: 0,
         top: 0,
-        size,
+        width: size,
+        height: size,
     }
 }
 

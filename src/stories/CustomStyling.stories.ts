@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/html'
+import type { Meta, StoryObj } from '@storybook/html-vite'
 import { HqCropper } from '../index'
 import type { ApplicationState } from '../types'
 import { defaultArgs, defaultArgTypes, type StoryArgs } from './shared'

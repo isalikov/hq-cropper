@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/html'
+import type { Meta, StoryObj } from '@storybook/html-vite'
 
 const meta: Meta = {
     title: 'Documentation',
@@ -42,8 +42,9 @@ const createDocumentation = (): HTMLElement => {
             <span class="doc-badge">Zero Dependencies</span>
             <span class="doc-badge">TypeScript</span>
             <span class="doc-badge">Mobile Support</span>
+            <span class="doc-badge">Square & Rectangle</span>
         </p>
-        <p class="doc-p">A lightweight image cropper for high-quality square crops. Perfect for profile pictures, avatars, and thumbnails.</p>
+        <p class="doc-p">A lightweight image cropper for high-quality crops — locked square (1:1) by default, or free rectangles when you need them. Perfect for profile pictures, avatars, thumbnails and banners.</p>
 
         <h2 class="doc-h2">Installation</h2>
         <pre class="doc-pre">npm install hq-cropper
@@ -118,6 +119,7 @@ document.querySelector('#crop-button').addEventListener('click', () => {
             <tbody>
                 <tr><td><code class="doc-code">portalSize</code></td><td>number</td><td>150</td><td>Initial size of crop portal in pixels</td></tr>
                 <tr><td><code class="doc-code">minPortalSize</code></td><td>number</td><td>50</td><td>Minimum portal size</td></tr>
+                <tr><td><code class="doc-code">lockAspectRatio</code></td><td>boolean</td><td>true</td><td>Lock the portal to a square (1:1); set false for free rectangles</td></tr>
                 <tr><td><code class="doc-code">portalPosition</code></td><td>[number, number] | 'center'</td><td>'center'</td><td>Initial portal position</td></tr>
                 <tr><td><code class="doc-code">framePadding</code></td><td>number</td><td>3</td><td>Padding around the image frame</td></tr>
             </tbody>

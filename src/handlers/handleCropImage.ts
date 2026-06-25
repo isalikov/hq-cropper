@@ -17,15 +17,24 @@ const handleCropImage = (
     const sx = state.portal.left * scaleX
     const sy = state.portal.top * scaleY
 
-    const sourceSize = Math.max(
-        state.portal.size * Math.min(scaleX, scaleY),
-        MIN_SIZE
-    )
-    const outputSize =
-        state.config.outputSize > 0 ? state.config.outputSize : sourceSize
+    const sourceWidth = Math.max(state.portal.width * scaleX, MIN_SIZE)
+    const sourceHeight = Math.max(state.portal.height * scaleY, MIN_SIZE)
 
-    canvas.width = outputSize
-    canvas.height = outputSize
+    // `outputSize` constrains the longest side; the other side scales
+    // proportionally so the cropped aspect ratio is preserved. For square
+    // crops both sides are equal, yielding an `outputSize` × `outputSize` image.
+    let outputWidth = sourceWidth
+    let outputHeight = sourceHeight
+
+    if (state.config.outputSize > 0) {
+        const ratio =
+            state.config.outputSize / Math.max(sourceWidth, sourceHeight)
+        outputWidth = sourceWidth * ratio
+        outputHeight = sourceHeight * ratio
+    }
+
+    canvas.width = outputWidth
+    canvas.height = outputHeight
 
     const sourceImage = document.querySelector<HTMLImageElement>(
         `.${state.css?.sourceImage[0]}`
@@ -38,12 +47,12 @@ const handleCropImage = (
                 sourceImage,
                 sx,
                 sy,
-                sourceSize,
-                sourceSize,
+                sourceWidth,
+                sourceHeight,
                 0,
                 0,
-                outputSize,
-                outputSize
+                outputWidth,
+                outputHeight
             )
     }
 
